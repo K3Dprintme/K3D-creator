@@ -328,7 +328,7 @@ button.selected-btn {
 /* --- FIX DEFINITIVO COLONNE --- */
 .layout-grid {
    display: flex;
-   justify-content: center;
+   justify-content: flex;
    align-items: flex-start;
    gap: 30px;
 }
@@ -394,7 +394,7 @@ html, body {
 
         <!-- PRODOTTO -->
         <div class="box">
-            <div class="box-title">🧩 Prodotto</div>
+            <div class="box-title">🧩 Tipologia modello</div>
             <button class="toggle" data-product="Statuine" data-price="15">🧍‍♀️ Statuine</button>
             <button class="toggle" data-product="Portachiavi" data-price="5">🔑 Portachiavi</button>
             <button class="toggle" data-product="Calamite" data-price="4">🧲 Calamite</button>
@@ -403,11 +403,11 @@ html, body {
 
         <!-- DIMENSIONE -->
         <div class="box">
-            <div class="box-title">📏 Dimensione</div>
+            <div class="box-title">📏 Dimensione in altezza</div>
 
-            <button class="toggle-size" data-size="1">📐 Piccolo</button>
-            <button class="toggle-size" data-size="1.5">📏 Medio</button>
-            <button class="toggle-size" data-size="2">📏📏 Grande</button>
+            <button class="toggle-size" data-size="1">📐 Piccolo, fino a 8cm</button>
+            <button class="toggle-size" data-size="1.5">📏 Medio, fino a 12cm</button>
+            <button class="toggle-size" data-size="2">📏📏 Grande, fino a 15cm</button>
 
             <div class="qty-box">
                 <button class="qty-btn" onclick="changeQty(-1)">−</button>
