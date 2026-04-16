@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<div class="header">
-<h1>K3D Creator</h1>
+<div class="hidden">
+
+<h1>K3D-creator</h1>
+
 
 
 <div class="subtitle">
@@ -45,14 +47,14 @@ body::before {
 --------------------------------*/
 .logo {
     width: 160px;
-    margin: 10px auto 5px auto;
+    margin: 6px auto 5px auto;
     display: block;
 }
 
 .title-box {
     background: rgba(173, 198, 219, 0.55);
     padding: 18px 30px;
-    border-radius: 18px;
+    border-radius: 48px;
     display: inline-block;
     margin-bottom: 20px;
     box-shadow: 0 4px 14px rgba(0,0,0,0.15);
@@ -60,7 +62,7 @@ body::before {
 
 .title-box h2 {
     color: #1a2a44;
-    font-size: 32px;
+    font-size: 52px;
     margin: 0;
 }
 
@@ -70,13 +72,14 @@ body::before {
 --------------------------------*/
 .box {
     background: rgba(255,255,255,0.88);
-    padding: 25px;
-    border-radius: 20px;
-    margin: 20px auto;
+    padding: 20px;
+    border-radius: 45px;
+    margin: 15px auto;
     width: 100%;
-    max-width: 600px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    max-width: 500px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
     transition: 0.3s ease;
+    
 }
 
 .box:hover {
@@ -354,7 +357,7 @@ button.selected-btn {
 @media (max-width: 768px) {
    .layout-grid {
       flex-direction: column;
-      align-items: center;
+      align-items: flex;
    }
 }
 /* --- FIX ALLINEAMENTO COLONNE --- */
@@ -413,6 +416,10 @@ html, body {
    align-items: center;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 <link rel="apple-touch-icon" href="AppK3D/logoindex/logo.png">
 
 <link rel="icon" type="image/png" href="AppK3D/logoindex/logo.png">
@@ -428,7 +435,7 @@ html, body {
 <img src="AppK3D/logoindex/logo.png" class="logo">
 
 <div class="title-box">
-    <h2>K3D Creator</h2>
+    <h2>Benvenuto nel creator</h2>
 </div>
 
 <div class="layout-grid">
@@ -438,20 +445,20 @@ html, body {
 
         <!-- PRODOTTO -->
         <div class="box">
-            <div class="box-title">🧩 Tipologia modello</div>
+            <div class="box-title">🧩 Tipologia o modello</div>
             <button class="toggle" data-product="Statuine" data-price="15">🧍‍♀️ Statuine</button>
-            <button class="toggle" data-product="Portachiavi" data-price="5">🔑 Portachiavi</button>
-            <button class="toggle" data-product="Calamite" data-price="4">🧲 Calamite</button>
+            <button class="toggle" data-product="Portachiavi" data-price="4">🔑 Portachiavi</button>
+            <button class="toggle" data-product="Calamite" data-price="5">🧲 Calamite</button>
             <button class="toggle" data-product="Cornici" data-price="12">🖼️ Cornici</button>
         </div>
 
         <!-- DIMENSIONE -->
         <div class="box">
-            <div class="box-title">📏 Dimensione in altezza</div>
+            <div class="box-title">📏 Dimensione del modello</div>
 
-            <button class="toggle-size" data-size="1">📐 Piccolo, fino a 8cm</button>
-            <button class="toggle-size" data-size="1.5">📏 Medio, fino a 12cm</button>
-            <button class="toggle-size" data-size="2">📏📏 Grande, fino a 15cm</button>
+            <button class="toggle-size" data-size="1">📐 Piccole composizioni (da 0 a 5x5cm)</button>
+            <button class="toggle-size" data-size="1.5">📏 Media composizione (da 5x5 a 10x10cm)</button>
+            <button class="toggle-size" data-size="2">📏📏 Grande composizione (fino a 18cm)</button>
 
             <div class="qty-box">
                 <button class="qty-btn" onclick="changeQty(-1)">−</button>
@@ -462,7 +469,7 @@ html, body {
 
         <!-- COLORI -->
         <div class="box">
-            <div class="box-title">🎨 Colori Matte (max 4)</div>
+            <div class="box-title">🎨 Colori opachi (max 4)</div>
 
             <div class="fan-container">
                 <div id="fanMatte" class="fan"></div>
@@ -542,7 +549,7 @@ let basePrice = 0;
 let product = "";
 let sizeMultiplier = 1;
 let selectedColors = [];
-let silkExtra = 0;
+let silkExtra = 2;
 let quantity = 1;
 
 /* ------------------------------
@@ -831,7 +838,7 @@ if (text.includes("materiale")) {
 }
 
 if (text.includes("nfc")) {
-   addChatMessage("Alcuni prodotti come portachiavi, calamite e cornici possono includere un chip NFC personalizzato.", "reply");
+   addChatMessage("Alcuni prodotti come portachiavi, calamite e cornici possono includere un chip NFC personalizzato. NFC (da scrivere)+1€", "reply");
    return;
 }
 
