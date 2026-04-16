@@ -3,9 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>K3D Creator</title>
+<div class="header">
+<h1>K3D Creator</h1>
+
+
+<div class="subtitle">
+   Questo semplice creator ti aiuterà ad avere una stima del prezzo finale dei tuoi modelli!
+</div>
 
 <style>
+
 
 /* ------------------------------
    SFONDO GENERALE
@@ -37,7 +44,7 @@ body::before {
    LOGO + TITOLO
 --------------------------------*/
 .logo {
-    width: 120px;
+    width: 160px;
     margin: 10px auto 5px auto;
     display: block;
 }
@@ -84,13 +91,49 @@ body::before {
     padding: 12px 20px;
     border-radius: 12px;
     color: #1a2a44;
-    font-size: 20px;
+    font-size: 25px;
     margin-bottom: 20px;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 12px;
+}
+
+
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.subtitle {
+  font-size: 18px; /
+  text-align: center;
+  color: #1a2a44;
+  font-style: italic;
+  margin-top: 20px;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.subtitle {
+  font-weight: 500;
+ 
 }
 
 /* ------------------------------
@@ -155,7 +198,7 @@ button.selected-btn {
     position: absolute;
     bottom: 20px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-70%);
 }
 
 .fan-color {
@@ -169,7 +212,7 @@ button.selected-btn {
     transition: all 0.35s ease;
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    transform: rotate(var(--angle)) translateY(-95px);
+    transform: rotate(var(--angle)) translateY(-65px);
 }
 
 .fan:hover .fan-color {
@@ -374,6 +417,7 @@ html, body {
 
 <link rel="icon" type="image/png" href="AppK3D/logoindex/logo.png">
 
+
 </style>
 </head>
 
@@ -453,7 +497,7 @@ html, body {
     <!-- DESTRA: CHATBOT -->
     <div class="right-panel">
         <div class="assistant-box">
-            <div class="box-title">🤖 Assistente Virtuale</div>
+            <div class="box-title">🤖 K3D Virtuale</div>
 
             <div class="chat-window" id="chatWindow">
                 <div class="chat-reply">Ciao! Posso aiutarti con i colori o su come ordinare.</div>
