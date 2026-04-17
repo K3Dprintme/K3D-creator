@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <div class="hidden">
 
-<h1>K3D-creator</h1>
+<h1 class="k3d-title">K3D-creator</h1>
 
 
 <div class="subtitle">
@@ -67,20 +67,33 @@ body::before {
   width: 160px;
   margin: 10px auto;
   display: block;
+
 }
 
-.title-box {
-  background: rgba(173, 198, 219, 0.55);
-  padding: 18px 30px;
-  border-radius: 48px;
-  margin-bottom: 10px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+.k3d-title {
+  transform: translateY(15px) !important;
+
 }
 
+/*ANIMAZIONE*/
+@keyframes titleBreath {
+     0% {
+         transform: traslateY(0px);
+      }
+     50% {
+         transform: translateY(-3px);
+      }
+     100% {
+         transform: translateY(0px);
+      }
+}
+ 
 .title-box h2 {
   margin: 0;
   font-size: 22px;
 }
+
+
 
 /* =========================
    SUBTITLE
