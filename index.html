@@ -114,7 +114,7 @@ body::before {
 }
 
 .subtitle {
-  font-size: 18px; /
+  font-size: 18px; 
   text-align: center;
   color: #1a2a44;
   font-style: italic;
@@ -374,7 +374,7 @@ button.selected-btn {
 /* --- FIX DEFINITIVO COLONNE --- */
 .layout-grid {
    display: flex;
-   justify-content: flex;
+   justify-content: center;
    align-items: flex-start;
    gap: 30px;
 }
@@ -396,7 +396,7 @@ button.selected-btn {
    .layout-grid {
       flex-direction: column;
       align-items: center;
-      trasform: traslateX(-4px);
+      trasform: traslateX(0);
    }
 
    .left-panel,
@@ -406,6 +406,7 @@ button.selected-btn {
 }
 
 html, body {
+   max-width: 100%;
    overflow-x: hidden;
 }
 
@@ -438,7 +439,7 @@ body {
 }
 
 html, body {
-  max-width:100%
+  max-width: 100%;
   overflow-x: hidden;
 }
 
