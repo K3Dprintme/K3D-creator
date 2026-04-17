@@ -9,7 +9,7 @@
 
 
 <div class="subtitle">
-   Questo semplice creator ti aiuterà ad avere una stima del prezzo finale dei tuoi modelli!
+   Questo semplice creator ti aiuterà ad avere una stima del prezzo finale dei tuoi modelli! I tempi di lavorazione sono già calcolati in funzione delle tue scelte.
 </div>
 
 
@@ -73,7 +73,7 @@ body::before {
   background: rgba(173, 198, 219, 0.55);
   padding: 18px 30px;
   border-radius: 48px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.15);
 }
 
@@ -410,7 +410,7 @@ button:hover {
         <!-- PRODOTTO -->
         <div class="box">
             <div class="box-title">🧩 Tipologia o modello</div>
-            <button class="toggle" data-product="Statuine" data-price="15">🧍‍♀️ Statuine</button>
+            <button class="toggle" data-product="Statuine" data-price="15">🧍‍♀️ Modelli personalizzati</button>
             <button class="toggle" data-product="Portachiavi" data-price="4">🔑 Portachiavi</button>
             <button class="toggle" data-product="Calamite" data-price="5">🧲 Calamite</button>
             <button class="toggle" data-product="Cornici" data-price="12">🖼️ Cornici</button>
@@ -418,11 +418,11 @@ button:hover {
 
         <!-- DIMENSIONE -->
         <div class="box">
-            <div class="box-title">📏 Dimensione del modello</div>
+            <div class="box-title">📏 Dimensione del tuo modello</div>
 
-            <button class="toggle-size" data-size="1">📐 Piccole composizioni (da 0 a 5x5cm)</button>
-            <button class="toggle-size" data-size="1.5">📏 Media composizione (da 5x5 a 10x10cm)</button>
-            <button class="toggle-size" data-size="2">📏📏 Grande composizione (fino a 18cm)</button>
+            <button class="toggle-size" data-size="1">📏 Piccola composizione (da 0 a 5x5cm)</button>
+            <button class="toggle-size" data-size="1.5">📐 Media composizione (da 5x5 a 10x10cm)</button>
+            <button class="toggle-size" data-size="2">📐📐 Grande composizione (fino a 18cm)</button>
 
             <div class="qty-box">
                 <button class="qty-btn" onclick="changeQty(-1)">−</button>
@@ -471,12 +471,12 @@ button:hover {
             <div class="box-title">🤖 K3D Virtuale</div>
 
             <div class="chat-window" id="chatWindow">
-                <div class="chat-reply">Ciao! Posso aiutarti con i colori o su come ordinare.</div>
+                <div class="chat-reply">Ciao! Sono K3D in formato digitale! Come posso aiutarti?</div>
             </div>
 
             <div class="quick-questions">
-                <button onclick="quickAsk('colori')">🎨 Colori disponibili</button>
-                <button onclick="quickAsk('come ordinare')">🛒 Come ordinare</button>
+                <button onclick="quickAsk('colori')">🎨 Colori disponibili?</button>
+                <button onclick="quickAsk('come ordinare')">🛒 Come ordinare?</button>
             </div>
 
             <div class="chat-input">
@@ -490,7 +490,7 @@ button:hover {
 
 <!-- BOTTONI SOCIAL -->
 <div class="box">
-    <div class="box-title">📲 Invia Ordine</div>
+    <div class="box-title">📲 Finito? che aspetti a conttatarmi!</div>
     <button class="btn-instagram" onclick="window.open('https://www.instagram.com/printmek3d?igsh=ZDJ3bDBxNjZ4aG93&utm_source=qr')">📷 Instagram</button>
     <button class="btn-whatsapp" onclick="window.open('https://wa.me/+393275377269')">📱 WhatsApp</button>
 </div>
@@ -503,7 +503,7 @@ button:hover {
         <button onclick="closePopup()">Chiudi</button>
     </div>
 </div>
-<button onclick="resetAll()" class="reset-btn">🔄 Reset configurazione</button>
+<button onclick="resetAll()" class="reset-btn">🔄 Azzera tutto</button>
 
 <script>
 
@@ -565,9 +565,9 @@ function renderColors() {
 
         let wrap = document.createElement("div");
         wrap.style.position = "absolute";
-        wrap.style.left = "50%";
+        wrap.style.left = "30%";
         wrap.style.bottom = "0";
-        wrap.style.transform = "translateX(-50%)";
+        wrap.style.transform = "translateX(-30%)";
         wrap.appendChild(el);
 
         matteFan.appendChild(wrap);
@@ -587,16 +587,16 @@ function renderColors() {
 
         let wrap = document.createElement("div");
         wrap.style.position = "absolute";
-        wrap.style.left = "50%";
+        wrap.style.left = "10%";
         wrap.style.bottom = "0";
-        wrap.style.transform = "translateX(-50%)";
+        wrap.style.transform = "translateX(-10%)";
         wrap.appendChild(el);
 
         silkFan.appendChild(wrap);
 
         let ddItem = document.createElement("div");
         ddItem.innerText = c.name;
-        ddItem.style.padding = "6px 0";
+        ddItem.style.padding = "2px 0";
         silkDD.appendChild(ddItem);
     });
 }
@@ -618,7 +618,7 @@ function toggleColor(color, el, isSilk) {
         if (isSilk) silkExtra -= 2;
     } else {
         if (selectedColors.length >= 4) {
-            alert("Puoi selezionare massimo 4 colori");
+            alert("Puoi scegliere al massimo 4 colori per una singola creazione!");
             return;
         }
         selectedColors.push(color);
@@ -708,8 +708,8 @@ function openPopup() {
 
     document.getElementById("popupContent").innerText =
         document.getElementById("result").innerText +
-        "\n\n*Nota: al costo del modello vanno aggiunti 5€ di spedizione minime per la spedizione al locker.*" +
-        "\n*Per Portachiavi, Calamite e Cornici è possibile aggiungere un tag NFC.*";
+        "\n\n*Nota: Al costo del modello vanno aggiunti i costi di spedizione (a partire da 5€) per la spedizione al locker.*" +
+        "\n*Per Portachiavi, Calamite e Cornici è possibile aggiungere un tag NFC interno ed invisibile(+2€).*";
 
     document.getElementById("popupOverlay").style.display = "flex";
 }
@@ -768,7 +768,7 @@ function autoReply(text) {
     text = text.toLowerCase();
 
     if (text.includes("colori")) {
-   addChatMessage("Puoi scegliere fino a 4 colori tra Matte e Silk. I colori Silk hanno un piccolo extra di costo.", "reply");
+   addChatMessage("Puoi scegliere fino ad un massimo di 4 colori opachi e Silk contemporaneamente per UNA composizione", "reply");
    return;
 }
 
@@ -816,7 +816,7 @@ if (text.includes("ciao")) {
    addChatMessage("Ciao! 👋 Dimmi pure cosa vuoi creare e ti aiuto passo passo.", "reply");
    return;
 }
-    addChatMessage("Per questa domanda è meglio sentirci direttamente! Contattami tramite Instagram o WhatsApp.", "reply");
+    addChatMessage("Mi dispiace, anche gli eroi digitali hanno dei limiti, ma puoi contattare K3D in persona tramite i bottoni social, Instagram o WhatsApp, in fondo alla pagina.", "reply");
 }
 
 /* ------------------------------
@@ -831,7 +831,7 @@ function resetAll() {
     product = "";
     sizeMultiplier = 1;
     selectedColors = [];
-    silkExtra = 2;
+    silkExtra = 1;
     quantity = 1;
 
     // reset UI bottoni prodotti
