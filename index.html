@@ -12,10 +12,11 @@
 <div class="subtitle">
    Questo semplice creator ti aiuterà ad avere una stima del prezzo finale dei tuoi modelli!
 </div>
-
 <style>
 
-/* RESET BASE */
+/* =========================
+   RESET BASE
+========================= */
 * {
   box-sizing: border-box;
 }
@@ -23,14 +24,16 @@
 html, body {
   margin: 0;
   padding: 0;
-  max-width: 100%;
+  width: 100%;
   overflow-x: hidden;
   font-family: Arial, sans-serif;
   text-align: center;
   color: #1a2a44;
 }
 
-/* SFONDO */
+/* =========================
+   SFONDO
+========================= */
 body {
   background: url("AppK3D/background/sfondo/image.png") no-repeat center center fixed;
   background-size: cover;
@@ -45,18 +48,20 @@ body::before {
   z-index: -1;
 }
 
-/* CONTENITORE CENTRALE */
+/* =========================
+   CONTAINER PRINCIPALE
+========================= */
 .container {
   width: 100%;
-  max-width: 420px;
-  margin: 0 auto;
   padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* LOGO + TITLE */
+/* =========================
+   LOGO + TITLE
+========================= */
 .logo {
   width: 160px;
   margin: 10px auto;
@@ -67,7 +72,6 @@ body::before {
   background: rgba(173, 198, 219, 0.55);
   padding: 18px 30px;
   border-radius: 48px;
-  display: inline-block;
   margin-bottom: 20px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.15);
 }
@@ -77,17 +81,19 @@ body::before {
   font-size: 22px;
 }
 
-/* SUBTITLE */
+/* =========================
+   SUBTITLE
+========================= */
 .subtitle {
   font-size: 18px;
   font-style: italic;
   max-width: 320px;
   margin: 10px auto 20px;
   line-height: 1.5;
+  font-weight: 500;
   opacity: 0;
   transform: translateY(10px);
   animation: fadeUp 0.8s ease forwards;
-  font-weight: 500;
 }
 
 @keyframes fadeUp {
@@ -97,28 +103,41 @@ body::before {
   }
 }
 
-/* GRID */
+/* =========================
+   LAYOUT DESKTOP 2 COLONNE
+========================= */
 .layout-grid {
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+/* COLONNA SINISTRA */
+.left-panel {
+  flex: 1;
+  max-width: 650px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* COLONNE */
-.left-panel,
+/* COLONNA DESTRA (CHATBOT) */
 .right-panel {
-  width: 100%;
-  max-width: 420px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: fixed;
+  right: 20px;
+  width: 360px;
+  top: 100px;
 }
 
-/* BOX */
+/* =========================
+   BOX
+========================= */
 .box {
   width: 100%;
-  max-width: 420px;
   background: rgba(255,255,255,0.88);
   padding: 20px;
   border-radius: 45px;
@@ -131,7 +150,9 @@ body::before {
   box-shadow: 0 0 18px rgba(77,183,255,0.45);
 }
 
-/* TITOLI BOX */
+/* =========================
+   TITOLI BOX
+========================= */
 .box-title {
   background: rgba(173, 198, 219, 0.75);
   padding: 12px 20px;
@@ -145,7 +166,9 @@ body::before {
   gap: 10px;
 }
 
-/* BOTTONI */
+/* =========================
+   BOTTONI
+========================= */
 button {
   width: 90%;
   max-width: 260px;
@@ -159,6 +182,7 @@ button {
   color: #1a2a44;
   box-shadow: 0 3px 8px rgba(0,0,0,0.12);
   transition: 0.25s ease;
+  display: block;
 }
 
 button:hover {
@@ -171,7 +195,9 @@ button:hover {
   color: white !important;
 }
 
-/* SOCIAL */
+/* =========================
+   SOCIAL BUTTONS
+========================= */
 .btn-instagram {
   background: linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
   color: white;
@@ -182,7 +208,9 @@ button:hover {
   color: white;
 }
 
-/* FAN COLORI */
+/* =========================
+   FAN COLORI
+========================= */
 .fan-container {
   width: 100%;
   max-width: 320px;
@@ -221,7 +249,9 @@ button:hover {
   border: 3px solid #4db7ff;
 }
 
-/* DROPDOWN */
+/* =========================
+   DROPDOWN
+========================= */
 .color-dropdown {
   margin-top: 10px;
   padding: 10px;
@@ -242,7 +272,9 @@ button:hover {
   display: block;
 }
 
-/* QUANTITÀ */
+/* =========================
+   QUANTITÀ
+========================= */
 .qty-box {
   display: flex;
   justify-content: center;
@@ -256,9 +288,14 @@ button:hover {
   border-radius: 50%;
 }
 
-/* CHAT */
+/* =========================
+   CHATBOT
+========================= */
 .assistant-box {
-  width: 100%;
+  background: rgba(255,255,255,0.88);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
 }
 
 .chat-window {
@@ -286,7 +323,9 @@ button:hover {
   margin: 4px 0;
 }
 
-/* POPUP */
+/* =========================
+   POPUP
+========================= */
 #popupOverlay {
   position: fixed;
   inset: 0;
@@ -304,7 +343,25 @@ button:hover {
   border-radius: 20px;
 }
 
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+  .layout-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-panel,
+  .right-panel {
+    width: 100%;
+    max-width: 420px;
+  }
+
+}
 </style>
+
 </head>
 
 <body>
