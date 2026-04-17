@@ -47,7 +47,7 @@ body::before {
 --------------------------------*/
 .logo {
     width: 160px;
-    margin: 6px auto 5px auto;
+    margin: 7px auto 5px auto;
     display: block;
 }
 
@@ -62,7 +62,7 @@ body::before {
 
 .title-box h2 {
     color: #1a2a44;
-    font-size: 52px;
+    font-size: 22px;
     margin: 0;
 }
 
@@ -358,13 +358,12 @@ button.selected-btn {
 @media (max-width: 768px) {
    .layout-grid {
       flex-direction: column;
-      align-items: flex;
+      align-items: center;
+      display: flex;
    }
 }
 /* --- FIX ALLINEAMENTO COLONNE --- */
-.layout-grid {
-   align-items: flex-start;
-}
+
 
 /* Assicura che i box non si allarghino male */
 .left-panel, .right-panel {
@@ -415,6 +414,11 @@ html, body {
    display: flex;
    flex-direction: column;
    align-items: center;
+}
+
+.inner-container {
+   width: 100%;
+   max-width: 400px;
 }
 
 body {
