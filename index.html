@@ -8,10 +8,11 @@
 <h1>K3D-creator</h1>
 
 
-
 <div class="subtitle">
    Questo semplice creator ti aiuterà ad avere una stima del prezzo finale dei tuoi modelli!
 </div>
+
+
 <style>
 
 /* =========================
@@ -360,11 +361,31 @@ button:hover {
   }
 
 }
+
+.reset-btn {
+  background: #ffdddd;
+  color: #a30000;
+  border: none;
+  border-radius: 30px;
+  padding: 14px;
+  width: 90%;
+  max-width: 260px;
+  margin: 10px auto;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.reset-btn:hover {
+  background: #ffbcbc;
+  transform: translateY(-2px);
+}
+
 </style>
 
 </head>
 
 <body>
+
 
 <div class="container">
 
@@ -475,6 +496,7 @@ button:hover {
         <button onclick="closePopup()">Chiudi</button>
     </div>
 </div>
+<button onclick="resetAll()" class="reset-btn">🔄 Reset configurazione</button>
 
 <script>
 
@@ -794,5 +816,41 @@ if (text.includes("ciao")) {
    AVVIO
 --------------------------------*/
 renderColors();
+
+function resetAll() {
+
+    // reset variabili
+    basePrice = 0;
+    product = "";
+    sizeMultiplier = 1;
+    selectedColors = [];
+    silkExtra = 2;
+    quantity = 1;
+
+    // reset UI bottoni prodotti
+    document.querySelectorAll(".toggle").forEach(b => {
+        b.classList.remove("selected-btn");
+    });
+
+    // reset dimensioni
+    document.querySelectorAll(".toggle-size").forEach(b => {
+        b.classList.remove("selected-btn");
+    });
+
+    // reset quantità
+    document.getElementById("qty").innerText = "1";
+
+    // reset colori selezionati (visivo)
+    document.querySelectorAll(".fan-color").forEach(el => {
+        el.classList.remove("selected");
+    });
+
+    // reset risultato
+    document.getElementById("result").innerText = "Seleziona le opzioni";
+
+    // reset popup
+    document.getElementById("popupContent").innerText = "";
+}
+
 
 </script>
