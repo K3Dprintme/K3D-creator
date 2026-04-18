@@ -788,6 +788,33 @@ function autoReply(text) {
    addChatMessage("Puoi scegliere fino ad un massimo di 4 colori opachi e Silk contemporaneamente per UNA composizione", "reply");
    return;
 }
+if (text.includes("portachiavi")) {
+   addChatMessage("Per portachiavi, seleziona il pulsante PORTACHIAVI. Scegli la dimensione ed i colori, al gancio ci pensiamo noi! ", "reply");
+   return;
+}
+if (text.includes("modelli")) {
+   addChatMessage("Per ordinare un modello personalizzato o su misura devi contattare K3D in persona tramite i pulsanti social in fondo alla pagina.", "reply");
+   return;
+}
+
+if (text.includes("calamite")) {
+   addChatMessage("Per calamite, seleziona il pulsante CALAMITE. Sono realizzate ed inserite all'interno del modello così non rischi di graffiare le superfici.", "reply");
+   return;
+}
+if (text.includes("cornici")) {
+   addChatMessage("Per ordinare una cornice, seleziona il pulsante CORNICI, la dimensione ed i colori. La dimensione massima è 10x15. Anche le cornici possono avere personalizzazioni, come dediche o forme (cuori, stelle, ecc.)", "reply");
+   return;
+}
+
+if (text.includes("come viene calcolato il prezzo?")) {
+   addChatMessage("Per il calcolo del prezzo, viene considerato il tempo di creazione grafica, il materiale, ed eventuali personalizzazioni.", "reply");
+   return;
+}
+
+if (text.includes("cos'è")) {
+   addChatMessage("Se vuoi maggiori info su questo argomento, scrivi pure a K3D in persona tramite i pulsanti social.", "reply");
+   return;
+}
 
 if (text.includes("come ordinare")) {
    addChatMessage("Per ordinare: scegli prodotto, dimensione, colori e poi apri il riepilogo per vedere il totale. Infine contattami su WhatsApp per confermare.", "reply");
@@ -815,7 +842,7 @@ if (text.includes("tempi")) {
 }
 
 if (text.includes("spedizione")) {
-   addChatMessage("La spedizione standard è di 5€. Viene aggiunta automaticamente al totale.", "reply");
+   addChatMessage("La spedizione standard è di 5€ per il locker. Altrimeti, per consegne a domicilio, 8€.", "reply");
    return;
 }
 
@@ -830,7 +857,7 @@ if (text.includes("materiale")) {
 }
 
 if (text.includes("nfc")) {
-   addChatMessage("Alcuni prodotti come portachiavi, calamite e cornici possono includere un chip NFC personalizzato. NFC (da scrivere)+2€", "reply");
+   addChatMessage("Alcuni prodotti come portachiavi, calamite e cornici possono includere un chip NFC personalizzato. Puoi richiedere la personalizzazione del tuo chip gratuitamente. NFC (da programmare)+2€.", "reply");
    return;
 }
 
@@ -843,7 +870,7 @@ if (text.includes("ciao")) {
    addChatMessage("Ciao! 👋 Dimmi pure cosa vuoi creare e ti aiuto passo passo.", "reply");
    return;
 }
-    addChatMessage("Anche gli eroi digitali hanno dei limiti, ma puoi contattare K3D in persona tramite i bottoni social, Instagram o WhatsApp, in fondo alla pagina.", "reply");
+    addChatMessage("Per questo puoi contattare K3D in persona tramite i pulsanti social, Instagram o WhatsApp, in fondo alla pagina.", "reply");
 
 
 }
