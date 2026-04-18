@@ -72,6 +72,13 @@ body::before {
 
 .k3d-title {
   transform: translateY(15px) !important;
+}
+
+.k3d-title {
+  font-size: 45px;
+  color: #00c8ff;
+  text-shadow: 2px 2px 5px red;
+
 
 }
 
@@ -81,7 +88,7 @@ body::before {
          transform: translateY(0px);
       }
      50% {
-         transform: translateY(-3px);
+         transform: translateY(-2px);
       }
      100% {
          transform: translateY(0px);
@@ -90,8 +97,13 @@ body::before {
  
 .title-box h2 {
   margin: 0;
-  font-size: 22px;
+  font-size: 35px;
+  color: #00c8ff;
+  text-shadow: 2px 2px 5px red;
+  animation: titleBreath 1s infinite ease-in-out;
+
 }
+
 
 
 
@@ -534,7 +546,7 @@ let basePrice = 0;
 let product = "";
 let sizeMultiplier = 1;
 let selectedColors = [];
-let silkExtra = 2;
+let silkExtra = 1;
 let quantity = 1;
 
 /* ------------------------------
