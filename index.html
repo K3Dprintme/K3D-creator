@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<div class="hidden">
+<div class="hidden">;
 
 <h1 class="k3d-title">K3D-creator</h1>
 
@@ -78,7 +78,7 @@ body::before {
 /*ANIMAZIONE*/
 @keyframes titleBreath {
      0% {
-         transform: traslateY(0px);
+         transform: translateY(0px);
       }
      50% {
          transform: translateY(-3px);
@@ -235,6 +235,7 @@ button:hover {
   justify-content: center;
 }
 
+/* Contenitore del ventaglio */
 .fan {
   position: absolute;
   bottom: 20px;
@@ -242,23 +243,27 @@ button:hover {
   transform: translateX(-50%);
 }
 
+/* Singolo colore del ventaglio */
 .fan-color {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   position: absolute;
-  left: -25px;
+  left: 50%;
   bottom: 0;
+  transform-origin: bottom center;
+  transform: rotate(var(--angle)) translateY(-70px);
   opacity: 0.9;
   cursor: pointer;
-  transition: all 0.35s ease;
-  transform: rotate(var(--angle)) translateY(-65px);
+  transition: transform 0.5s ease-in-out;
 }
 
+/* Effetto di estensione al passaggio del mouse */
 .fan:hover .fan-color {
-  transform: rotate(var(--angle)) translateY(-110px);
+  transform: rotate(var(--angle)) translateY(-100px);
 }
 
+/* Stato selezionato */
 .fan-color.selected {
   border: 3px solid #4db7ff;
 }
@@ -372,9 +377,11 @@ button:hover {
     width: 100%;
     max-width: 420px;
   }
+
   .right-panel {
   position: static !important;
   top: auto !important;
+}
 
 @media (max-width: 768px) }
   .assistant-box {
@@ -503,7 +510,7 @@ button:hover {
 
 <!-- BOTTONI SOCIAL -->
 <div class="box">
-    <div class="box-title">📲 Finito? che aspetti a conttatarmi!</div>
+    <div class="box-title">📲 Finito? inviami tutto tramite i pulsanti social!</div>
     <button class="btn-instagram" onclick="window.open('https://www.instagram.com/printmek3d?igsh=ZDJ3bDBxNjZ4aG93&utm_source=qr')">📷 Instagram</button>
     <button class="btn-whatsapp" onclick="window.open('https://wa.me/+393275377269')">📱 WhatsApp</button>
 </div>
@@ -566,9 +573,16 @@ function renderColors() {
     const matteDD = document.getElementById("matteDD");
     const silkDD = document.getElementById("silkDD");
 
+    // Pulizia contenitori
+    matteFan.innerHTML = "";
+    silkFan.innerHTML = "";
+    matteDD.innerHTML = "";
+    silkDD.innerHTML = "";
+
     const angleStepMatte = 180 / (matte.length - 1);
     const angleStepSilk = 180 / (silk.length - 1);
 
+    // MATTE
     matte.forEach((c, i) => {
         let el = document.createElement("div");
         el.className = "fan-color";
@@ -576,21 +590,16 @@ function renderColors() {
         el.style.setProperty("--angle", `${-90 + i * angleStepMatte}deg`);
         el.onclick = () => toggleColor(c.name, el, false);
 
-        let wrap = document.createElement("div");
-        wrap.style.position = "absolute";
-        wrap.style.left = "30%";
-        wrap.style.bottom = "0";
-        wrap.style.transform = "translateX(-30%)";
-        wrap.appendChild(el);
-
-        matteFan.appendChild(wrap);
+        // Append diretto (senza wrap)
+        matteFan.appendChild(el);
 
         let ddItem = document.createElement("div");
         ddItem.innerText = c.name;
-        ddItem.style.padding = "6px 0";
+        ddItem.style.padding = "3px 0";
         matteDD.appendChild(ddItem);
     });
 
+    // SILK
     silk.forEach((c, i) => {
         let el = document.createElement("div");
         el.className = "fan-color";
@@ -598,14 +607,8 @@ function renderColors() {
         el.style.setProperty("--angle", `${-90 + i * angleStepSilk}deg`);
         el.onclick = () => toggleColor(c.name, el, true);
 
-        let wrap = document.createElement("div");
-        wrap.style.position = "absolute";
-        wrap.style.left = "10%";
-        wrap.style.bottom = "0";
-        wrap.style.transform = "translateX(-10%)";
-        wrap.appendChild(el);
-
-        silkFan.appendChild(wrap);
+        // Append diretto (senza wrap)
+        silkFan.appendChild(el);
 
         let ddItem = document.createElement("div");
         ddItem.innerText = c.name;
@@ -777,6 +780,7 @@ document.getElementById("chatInput").addEventListener("keyup", function(event) {
 /* ------------------------------
    RISPOSTE AUTOMATICHE
 --------------------------------*/
+
 function autoReply(text) {
     text = text.toLowerCase();
 
@@ -792,6 +796,16 @@ if (text.includes("come ordinare")) {
 
 if (text.includes("prezzo")) {
    addChatMessage("Il prezzo dipende da prodotto, dimensione e colori. Il totale viene calcolato automaticamente nel riepilogo.", "reply");
+   return;
+}
+
+if (text.includes("contattare")) {
+   addChatMessage("Puoi contattare K3D tramite i pulsanti social in fondo alla pagina.", "reply");
+   return;
+}
+
+if (text.includes("aiuto")) {
+   addChatMessage("Scrivi una parola chiave dell'argomento che ti interessa sapere.", "reply");
    return;
 }
 
@@ -811,12 +825,12 @@ if (text.includes("dimensioni")) {
 }
 
 if (text.includes("materiale")) {
-   addChatMessage("I prodotti sono realizzati in stampa 3D di alta qualità con finitura Matte o Silk.", "reply");
+   addChatMessage("I prodotti sono realizzati in PLA di alta qualità con finitura Matte o Silk.", "reply");
    return;
 }
 
 if (text.includes("nfc")) {
-   addChatMessage("Alcuni prodotti come portachiavi, calamite e cornici possono includere un chip NFC personalizzato. NFC (da scrivere)+1€", "reply");
+   addChatMessage("Alcuni prodotti come portachiavi, calamite e cornici possono includere un chip NFC personalizzato. NFC (da scrivere)+2€", "reply");
    return;
 }
 
@@ -830,7 +844,10 @@ if (text.includes("ciao")) {
    return;
 }
     addChatMessage("Mi dispiace, anche gli eroi digitali hanno dei limiti, ma puoi contattare K3D in persona tramite i bottoni social, Instagram o WhatsApp, in fondo alla pagina.", "reply");
+
 }
+
+
 
 /* ------------------------------
    AVVIO
