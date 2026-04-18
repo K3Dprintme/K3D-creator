@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<div class="hidden">;
+<div class="hidden">
 
 <h1 class="k3d-title">K3D-creator</h1>
 
@@ -70,9 +70,7 @@ body::before {
 
 }
 
-.k3d-title {
-  transform: translateY(15px) !important;
-}
+
 
 .k3d-title {
   font-size: 45px;
@@ -395,7 +393,7 @@ button:hover {
   top: auto !important;
 }
 
-@media (max-width: 768px) }
+@media (max-width: 768px) {
   .assistant-box {
    position: static !important;
   }
@@ -446,6 +444,7 @@ button:hover {
             <button class="toggle" data-product="Portachiavi" data-price="4">🔑 Portachiavi</button>
             <button class="toggle" data-product="Calamite" data-price="5">🧲 Calamite</button>
             <button class="toggle" data-product="Cornici" data-price="12">🖼️ Cornici</button>
+            <button class="toggle-extra" data-extra="2"> NFC</button>
         </div>
 
         <!-- DIMENSIONE -->
@@ -542,11 +541,12 @@ button:hover {
 /* ------------------------------
    VARIABILI GLOBALI
 --------------------------------*/
+
 let basePrice = 0;
 let product = "";
 let sizeMultiplier = 1;
 let selectedColors = [];
-let silkExtra = 1;
+let silkExtra = 0;
 let quantity = 1;
 
 /* ------------------------------
@@ -652,8 +652,12 @@ function toggleColor(color, el, isSilk) {
         selectedColors.push(color);
         el.classList.add("selected");
         if (isSilk) silkExtra += 2;
+
     }
-    update();
+
+         update() 
+         
+
 }
 
 /* ------------------------------
@@ -688,6 +692,18 @@ document.querySelectorAll(".toggle-size").forEach(btn => {
     });
 });
 
+document.querySelector(".toggle-extra").addEventListener("click", (e) => {
+    e.target.classList.toggle("selected-btn");
+
+    if (e.target.classList.contains("selected-btn")) {
+        silkExtra += 2;
+    } else {
+        silkExtra -= 2;
+        if (silkExtra < 0) silkExtra = 0;
+    }
+
+    update();
+});
 /* ------------------------------
    QUANTITÀ
 --------------------------------*/
@@ -902,7 +918,7 @@ function resetAll() {
     product = "";
     sizeMultiplier = 1;
     selectedColors = [];
-    silkExtra = 1;
+    silkExtra = 0;
     quantity = 1;
 
     // reset UI bottoni prodotti
