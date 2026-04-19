@@ -857,7 +857,13 @@ function autoReply(text) {
    addChatMessage("Puoi scegliere fino ad un massimo di 4 colori opachi e Silk contemporaneamente per UNA composizione", "reply");
    return;
 }
-if (text.includes("portachiavi")) {
+if (text.includes("regalo")) {
+   addChatMessage("se devi fare un regalo, ti aiuterò con la configurazione! cosa avevi in mente?", "reply");
+   return;
+}if (text.includes("aiuto")) {
+   addChatMessage("dimmi per cosa ti serve aiuto?", "reply");
+   return;
+}if (text.includes("portachiavi")) {
    addChatMessage("Per portachiavi, seleziona il pulsante PORTACHIAVI. Scegli la dimensione ed i colori, al gancio ci pensiamo noi! ", "reply");
    return;
 }
