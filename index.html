@@ -3,14 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<div class="hidden">
-
-<h1 class="k3d-title">K3D-creator</h1>
-
-
-<div class="subtitle">
-   Questo semplice creator ti aiuterà ad avere una stima del prezzo finale dei tuoi modelli! I tempi di lavorazione sono già calcolati in funzione delle tue scelte.
-</div>
 
 
 <style>
@@ -219,6 +211,23 @@ button:hover {
   color: white !important;
 }
 
+button.nfc-btn {
+   display: flex;
+   align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    font-size: 16px;
+    border-radius: 18px;
+    justify-content: center;
+
+}
+
+.icon_nfc {
+   width: 25px;
+   height: 25px;
+   stroke: #3aa0ff;
+}
+
 /* =========================
    SOCIAL BUTTONS
 ========================= */
@@ -422,6 +431,15 @@ button:hover {
 </head>
 
 <body>
+<div class="hidden">
+
+<h1 class="k3d-title">K3D-creator</h1>
+
+
+<div class="subtitle">
+   Questo semplice creator ti aiuterà ad avere una stima del prezzo finale dei tuoi modelli! I tempi di lavorazione sono già calcolati in funzione delle tue scelte.
+</div>
+
 
 
 <div class="container">
@@ -444,8 +462,14 @@ button:hover {
             <button class="toggle" data-product="Portachiavi" data-price="4">🔑 Portachiavi</button>
             <button class="toggle" data-product="Calamite" data-price="5">🧲 Calamite</button>
             <button class="toggle" data-product="Cornici" data-price="12">🖼️ Cornici</button>
-            <button class="toggle-extra" data-extra="2"> NFC</button>
-        </div>
+            <button class="nfc-btn toggle-extra" data-extra="2">
+                    <svg class="icon_nfc" xmlns="http://www.w3.org/2000/svg" fill="none"
+                      viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                     d="M9.348 14.652a3.75 3.75 0 0 1 0-5.304m5.304 0a3.75 3.75 0 0 1 0 5.304m-7.425 2.121a6.75 6.75 0 0 1 0-9.546m9.546 0a6.75 6.75 0 0 1 0 9.546M5.106 18.894c-3.808-3.807-3.808-9.98 0-13.788m13.788 0c3.808 3.807 3.808 9.98 0 13.788M12 12h.008v.008H12V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+</svg>NFC</button>
+       
+</div>
 
         <!-- DIMENSIONE -->
         <div class="box">
@@ -538,20 +562,19 @@ button:hover {
 
 <script>
 
-/* ------------------------------
-   VARIABILI GLOBALI
---------------------------------*/
-
+/* ==============================
+   STATO
+============================== */
 let basePrice = 0;
 let product = "";
 let sizeMultiplier = 1;
 let selectedColors = [];
-let silkExtra = 0;
 let quantity = 1;
+let nfcActive = false;
 
-/* ------------------------------
+/* ==============================
    COLORI
---------------------------------*/
+============================== */
 const matte = [
   {name:"grigio", color:"#808080"},
   {name:"beige", color:"#F5F5DC"},
@@ -575,170 +598,188 @@ const silk = [
   {name:"argento", color:"#C0C0C0"}
 ];
 
-/* ------------------------------
-   GENERA PALETTE A VENTAGLIO
---------------------------------*/
+/* ==============================
+   INIT COLORI
+============================== */
 function renderColors() {
-    const matteFan = document.getElementById("fanMatte");
-    const silkFan = document.getElementById("fanSilk");
+  const matteFan = document.getElementById("fanMatte");
+  const silkFan = document.getElementById("fanSilk");
 
-    const matteDD = document.getElementById("matteDD");
-    const silkDD = document.getElementById("silkDD");
+  const matteDD = document.getElementById("matteDD");
+  const silkDD = document.getElementById("silkDD");
 
-    // Pulizia contenitori
-    matteFan.innerHTML = "";
-    silkFan.innerHTML = "";
-    matteDD.innerHTML = "";
-    silkDD.innerHTML = "";
+  matteFan.innerHTML = "";
+  silkFan.innerHTML = "";
+  matteDD.innerHTML = "";
+  silkDD.innerHTML = "";
 
-    const angleStepMatte = 180 / (matte.length - 1);
-    const angleStepSilk = 180 / (silk.length - 1);
+  const angleMatte = 180 / (matte.length - 1);
+  const angleSilk = 180 / (silk.length - 1);
 
-    // MATTE
-    matte.forEach((c, i) => {
-        let el = document.createElement("div");
-        el.className = "fan-color";
-        el.style.background = c.color;
-        el.style.setProperty("--angle", `${-90 + i * angleStepMatte}deg`);
-        el.onclick = () => toggleColor(c.name, el, false);
+  matte.forEach((c, i) => {
+    const el = document.createElement("div");
+    el.className = "fan-color";
+    el.style.background = c.color;
+    el.style.setProperty("--angle", `${-90 + i * angleMatte}deg`);
+    el.onclick = () => toggleColor(c.name, el);
 
-        // Append diretto (senza wrap)
-        matteFan.appendChild(el);
+    matteFan.appendChild(el);
 
-        let ddItem = document.createElement("div");
-        ddItem.innerText = c.name;
-        ddItem.style.padding = "3px 0";
-        matteDD.appendChild(ddItem);
-    });
+    const item = document.createElement("div");
+    item.innerText = c.name;
+    matteDD.appendChild(item);
+  });
 
-    // SILK
-    silk.forEach((c, i) => {
-        let el = document.createElement("div");
-        el.className = "fan-color";
-        el.style.background = c.color;
-        el.style.setProperty("--angle", `${-90 + i * angleStepSilk}deg`);
-        el.onclick = () => toggleColor(c.name, el, true);
+  silk.forEach((c, i) => {
+    const el = document.createElement("div");
+    el.className = "fan-color";
+    el.style.background = c.color;
+    el.style.setProperty("--angle", `${-90 + i * angleSilk}deg`);
+    el.onclick = () => toggleColor(c.name, el);
 
-        // Append diretto (senza wrap)
-        silkFan.appendChild(el);
+    silkFan.appendChild(el);
 
-        let ddItem = document.createElement("div");
-        ddItem.innerText = c.name;
-        ddItem.style.padding = "2px 0";
-        silkDD.appendChild(ddItem);
-    });
+    const item = document.createElement("div");
+    item.innerText = c.name;
+    silkDD.appendChild(item);
+  });
 }
 
-/* ------------------------------
-   DROPDOWN COLORI
---------------------------------*/
-function toggleDropdown(id) {
-    document.getElementById(id).parentElement.classList.toggle("open");
-}
+/* ==============================
+   COLORI LOGICA
+============================== */
+function toggleColor(color, el) {
 
-/* ------------------------------
-   SELEZIONE COLORI
---------------------------------*/
-function toggleColor(color, el, isSilk) {
-    if (selectedColors.includes(color)) {
-        selectedColors = selectedColors.filter(c => c !== color);
-        el.classList.remove("selected");
-        if (isSilk) silkExtra -= 2;
-    } else {
-        if (selectedColors.length >= 4) {
-            alert("Puoi scegliere al massimo 4 colori per una singola creazione!");
-            return;
-        }
-        selectedColors.push(color);
-        el.classList.add("selected");
-        if (isSilk) silkExtra += 2;
-
+  if (selectedColors.includes(color)) {
+    selectedColors = selectedColors.filter(c => c !== color);
+    el.classList.remove("selected");
+  } else {
+    if (selectedColors.length >= 4) {
+      alert("Max 4 colori!");
+      return;
     }
+    selectedColors.push(color);
+    el.classList.add("selected");
+  }
 
-         update() 
-         
-
+  update();
 }
 
-/* ------------------------------
-   SELEZIONE PRODOTTO
---------------------------------*/
+/* ==============================
+   PRODOTTI
+============================== */
 document.querySelectorAll(".toggle").forEach(btn => {
-    btn.addEventListener("click", () => {
-        document.querySelectorAll(".toggle").forEach(b => b.classList.remove("selected-btn"));
+  btn.addEventListener("click", () => {
 
-        if (product === btn.dataset.product) {
-            product = "";
-            basePrice = 0;
-        } else {
-            btn.classList.add("selected-btn");
-            product = btn.dataset.product;
-            basePrice = parseFloat(btn.dataset.price);
-        }
+    document.querySelectorAll(".toggle")
+      .forEach(b => b.classList.remove("selected-btn"));
 
-        update();
-    });
-});
-
-/* ------------------------------
-   DIMENSIONE
---------------------------------*/
-document.querySelectorAll(".toggle-size").forEach(btn => {
-    btn.addEventListener("click", () => {
-        document.querySelectorAll(".toggle-size").forEach(b => b.classList.remove("selected-btn"));
-        btn.classList.add("selected-btn");
-        sizeMultiplier = parseFloat(btn.dataset.size);
-        update();
-    });
-});
-
-document.querySelector(".toggle-extra").addEventListener("click", (e) => {
-    e.target.classList.toggle("selected-btn");
-
-    if (e.target.classList.contains("selected-btn")) {
-        silkExtra += 2;
+    if (product === btn.dataset.product) {
+      product = "";
+      basePrice = 0;
     } else {
-        silkExtra -= 2;
-        if (silkExtra < 0) silkExtra = 0;
+      product = btn.dataset.product;
+      basePrice = parseFloat(btn.dataset.price);
+      btn.classList.add("selected-btn");
     }
 
     update();
+  });
 });
-/* ------------------------------
-   QUANTITÀ
---------------------------------*/
-function changeQty(val) {
-    quantity += val;
-    if (quantity < 1) quantity = 1;
-    document.getElementById("qty").innerText = quantity;
+
+/* ==============================
+   DIMENSIONI
+============================== */
+document.querySelectorAll(".toggle-size").forEach(btn => {
+  btn.addEventListener("click", () => {
+
+    document.querySelectorAll(".toggle-size")
+      .forEach(b => b.classList.remove("selected-btn"));
+
+    btn.classList.add("selected-btn");
+
+    sizeMultiplier = parseFloat(btn.dataset.size);
     update();
+  });
+});
+
+/* ==============================
+   NFC
+============================== */
+const nfcBtn = document.querySelector(".toggle-extra");
+
+if (nfcBtn) {
+  nfcBtn.addEventListener("click", () => {
+
+    nfcActive = !nfcActive;
+    nfcBtn.classList.toggle("selected-btn");
+
+    update();
+  });
 }
 
-/* ------------------------------
+/* ==============================
+   QUANTITÀ
+============================== */
+function changeQty(val) {
+  quantity = Math.max(1, quantity + val);
+  document.getElementById("qty").innerText = quantity;
+  update();
+}
+
+/* ==============================
    CALCOLO PREZZO
---------------------------------*/
+============================== */
 function update() {
-    if (!basePrice) {
-        document.getElementById("result").innerText = "Seleziona le opzioni";
-        return;
-    }
 
-    let total = basePrice * sizeMultiplier;
+  if (!basePrice) {
+    document.getElementById("result").innerText = "Seleziona le opzioni";
+    return;
+  }
 
-    if (selectedColors.length > 1) {
-        total += (selectedColors.length - 1) * 1;
-    }
+  let total = basePrice * sizeMultiplier;
 
-    total += silkExtra;
+  // colori
+  selectedColors.forEach(c => {
+    const isSilk = silk.some(s => s.name === c);
+    total += isSilk ? 2 : 1;
+  });
 
-    total += 5; // spedizione
-    total *= quantity;
+  // NFC
+  if (nfcActive) total += 2;
 
-    document.getElementById("result").innerText =
-        "Prodotto: " + product +
-        " | Colori: " + (selectedColors.length ? selectedColors.join(", ") : "non selezionati") +
-        " | Quantità: " + quantity +
-        " | Totale: €" + total.toFixed(2);
+  // spedizione
+  total += 5;
+
+  total *= quantity;
+
+  document.getElementById("result").innerText =
+    `Prodotto: ${product} | Colori: ${selectedColors.join(", ") || "nessuno"} | Qtà: ${quantity} | Totale: €${total.toFixed(2)}`;
+}
+
+
+/* ==============================
+   RESET
+============================== */
+function resetAll() {
+
+  basePrice = 0;
+  product = "";
+  sizeMultiplier = 1;
+  selectedColors = [];
+  quantity = 1;
+  nfcActive = false;
+
+  document.querySelectorAll(".toggle, .toggle-size")
+    .forEach(b => b.classList.remove("selected-btn"));
+
+  document.querySelectorAll(".fan-color")
+    .forEach(c => c.classList.remove("selected"));
+
+  document.getElementById("qty").innerText = "1";
+  document.getElementById("result").innerText = "Seleziona le opzioni";
+
+  update();
 }
 
 /* ------------------------------
