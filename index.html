@@ -471,21 +471,42 @@ button.nfc-btn {
        
 </div>
 
-        <!-- DIMENSIONE -->
-        <div class="box">
-            <div class="box-title">📏 Dimensione del tuo modello</div>
+       <!-- DIMENSIONE -->
+<div class="box">
+    <div class="box-title">📏 Dimensione del tuo modello</div>
 
-            <button class="toggle-size" data-size="1">📏 Piccola composizione (da 0 a 5x5cm)</button>
-            <button class="toggle-size" data-size="1.5">📐 Media composizione (da 5x5 a 10x10cm)</button>
-            <button class="toggle-size" data-size="2">📐📐 Grande composizione (fino a 18cm)</button>
+    <button class="toggle-size" data-size="1">
+        📏 Piccola composizione (da 0 a 5x5cm)
+    </button>
 
-            <div class="qty-box">
-                <button class="qty-btn" onclick="changeQty(-1)">−</button>
-                <span class="qty-number" id="qty">1</span>
-                <button class="qty-btn" onclick="changeQty(1)">+</button>
-            </div>
-        </div>
+    <button class="toggle-size" data-size="1.5">
+        📐 Media composizione (da 5x5 a 10x10cm)
+    </button>
 
+    <button class="toggle-size" data-size="2">
+        📐📐 Grande composizione (fino a 18cm)
+    </button>
+
+    <input
+        type="range"
+        id="sizeSlider"
+        min="0"
+        max="18"
+        value="5"
+        step="1"
+        oninput="updateSize(this.value)"
+    >
+
+    <p>
+        Dimensione: <span id="sizeValue">5</span> cm
+    </p>
+
+    <div class="qty-box">
+        <button class="qty-btn" onclick="changeQty(-1)">−</button>
+        <span class="qty-number" id="qty">1</span>
+        <button class="qty-btn" onclick="changeQty(1)">+</button>
+    </div>
+</div>
         <!-- COLORI -->
         <div class="box">
             <div class="box-title">🎨 Colori opachi (max 4)</div>
@@ -571,6 +592,7 @@ let sizeMultiplier = 1;
 let selectedColors = [];
 let quantity = 1;
 let nfcActive = false;
+let size = 5;
 
 /* ==============================
    COLORI
@@ -698,15 +720,57 @@ document.querySelectorAll(".toggle").forEach(btn => {
 document.querySelectorAll(".toggle-size").forEach(btn => {
   btn.addEventListener("click", () => {
 
+    // reset bottoni UI
     document.querySelectorAll(".toggle-size")
       .forEach(b => b.classList.remove("selected-btn"));
 
     btn.classList.add("selected-btn");
 
-    sizeMultiplier = parseFloat(btn.dataset.size);
+    // aggiorna SIZE (cm reali)
+    if (btn.dataset.size == "1") size = 5;
+    if (btn.dataset.size == "1.5") size = 10;
+    if (btn.dataset.size == "2") size = 18;
+
+    // sync slider + testo
+    document.getElementById("sizeSlider").value = size;
+    document.getElementById("sizeValue").innerText = size;
+
+    updateSizeButtons();
     update();
   });
 });
+
+
+function updateSize(val) {
+  size = parseInt(val);
+
+  // sync UI
+  document.getElementById("sizeValue").innerText = size;
+  document.getElementById("sizeSlider").value = size;
+
+  updateSizeButtons();
+  update();
+}
+
+
+function updateSizeButtons() {
+
+  document.querySelectorAll(".toggle-size")
+    .forEach(b => b.classList.remove("selected-btn"));
+
+  if (size <= 5) {
+    const el = document.querySelector('[data-size="1"]');
+    if (el) el.classList.add("selected-btn");
+  }
+  else if (size <= 10) {
+    const el = document.querySelector('[data-size="1.5"]');
+    if (el) el.classList.add("selected-btn");
+  }
+  else {
+    const el = document.querySelector('[data-size="2"]');
+    if (el) el.classList.add("selected-btn");
+  }
+}
 
 /* ==============================
    NFC
@@ -742,6 +806,9 @@ function update() {
     return;
   }
 
+// calcolo dinamico dimensione (0-18)//
+  
+  sizeMultiplier = 1 + (size / 18);
   let total = basePrice * sizeMultiplier;
 
   // colori
@@ -759,7 +826,7 @@ function update() {
   total *= quantity;
 
   document.getElementById("result").innerText =
-    `Prodotto: ${product} | Colori: ${selectedColors.join(", ") || "nessuno"} | Qtà: ${quantity} | Totale: €${total.toFixed(2)}`;
+    `Prodotto: ${product} | Dimensione: ${size}cm | Colori: ${selectedColors.join(", ") || "nessuno"} | Qtà: ${quantity} | Totale: €${total.toFixed(2)}`;
 }
 
 
