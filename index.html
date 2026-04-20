@@ -431,7 +431,7 @@ button.nfc-btn {
 </head>
 
 <body>
-<div class="hidden">
+
 
 <h1 class="k3d-title">K3D-creator</h1>
 
@@ -643,6 +643,11 @@ function renderColors() {
     item.innerText = c.name;
     silkDD.appendChild(item);
   });
+}
+
+function toggleDropdown(id) {
+  const dropdown = document.getElementById(id).parentElement;
+  dropdown.classList.toggle("open");
 }
 
 /* ==============================
