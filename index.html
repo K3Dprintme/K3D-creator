@@ -100,14 +100,14 @@ body::before {
    SUBTITLE
 ========================= */
 .subtitle {
-  font-size: 18px;
+  font-size: 20px;
   font-style: italic;
   max-width: 320px;
   margin: 10px auto 20px;
   line-height: 1.5;
   font-weight: 500;
   opacity: 0;
-  text-shadow: 1px 1px 1px grey;
+  text-shadow: 1px 1px 1px red;
   transform: translateY(10px);
   animation: fadeUp 0.9s ease forwards;
 }
@@ -437,7 +437,7 @@ button.nfc-btn {
 
 
 <div class="subtitle">
-   Questo semplice creator ti aiuterà ad avere una stima del prezzo finale dei tuoi modelli! I tempi di lavorazione sono già calcolati in funzione delle tue scelte.
+   Questo semplice creator ti aiuterà ad avere una stima del valore finale. Essendo creazioni uniche e personalizzate, non si può avere una stima esatta senza la consulenza K3D. 
 </div>
 
 
@@ -459,7 +459,7 @@ button.nfc-btn {
         <div class="box">
             <div class="box-title">🧩 Tipologia o modello</div>
             <button class="toggle" data-product="Statuine" data-price="15">🧍‍♀️ Modelli personalizzati</button>
-            <button class="toggle" data-product="Portachiavi" data-price="4">🔑 Portachiavi</button>
+            <button class="toggle" data-product="Portachiavi" data-price="3">🔑 Portachiavi</button>
             <button class="toggle" data-product="Calamite" data-price="5">🧲 Calamite</button>
             <button class="toggle" data-product="Cornici" data-price="12">🖼️ Cornici</button>
             <button class="nfc-btn toggle-extra" data-extra="2">
@@ -471,20 +471,22 @@ button.nfc-btn {
        
 </div>
 
+<p class="subtitle">La dimensione della creazione sarà calcolata come "quadrata" per semplificare la stima. In fase di consulenza reale ti darò il prezzo reale e finito della tua creazione</p>
+
        <!-- DIMENSIONE -->
 <div class="box">
     <div class="box-title">📏 Dimensione del tuo modello</div>
 
     <button class="toggle-size" data-size="1">
-        📏 Piccola composizione (da 0 a 5x5cm)
+        📏 Piccolo (da 0 a 5x5cm)
     </button>
 
     <button class="toggle-size" data-size="1.5">
-        📐 Media composizione (da 5x5 a 10x10cm)
+        📐 Medio (da 5x5 a 10x10cm)
     </button>
 
     <button class="toggle-size" data-size="2">
-        📐📐 Grande composizione (fino a 18cm)
+        📐📐 Grande (fino a 18cm)
     </button>
 
     <input
@@ -556,7 +558,7 @@ button.nfc-btn {
             </div>
 
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Scrivi un messaggio...">
+                <input type="text" id="chatInput" placeholder="Scrivi all'assistente virtuale cosa ti interessa...">
                 <button onclick="sendMessage()">Invia</button>
             </div>
         </div>
@@ -566,7 +568,7 @@ button.nfc-btn {
 
 <!-- BOTTONI SOCIAL -->
 <div class="box">
-    <div class="box-title">📲 Finito? inviami tutto tramite i pulsanti social!</div>
+    <div class="box-title">📲 Finito? contattami tramite i pulsanti social e diamo vita alla tua idea!</div>
     <button class="btn-instagram" onclick="window.open('https://www.instagram.com/printmek3d?igsh=ZDJ3bDBxNjZ4aG93&utm_source=qr')">📷 Instagram</button>
     <button class="btn-whatsapp" onclick="window.open('https://wa.me/+393275377269')">📱 WhatsApp</button>
 </div>
@@ -579,7 +581,7 @@ button.nfc-btn {
         <button onclick="closePopup()">Chiudi</button>
     </div>
 </div>
-<button onclick="resetAll()" class="reset-btn">🔄 Azzera tutto</button>
+<button onclick="resetAll()" class="reset-btn">🔄 Ricomincia da 0</button>
 
 <script>
 
@@ -682,7 +684,7 @@ function toggleColor(color, el) {
     el.classList.remove("selected");
   } else {
     if (selectedColors.length >= 4) {
-      alert("Max 4 colori!");
+      alert("Puoi selezionare 4 colori contemporaneamente per ogni singola creazione!");
       return;
     }
     selectedColors.push(color);
@@ -806,8 +808,7 @@ function update() {
     return;
   }
 
-// calcolo dinamico dimensione (0-18)//
-  
+  // dimensione
   sizeMultiplier = 1 + (size / 18);
   let total = basePrice * sizeMultiplier;
 
@@ -820,15 +821,15 @@ function update() {
   // NFC
   if (nfcActive) total += 2;
 
-  // spedizione
-  total += 5;
+  // quantità (si applica SOLO ai prodotti)
+  total = total * quantity;
 
-  total *= quantity;
+  // spedizione (UNA SOLA VOLTA)
+  total += 5;
 
   document.getElementById("result").innerText =
     `Prodotto: ${product} | Dimensione: ${size}cm | Colori: ${selectedColors.join(", ") || "nessuno"} | Qtà: ${quantity} | Totale: €${total.toFixed(2)}`;
 }
-
 
 /* ==============================
    RESET
@@ -865,7 +866,7 @@ function openPopup() {
 
     document.getElementById("popupContent").innerText =
         document.getElementById("result").innerText +
-        "\n\n*Nota: Al costo del modello vanno aggiunti i costi di spedizione (a partire da 5€) per la spedizione al locker.*" +
+        "\n\n*Nota: Il costo del riepilogo ha già calcolato nel totale(+5€) di costi di spedizione presso locker.*" +
         "\n*Per Portachiavi, Calamite e Cornici è possibile aggiungere un tag NFC interno ed invisibile(+2€).*";
 
     document.getElementById("popupOverlay").style.display = "flex";
