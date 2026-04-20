@@ -862,13 +862,19 @@ function autoReply(text) {
    addChatMessage("Puoi scegliere fino ad un massimo di 4 colori opachi e Silk contemporaneamente per UNA composizione", "reply");
    return;
 }
+if (text.includes("pla?")) {
+   addChatMessage("Il pla è una plastica organica derivante dal mais. E' un materiale resistente e sicuro al 100%!", "reply");
+   return;
+}
 if (text.includes("regalo")) {
    addChatMessage("se devi fare un regalo, ti aiuterò con la configurazione! cosa avevi in mente?", "reply");
    return;
-}if (text.includes("aiuto")) {
+}
+if (text.includes("aiuto")) {
    addChatMessage("dimmi per cosa ti serve aiuto?", "reply");
    return;
-}if (text.includes("portachiavi")) {
+}
+if (text.includes("portachiavi")) {
    addChatMessage("Per portachiavi, seleziona il pulsante PORTACHIAVI. Scegli la dimensione ed i colori, al gancio ci pensiamo noi! ", "reply");
    return;
 }
@@ -876,12 +882,11 @@ if (text.includes("modelli")) {
    addChatMessage("Per ordinare un modello personalizzato o su misura devi contattare K3D in persona tramite i pulsanti social in fondo alla pagina.", "reply");
    return;
 }
-
 if (text.includes("calamite")) {
    addChatMessage("Per calamite, seleziona il pulsante CALAMITE. Sono realizzate ed inserite all'interno del modello così non rischi di graffiare le superfici.", "reply");
    return;
 }
-if (text.includes("cornici")) {
+if (text.includes("cornice")) {
    addChatMessage("Per ordinare una cornice, seleziona il pulsante CORNICI, la dimensione ed i colori. La dimensione massima è 10x15. Anche le cornici possono avere personalizzazioni, come dediche o forme (cuori, stelle, ecc.)", "reply");
    return;
 }
