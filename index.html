@@ -166,6 +166,7 @@ body::before {
   box-shadow: 0 0 18px rgba(77,183,255,0.45);
 }
 
+
 /* =========================
    TITOLI BOX
 ========================= */
@@ -226,6 +227,14 @@ button.nfc-btn {
    width: 25px;
    height: 25px;
    stroke: #3aa0ff;
+}
+
+#advancedBtn {
+   margin-bottom: 20px;
+}
+
+#advancedBtn {
+   margin-top: 20px;
 }
 
 /* =========================
@@ -426,6 +435,52 @@ button.nfc-btn {
   transform: translateY(-2px);
 }
 
+/* =========================
+   SLIDER DIMENSIONI IN COLONNA (FIX REALE)
+========================= */
+#advancedBox {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 60px;
+}
+
+#advancedBox label {
+  text-align: left;
+  font-weight: 500;
+}
+
+#advancedBox input[type="range"] {
+  width: 100%;
+}
+
+#advancedBox {
+   margin-bottom: 10px;
+}
+
+/* =========================
+   BOX DIMENSIONI FIX
+========================= */
+.dimension-box {
+  padding: 25px;
+}
+
+#advancedBox {
+  margin-top: 15px;
+}
+
+#advancedBox label {
+  display: block;
+  margin-top: 15px;
+  text-align: left;
+}
+
+#advancedBox input[type="range"] {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+}
+
 </style>
 
 </head>
@@ -437,7 +492,7 @@ button.nfc-btn {
 
 
 <div class="subtitle">
-   Questo semplice creator ti aiuterà ad avere una stima del valore finale. Essendo creazioni uniche e personalizzate, per una stima più precisa, chiedi a K3D tramite i pulsanti social in fondo al creator. 
+   Questo semplice creator ti aiuterà ad avere una stima del valore finale. Essendo creazioni uniche e personalizzate, per una stima più precisa, chiedi a K3D tramite i pulsanti social in fondo al creator.
 </div>
 
 
@@ -469,45 +524,33 @@ button.nfc-btn {
                      d="M9.348 14.652a3.75 3.75 0 0 1 0-5.304m5.304 0a3.75 3.75 0 0 1 0 5.304m-7.425 2.121a6.75 6.75 0 0 1 0-9.546m9.546 0a6.75 6.75 0 0 1 0 9.546M5.106 18.894c-3.808-3.807-3.808-9.98 0-13.788m13.788 0c3.808 3.807 3.808 9.98 0 13.788M12 12h.008v.008H12V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
 </svg>NFC</button>
        
+
+
 </div>
 
 <p class="subtitle">La dimensione della creazione sarà calcolata come "quadrata" per semplificare la stima. In fase di consulenza reale ti darò il prezzo reale e finito della tua creazione</p>
 
+
        <!-- DIMENSIONE -->
-<div class="box">
-    <div class="box-title">📏 Dimensione del modello</div>
+<div class="box dimension-box">
+  <div class="box-title">📏 Dimensioni del modello</div>
 
-    <button class="toggle-size" data-size="1">
-        📏 Piccolo (da 0 a 5x5cm)
-    </button>
+  <button onclick="toggleAdvanced()" id="advancedBtn">
+    🔧 Imposta dimensioni precise
+  </button>
 
-    <button class="toggle-size" data-size="1.5">
-        📐 Medio (da 5x5 a 10x10cm)
-    </button>
+  <div id="advancedBox" style="display:none;">
 
-    <button class="toggle-size" data-size="2">
-        📐📐 Grande (fino a 18cm)
-    </button>
+    <label>Larghezza: <span id="valWidth">5</span> mm</label>
+    <input type="range" min="1" max="180" value="50" id="widthSlider">
 
-    <input
-        type="range"
-        id="sizeSlider"
-        min="0"
-        max="18"
-        value="5"
-        step="1"
-        oninput="updateSize(this.value)"
-    >
+    <label>Lunghezza: <span id="valDepth">5</span> mm</label>
+    <input type="range" min="1" max="180" value="50" id="depthSlider">
 
-    <p>
-        Dimensione: <span id="sizeValue">5</span> cm
-    </p>
+    <label>Altezza: <span id="valHeight">5</span> mm</label>
+    <input type="range" min="1" max="180" value="50" id="heightSlider">
 
-    <div class="qty-box">
-        <button class="qty-btn" onclick="changeQty(-1)">−</button>
-        <span class="qty-number" id="qty">1</span>
-        <button class="qty-btn" onclick="changeQty(1)">+</button>
-    </div>
+  </div>
 </div>
         <!-- COLORI -->
         <div class="box">
@@ -588,6 +631,7 @@ button.nfc-btn {
 /* ==============================
    STATO
 ============================== */
+
 let basePrice = 0;
 let product = "";
 let sizeMultiplier = 1;
@@ -595,6 +639,18 @@ let selectedColors = [];
 let quantity = 1;
 let nfcActive = false;
 let size = 5;
+let width = 5;
+let depth = 5;
+let height = 5;
+let advancedMode = false;
+
+function toggleAdvanced() {
+  const box = document.getElementById("advancedBox");
+
+  advancedMode = !advancedMode;
+
+  box.style.display = advancedMode ? "flex" : "none";
+}
 
 /* ==============================
    COLORI
@@ -719,6 +775,7 @@ document.querySelectorAll(".toggle").forEach(btn => {
 /* ==============================
    DIMENSIONI
 ============================== */
+
 document.querySelectorAll(".toggle-size").forEach(btn => {
   btn.addEventListener("click", () => {
 
@@ -728,50 +785,59 @@ document.querySelectorAll(".toggle-size").forEach(btn => {
 
     btn.classList.add("selected-btn");
 
-    // aggiorna SIZE (cm reali)
-    if (btn.dataset.size == "1") size = 5;
-    if (btn.dataset.size == "1.5") size = 10;
-    if (btn.dataset.size == "2") size = 18;
+    // attiva modalità avanzata automaticamente
+    advancedMode = true;
+    const box = document.getElementById("advancedBox");
+    if (box) box.style.display = "block";
 
-    // sync slider + testo
-    document.getElementById("sizeSlider").value = size;
-    document.getElementById("sizeValue").innerText = size;
+    // NON più preset, usiamo sempre slider reali
+    width = width || 5;
+    depth = depth || 5;
+    height = height || 5;
 
-    updateSizeButtons();
     update();
   });
 });
 
-
 function updateSize(val) {
   size = parseInt(val);
 
-  // sync UI
   document.getElementById("sizeValue").innerText = size;
   document.getElementById("sizeSlider").value = size;
 
-  updateSizeButtons();
   update();
 }
 
+/* ==============================
+   SLIDER 3D REALI (FIX)
+============================== */
 
-function updateSizeButtons() {
+const widthSlider = document.getElementById("widthSlider");
+const depthSlider = document.getElementById("depthSlider");
+const heightSlider = document.getElementById("heightSlider");
 
-  document.querySelectorAll(".toggle-size")
-    .forEach(b => b.classList.remove("selected-btn"));
+if (widthSlider) {
+  widthSlider.oninput = () => {
+    width = parseInt(widthSlider.value);
+    document.getElementById("valWidth").innerText = width;
+    update();
+  };
+}
 
-  if (size <= 5) {
-    const el = document.querySelector('[data-size="1"]');
-    if (el) el.classList.add("selected-btn");
-  }
-  else if (size <= 10) {
-    const el = document.querySelector('[data-size="1.5"]');
-    if (el) el.classList.add("selected-btn");
-  }
-  else {
-    const el = document.querySelector('[data-size="2"]');
-    if (el) el.classList.add("selected-btn");
-  }
+if (depthSlider) {
+  depthSlider.oninput = () => {
+    depth = parseInt(depthSlider.value);
+    document.getElementById("valDepth").innerText = depth;
+    update();
+  };
+}
+
+if (heightSlider) {
+  heightSlider.oninput = () => {
+    height = parseInt(heightSlider.value);
+    document.getElementById("valHeight").innerText = height;
+    update();
+  };
 }
 
 /* ==============================
@@ -809,8 +875,39 @@ function update() {
   }
 
   // dimensione
+  let total = basePrice;
+
+// 🔵 MODALITÀ SEMPLICE
+if (!advancedMode) {
+
   sizeMultiplier = 1 + (size / 18);
-  let total = basePrice * sizeMultiplier;
+  total = basePrice * sizeMultiplier;
+
+}
+
+// 🟣 MODALITÀ AVANZATA (VOLUME 3D)
+else {
+
+  let volume = 
+    (width / 10)*
+    (depth / 10)*
+    (height / 10);
+
+// volume minimo di riferimento (1x1x1)
+let baseVolume = 1;
+
+// rapporto reale del volume
+let ratio = volume / baseVolume;
+
+// curva più realistica: crescita lenta all’inizio, forte dopo
+let volumeMultiplier = 1 + (Math.log(ratio + 1) * 1.03);
+
+// scala minima per non partire troppo basso
+volumeMultiplier = Math.min(volumeMultiplier * 1);
+
+total = basePrice * volumeMultiplier;
+
+}
 
   // colori
   selectedColors.forEach(c => {
@@ -909,6 +1006,10 @@ function sendMessage() {
 
     input.value = "";
 }
+
+
+
+
 
 /* ------------------------------
    INVIO CON TASTO INVIO
@@ -1036,40 +1137,7 @@ if (text.includes("ciao")) {
 --------------------------------*/
 renderColors();
 
-function resetAll() {
 
-    // reset variabili
-    basePrice = 0;
-    product = "";
-    sizeMultiplier = 1;
-    selectedColors = [];
-    silkExtra = 0;
-    quantity = 1;
-
-    // reset UI bottoni prodotti
-    document.querySelectorAll(".toggle").forEach(b => {
-        b.classList.remove("selected-btn");
-    });
-
-    // reset dimensioni
-    document.querySelectorAll(".toggle-size").forEach(b => {
-        b.classList.remove("selected-btn");
-    });
-
-    // reset quantità
-    document.getElementById("qty").innerText = "1";
-
-    // reset colori selezionati (visivo)
-    document.querySelectorAll(".fan-color").forEach(el => {
-        el.classList.remove("selected");
-    });
-
-    // reset risultato
-    document.getElementById("result").innerText = "Seleziona le opzioni";
-
-    // reset popup
-    document.getElementById("popupContent").innerText = "";
-}
 
 
 </script>
