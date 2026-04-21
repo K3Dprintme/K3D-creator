@@ -541,13 +541,13 @@ button.nfc-btn {
 
   <div id="advancedBox" style="display:none;">
 
-    <label>Larghezza: <span id="valWidth">5</span> mm</label>
+    <label>Larghezza: <span id="valWidth">50</span> mm</label>
     <input type="range" min="1" max="180" value="50" id="widthSlider">
 
-    <label>Lunghezza: <span id="valDepth">5</span> mm</label>
+    <label>Lunghezza: <span id="valDepth">50</span> mm</label>
     <input type="range" min="1" max="180" value="50" id="depthSlider">
 
-    <label>Altezza: <span id="valHeight">5</span> mm</label>
+    <label>Altezza: <span id="valHeight">50</span> mm</label>
     <input type="range" min="1" max="180" value="50" id="heightSlider">
 
   </div>
@@ -925,7 +925,7 @@ total = basePrice * volumeMultiplier;
   total += 5;
 
   document.getElementById("result").innerText =
-    `Prodotto: ${product} | Dimensione: ${size}cm | Colori: ${selectedColors.join(", ") || "nessuno"} | Qtà: ${quantity} | Totale: €${total.toFixed(2)}`;
+    `Prodotto: ${product} | Colori: ${selectedColors.join(", ") || "nessuno"} | Qtà: ${quantity} | Totale: €${total.toFixed(2)}`;
 }
 
 /* ==============================
