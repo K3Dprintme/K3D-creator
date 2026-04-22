@@ -246,8 +246,8 @@ button.nfc-btn {
 ========================= */
 .fan-container {
   width: 100%;
-  max-width: 320px;
-  height: 170px;
+  max-width: 360px;
+  height: 210px;
   margin: 0 auto;
   position: relative;
   display: flex;
@@ -256,6 +256,7 @@ button.nfc-btn {
 
 /* Contenitore del ventaglio */
 .fan {
+  width: 100%;
   position: absolute;
   bottom: 20px;
   left: 50%;
@@ -398,13 +399,12 @@ button.nfc-btn {
   }
 
   .right-panel {
-  position: static !important;
-  top: auto !important;
-}
+    position: static !important;
+    top: auto !important;
+  }
 
-@media (max-width: 768px) {
   .assistant-box {
-   position: static !important;
+    position: static !important;
   }
 }
 
@@ -424,6 +424,54 @@ button.nfc-btn {
 .reset-btn:hover {
   background: #ffbcbc;
   transform: translateY(-2px);
+}
+
+#slider-container,
+#preset-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+#slider-container label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 8px;
+  color: #1a2a44;
+}
+
+#slider-container {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+#slider-container label {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 4px;
+}
+
+#slider-container input[type="range"] {
+  display: block;
+  width: 100%;
+  margin-bottom: 14px;
+}
+#preset-container button {
+  width: 90%;
+  max-width: 260px;
+}
+
+.slider-value {
+   font-size:14px;
+   font-weight: blod;
+   color: #4db7ff;
+   margin-top: -8px;
+   margin-bottom: 12px;
+   text-align: center;
 }
 
 </style>
@@ -471,45 +519,47 @@ button.nfc-btn {
        
 </div>
 
-<p class="subtitle">La dimensione della creazione sarà calcolata come "quadrata" per semplificare la stima. Contattami tramite i pulsanti solcial per verificare.</p>
+<p class="subtitle">La dimensione della creazione potrà essere selezionabile dopo aver scelto la tipologia.</p>
 
        <!-- DIMENSIONE -->
 <div class="box">
-    <div class="box-title">📏 Dimensione del modello</div>
+    <div class="box-title">📏 Dimensioni</div>
 
-    <button class="toggle-size" data-size="1">
-        📏 Piccolo (tipo moneta)
-    </button>
+    <!-- SLIDER DINAMICI -->
+    <div id="slider-container" style="display:none;">
 
-    <button class="toggle-size" data-size="1.5">
-        📐 Medio (grande come una carte da gioco)
-    </button>
+        <label id="label-length"></label>
+        <input type="range" id="length" min="0" max="100" value="1">
 
-    <button class="toggle-size" data-size="2">
-        📐📐 Grande (da 10cm in poi)
-    </button>
+          <div class="slider-value" id="value-length">0 mm</div>
+        <label id="label-width"></label>
+        <input type="range" id="width" min="0" max="100" value="1">
 
-    <input
-        type="range"
-        id="sizeSlider"
-        min="1"
-        max="100"
-        value="50"
-        step="1"
-        oninput="updateSize(this.value)"
-    >
+          <div class="slider-value" id="value-width">0 mm</div>
+        <label id="label-height"></label>
+        <input type="range" id="height" min="0" max="100" value="1">
 
-    <p>
-        Dimensione: <span id="sizeValue">50</span> 
-    </p>
+          <div class="slider-value" id="value-height">0 mm</div>
 
+
+    </div>
+
+    <!-- PRESET PORTACHIAVI -->
+    <div id="preset-container" style="display:none;">
+        <button onclick="selectPreset('piccolo')">Piccolo (moneta)</button>
+        <button onclick="selectPreset('medio')">Medio (accendino)</button>
+        <button onclick="selectPreset('grande')">Grande (fazzoletti)</button>
+    </div>
+
+    <!-- QUANTITÀ -->
     <div class="qty-box">
         <button class="qty-btn" onclick="changeQty(-1)">−</button>
         <span class="qty-number" id="qty">1</span>
         <button class="qty-btn" onclick="changeQty(1)">+</button>
     </div>
 </div>
-        <!-- COLORI -->
+
+<!-- COLORI -->
         <div class="box">
             <div class="box-title">🎨 Colori opachi (max 4)</div>
 
@@ -702,6 +752,7 @@ document.querySelectorAll(".toggle").forEach(btn => {
 
     document.querySelectorAll(".toggle")
       .forEach(b => b.classList.remove("selected-btn"));
+        btn.classList.remove("selected-btn");
 
     if (product === btn.dataset.product) {
       product = "";
@@ -710,11 +761,80 @@ document.querySelectorAll(".toggle").forEach(btn => {
       product = btn.dataset.product;
       basePrice = parseFloat(btn.dataset.price);
       btn.classList.add("selected-btn");
+      updateUIByModel(product);
     }
 
     update();
   });
 });
+
+function updateUIByModel(model) {
+
+  const config = modelConfigs[model];
+
+  const sliderBox = document.getElementById("slider-container");
+  const presetBox = document.getElementById("preset-container");
+
+  if (!config) return;
+
+  if (config.type === "sliders") {
+
+    sliderBox.style.display = "block";
+    presetBox.style.display = "none";
+
+    setupSliders(config.sliders);
+
+  } else {
+
+    sliderBox.style.display = "none";
+    presetBox.style.display = "block";
+  }
+}
+
+function setupSliders(sliders) {
+
+  ["length", "width", "height"].forEach(key => {
+
+    const el = document.getElementById(key);
+    const label = document.getElementById("label-" + key);
+
+    el.min = sliders[key].min;
+    el.max = sliders[key].max;
+    el.value = sliders[key].min;
+
+    document.getElementById("value-" + key).innerText = 
+       sliders[key].min + "mm";   
+
+    label.innerText = sliders[key].label;
+
+    el.oninput = () => {
+      document.getElementById("value-" + key).innerText =
+        el.value + "mm";
+
+          update();
+         };
+
+
+  });
+}
+
+function selectPreset(size) {
+
+  const preset = modelConfigs.Portachiavi.presets[size];
+
+  selectedDimensions = {
+    l: preset.l,
+    w: preset.w,
+    h: preset.h
+  };
+  
+    document.querySelectorAll("#preset-container button")
+       .forEach(btn => btn.classList.remove("selected-btn"));
+    
+    event.target.classList.add("selected-btn");
+
+  update();
+}
 
 /* ==============================
    DIMENSIONI
@@ -809,8 +929,34 @@ function update() {
   }
 
   // dimensione
-  sizeMultiplier = 5 + (size / 10);
-  let total = basePrice * sizeMultiplier;
+  let l, w, h;
+
+if (modelConfigs[product]?.type === "sliders") {
+  l = +document.getElementById("length").value;
+  w = +document.getElementById("width").value;
+  h = +document.getElementById("height").value;
+} else {
+  l = selectedDimensions.l;
+  w = selectedDimensions.w;
+  h = selectedDimensions.h;
+}
+
+if (!l || !w || !h) {
+  document.getElementById("result").innerText = 
+   "Completa la selezione delle dimensioni";
+  return;
+} 
+let volume = l * w * h;
+
+const multipliers = {
+  Portachiavi: 0.003,
+  Cornici: 0.0015,
+  Calamite: 0.002,
+  Statuine: 0.0025
+};
+
+let total = basePrice + (volume * multipliers[product]);
+
 
   // colori
   selectedColors.forEach(c => {
@@ -828,7 +974,7 @@ function update() {
   total += 5;
 
   document.getElementById("result").innerText =
-    `Prodotto: ${product} | Dimensione: ${size}cm | Colori: ${selectedColors.join(", ") || "nessuno"} | Qtà: ${quantity} | Totale: €${total.toFixed(2)}`;
+    `Prodotto: ${product} | Colori: ${selectedColors.join(", ") || "nessuno"} | Qtà: ${quantity} | Totale: €${total.toFixed(2)}`;
 }
 
 /* ==============================
@@ -836,15 +982,13 @@ function update() {
 ============================== */
 function resetAll() {
 
+  selectedDimensions = { l: 0, w: 0, h: 0 };
   basePrice = 0;
   product = "";
   sizeMultiplier = 1;
   selectedColors = [];
   quantity = 1;
   nfcActive = false;
-
-  document.querySelectorAll(".toggle, .toggle-size")
-    .forEach(b => b.classList.remove("selected-btn"));
 
   document.querySelectorAll(".fan-color")
     .forEach(c => c.classList.remove("selected"));
@@ -1028,7 +1172,45 @@ if (text.includes("ciao")) {
 
 }
 
+/* ==============================
+   CONFIG MODELLI
+============================== */
+const modelConfigs = {
+  Portachiavi: {
+    type: "preset",
+    presets: {
+      piccolo: { l: 30, w: 30, h: 3 },
+      medio: { l: 50, w: 30, h: 4 },
+      grande: { l: 70, w: 40, h: 4 }
+    }
+  },
+  Cornici: {
+    type: "sliders",
+    sliders: {
+      length: { min: 50, max: 180, label: "Lunghezza (mm)" },
+      width: { min: 50, max: 180, label: "Larghezza (mm)" },
+      height: { min: 1, max: 50, label: "Spessore (mm)" }
+    }
+  },
+  Calamite: {
+    type: "sliders",
+    sliders: {
+      length: { min: 30, max: 180, label: "Lunghezza (mm)" },
+      width: { min: 30, max: 180, label: "Larghezza (mm)" },
+      height: { min: 3, max: 6, label: "Spessore (mm)" }
+    }
+  },
+  Statuine: {
+    type: "sliders",
+    sliders: {
+      length: { min: 1, max: 180, label: "Lunghezza (mm)" },
+      width: { min: 1, max: 180, label: "Larghezza (mm)" },
+      height: { min: 1, max: 180, label: "Altezza (mm)" }
+    }
+  }
+};
 
+let selectedDimensions = { l: 0, w: 0, h: 0 };
 
 
 /* ------------------------------
@@ -1036,40 +1218,6 @@ if (text.includes("ciao")) {
 --------------------------------*/
 renderColors();
 
-function resetAll() {
-
-    // reset variabili
-    basePrice = 0;
-    product = "";
-    sizeMultiplier = 1;
-    selectedColors = [];
-    silkExtra = 0;
-    quantity = 1;
-
-    // reset UI bottoni prodotti
-    document.querySelectorAll(".toggle").forEach(b => {
-        b.classList.remove("selected-btn");
-    });
-
-    // reset dimensioni
-    document.querySelectorAll(".toggle-size").forEach(b => {
-        b.classList.remove("selected-btn");
-    });
-
-    // reset quantità
-    document.getElementById("qty").innerText = "1";
-
-    // reset colori selezionati (visivo)
-    document.querySelectorAll(".fan-color").forEach(el => {
-        el.classList.remove("selected");
-    });
-
-    // reset risultato
-    document.getElementById("result").innerText = "Seleziona le opzioni";
-
-    // reset popup
-    document.getElementById("popupContent").innerText = "";
-}
 
 
 </script>
