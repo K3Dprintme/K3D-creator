@@ -485,7 +485,7 @@ button.nfc-btn {
 
 
 <div class="subtitle">
-   Questo semplice creator ti aiuterà ad avere una stima del valore finale. Essendo creazioni uniche e personalizzate, per una stima più precisa, chiedi a K3D tramite i pulsanti social in fondo al creator.
+   Questo semplice creator ti aiuterà ad avere una stima del valore finale. Essendo creazioni uniche e personalizzate, per una stima più precisa, chiedi a Francesco "K3D" tramite i pulsanti social in fondo al creator.
 </div>
 
 
@@ -495,7 +495,7 @@ button.nfc-btn {
 <img src="AppK3D/logoindex/logo.png" class="logo">
 
 <div class="title-box">
-    <h2>Benvenuto nel creator</h2>
+    <h2>Benvenuto nel creator K3D</h2>
 </div>
 
 <div class="layout-grid">
@@ -506,10 +506,10 @@ button.nfc-btn {
         <!-- PRODOTTO -->
         <div class="box">
             <div class="box-title">🧩 Tipologia o modello</div>
-            <button class="toggle" data-product="Statuine" data-price="8">🧍‍♀️ Modelli personalizzati (statuine, accessori, quadretti 3D).</button>
+            <button class="toggle" data-product="Statuine" data-price="5">🧍‍♀️ Oggetti 3D (statuine, accessori, quadretti 3D).</button>
             <button class="toggle" data-product="Portachiavi" data-price="1">🔑 Portachiavi</button>
-            <button class="toggle" data-product="Calamite" data-price="3">🧲 Calamite</button>
-            <button class="toggle" data-product="Cornici" data-price="8">🖼️ Cornici (max cm 15x10)</button>
+            <button class="toggle" data-product="Calamite" data-price="2">🧲 Calamite</button>
+            <button class="toggle" data-product="Cornici" data-price="3">🖼️ Cornici (max cm 15x10)</button>
             <button class="nfc-btn toggle-extra" data-extra="2">
                     <svg class="icon_nfc" xmlns="http://www.w3.org/2000/svg" fill="none"
                       viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -546,9 +546,9 @@ button.nfc-btn {
 
     <!-- PRESET PORTACHIAVI -->
     <div id="preset-container" style="display:none;">
-        <button onclick="selectPreset('piccolo')">Piccolo (moneta)</button>
-        <button onclick="selectPreset('medio')">Medio (accendino)</button>
-        <button onclick="selectPreset('grande')">Grande (fazzoletti)</button>
+        <button onclick="selectPreset('piccolo')">|Piccolo|tipo moneta (es.:3x3x0.5cm)</button>
+        <button onclick="selectPreset('medio')">|Medio|rettangolare(es.:3x8x0.5)</button>
+        <button onclick="selectPreset('grande')">|Grande|(misure da personalizzare)</button>
     </div>
 
     <!-- QUANTITÀ -->
@@ -599,7 +599,7 @@ button.nfc-btn {
             <div class="box-title">🤖 K3D-bot </div>
 
             <div class="chat-window" id="chatWindow">
-                <div class="chat-reply">Ciao! Sono K3D-bot! Come posso aiutarti?</div>
+                <div class="chat-reply">Ciao! Sono K3D-bot! Cosa vuoi creare?</div>
             </div>
 
             <div class="quick-questions">
@@ -618,7 +618,7 @@ button.nfc-btn {
 
 <!-- BOTTONI SOCIAL -->
 <div class="box">
-    <div class="box-title">📲 Finito? contattami tramite i pulsanti social e diamo vita alla tua idea!</div>
+    <div class="box-title">📲 Contattami tramite i pulsanti social e diamo vita alla tua idea!</div>
     <button class="btn-instagram" onclick="window.open('https://www.instagram.com/printmek3d?igsh=ZDJ3bDBxNjZ4aG93&utm_source=qr')">📷 Instagram</button>
     <button class="btn-whatsapp" onclick="window.open('https://wa.me/+393275377269')">📱 WhatsApp</button>
 </div>
@@ -631,7 +631,7 @@ button.nfc-btn {
         <button onclick="closePopup()">Chiudi</button>
     </div>
 </div>
-<button onclick="resetAll()" class="reset-btn">🔄 Ricomincia da 0</button>
+<button onclick="resetAll()" class="reset-btn">🔄 Ricomincia da zero </button>
 
 <script>
 
@@ -1010,7 +1010,7 @@ function openPopup() {
 
     document.getElementById("popupContent").innerText =
         document.getElementById("result").innerText +
-        "\n\n*Nota: Il costo del riepilogo ha già calcolato nel totale(+5€) di costi di spedizione presso locker.*" +
+        "\n\n*Nota: Il costo del riepilogo ha già calcolato nel totale 5€ di costi di spedizione presso locker.*" +
         "\n*Per Portachiavi, Calamite e Cornici è possibile aggiungere un tag NFC interno ed invisibile(+2€).*";
 
     document.getElementById("popupOverlay").style.display = "flex";
@@ -1104,17 +1104,17 @@ if (text.includes("cornice")) {
 }
 
 if (text.includes("come viene calcolato il prezzo?")) {
-   addChatMessage("Per il calcolo del prezzo, viene considerato il tempo di creazione grafica, il materiale, ed eventuali personalizzazioni.", "reply");
+   addChatMessage("Per il calcolo del prezzo, viene considerato il tempo di creazione grafica, le dimensioni, ed eventuali personalizzazioni da decidere con Francesco K3D, che puoi contattare tramite i pulsanti social in fondo alla pagina.", "reply");
    return;
 }
 
 if (text.includes("cos'è")) {
-   addChatMessage("Se vuoi maggiori info su questo argomento, scrivi pure a K3D in persona tramite i pulsanti social.", "reply");
+   addChatMessage("Se vuoi maggiori info su questo argomento, scrivi pure a Francesco K3D in persona tramite i pulsanti social.", "reply");
    return;
 }
 
 if (text.includes("come ordinare")) {
-   addChatMessage("Per ordinare: scegli prodotto, dimensione, colori e poi apri il riepilogo per vedere il totale. Infine contattami su WhatsApp per confermare.", "reply");
+   addChatMessage("Per ordinare: scegli prodotto, dimensione, colori poi apri il riepilogo per vedere il totale. Infine contattami su WhatsApp per confermare.", "reply");
    return;
 }
 
@@ -1124,7 +1124,7 @@ if (text.includes("prezzo")) {
 }
 
 if (text.includes("contattare")) {
-   addChatMessage("Puoi contattare K3D tramite i pulsanti social in fondo alla pagina.", "reply");
+   addChatMessage("Puoi contattare Francesco K3D tramite i pulsanti social in fondo alla pagina.", "reply");
    return;
 }
 
@@ -1139,17 +1139,17 @@ if (text.includes("tempi")) {
 }
 
 if (text.includes("spedizione")) {
-   addChatMessage("La spedizione standard è di 5€ per il locker. Altrimeti, per consegne a domicilio, 8€.", "reply");
+   addChatMessage("La spedizione standard è di 5€ per il locker. Altrimeti, per consegne a domicilio, a partire da 8€.", "reply");
    return;
 }
 
 if (text.includes("dimensioni")) {
-   addChatMessage("Puoi scegliere tra Piccolo, Medio e Grande. Le dimensioni influenzano il prezzo finale.", "reply");
+   addChatMessage("Puoi scegliere le dimensioni con gli sliders dedicati alla tipoligia. Le dimensioni influenzano il prezzo finale, che trattandosi di un prezzo orientativo, per un preventivo definitivo dovrai contattare Francesco K3D tramite i pulsanti social in basso.", "reply");
    return;
 }
 
 if (text.includes("materiale")) {
-   addChatMessage("I prodotti sono realizzati in PLA di alta qualità con finitura Matte o Silk.", "reply");
+   addChatMessage("I prodotti sono realizzati in PLA di alta qualità, sicuro al 100%. puoi scegliere tra le tipologie con finitura Matte o Silk.", "reply");
    return;
 }
 
@@ -1159,7 +1159,7 @@ if (text.includes("nfc")) {
 }
 
 if (text.includes("contatto")) {
-   addChatMessage("Puoi contattarmi direttamente tramite Instagram o WhatsApp per assistenza o ordini personalizzati.", "reply");
+   addChatMessage("Puoi contattare Francesco K3D direttamente tramite Instagram o WhatsApp per assistenza o ordini personalizzati.", "reply");
    return;
 }
 
@@ -1167,7 +1167,7 @@ if (text.includes("ciao")) {
    addChatMessage("Ciao! 👋 Dimmi pure cosa vuoi creare e ti aiuto passo passo.", "reply");
    return;
 }
-    addChatMessage("Per questo puoi contattare K3D in persona tramite i pulsanti social, Instagram o WhatsApp, in fondo alla pagina.", "reply");
+    addChatMessage("non posso aiutarti in questo ma puoi contattare Francesco K3D in persona tramite i pulsanti social, Instagram o WhatsApp, in fondo alla pagina, per un aiuto in carne ed ossa ;) .", "reply");
 
 
 }
