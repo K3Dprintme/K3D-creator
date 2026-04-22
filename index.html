@@ -546,9 +546,9 @@ button.nfc-btn {
 
     <!-- PRESET PORTACHIAVI -->
     <div id="preset-container" style="display:none;">
-        <button onclick="selectPreset('piccolo')">|Piccolo|tipo moneta (es.:3x3x0.5cm)</button>
-        <button onclick="selectPreset('medio')">|Medio|rettangolare(es.:3x8x0.5)</button>
-        <button onclick="selectPreset('grande')">|Grande|(misure da personalizzare)</button>
+        <button onclick="selectPreset('piccolo')">|Piccolo|📏 tipo moneta (es.:3x3x0.5cm)</button>
+        <button onclick="selectPreset('medio')">|Medio|📏📏 rettangolare(es.:3x8x0.5)</button>
+        <button onclick="selectPreset('grande')">|Grande|📏📏📏 (misure da personalizzare)</button>
     </div>
 
     <!-- QUANTITÀ -->
@@ -818,23 +818,7 @@ function setupSliders(sliders) {
   });
 }
 
-function selectPreset(size) {
 
-  const preset = modelConfigs.Portachiavi.presets[size];
-
-  selectedDimensions = {
-    l: preset.l,
-    w: preset.w,
-    h: preset.h
-  };
-  
-    document.querySelectorAll("#preset-container button")
-       .forEach(btn => btn.classList.remove("selected-btn"));
-    
-    event.target.classList.add("selected-btn");
-
-  update();
-}
 
 /* ==============================
    DIMENSIONI
@@ -946,13 +930,20 @@ if (!l || !w || !h) {
    "Completa la selezione delle dimensioni";
   return;
 } 
-let volume = l * w * h;
+// base footprint (più realistico per stampa 3D)
+let baseArea = l * w;
+
+// altezza "smorzata" (meno impatto sul prezzo)
+let heightFactor = Math.pow(h, 0.45);
+
+// volume realistico
+let volume = baseArea * heightFactor;
 
 const multipliers = {
-  Portachiavi: 0.003,
-  Cornici: 0.0015,
-  Calamite: 0.002,
-  Statuine: 0.0025
+  Portachiavi: 0.0012,
+  Cornici: 0.0013,
+  Calamite: 0.0014,
+  Statuine: 0.0015,
 };
 
 let total = basePrice + (volume * multipliers[product]);
@@ -1177,11 +1168,11 @@ if (text.includes("ciao")) {
 ============================== */
 const modelConfigs = {
   Portachiavi: {
-    type: "preset",
-    presets: {
-      piccolo: { l: 30, w: 30, h: 3 },
-      medio: { l: 50, w: 30, h: 4 },
-      grande: { l: 70, w: 40, h: 4 }
+    type: "sliders",
+    sliders: {
+      length: { min: 1, max: 180, label: "Lunghezza (mm)" },
+      width: { min: 1, max: 180, label: "Larghezza (mm)" },
+      height: { min: 1, max: 6, label: "Spessore (mm)" }
     }
   },
   Cornici: {
@@ -1189,7 +1180,7 @@ const modelConfigs = {
     sliders: {
       length: { min: 50, max: 180, label: "Lunghezza (mm)" },
       width: { min: 50, max: 180, label: "Larghezza (mm)" },
-      height: { min: 1, max: 50, label: "Spessore (mm)" }
+      height: { min: 3, max: 6, label: "Spessore (mm)" }
     }
   },
   Calamite: {
@@ -1203,9 +1194,9 @@ const modelConfigs = {
   Statuine: {
     type: "sliders",
     sliders: {
-      length: { min: 1, max: 180, label: "Lunghezza (mm)" },
-      width: { min: 1, max: 180, label: "Larghezza (mm)" },
-      height: { min: 1, max: 180, label: "Altezza (mm)" }
+      length: { min: 20, max: 180, label: "Lunghezza (mm)" },
+      width: { min: 20, max: 180, label: "Larghezza (mm)" },
+      height: { min: 20, max: 180, label: "Altezza (mm)" }
     }
   }
 };
