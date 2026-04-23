@@ -65,9 +65,10 @@ body::before {
 
 
 .k3d-title {
-  font-size: 60px;
+  font-size: 65px;
+  font-family: Montserrat;
   color: #00c8ff;
-  text-shadow: 2px 2px 3px blue;
+  text-shadow: 2px 2px 1px blue;
 
 
 }
@@ -78,7 +79,7 @@ body::before {
          transform: translateY(0px);
       }
      50% {
-         transform: translateY(-5px);
+         transform: translateY(-2px);
       }
      100% {
          transform: translateY(0px);
@@ -87,9 +88,10 @@ body::before {
  
 .title-box h2 {
   margin: 0;
-  font-size: 35px;
+  font-size: 40px;
+  font-family: Montserrat;
   color: #00c8ff;
-  text-shadow: 2px 2px 5px blue;
+  text-shadow: 2px 2px 2px blue;
   animation: titleBreath 1s infinite ease-in-out;
 
 
@@ -101,7 +103,7 @@ body::before {
 ========================= */
 .subtitle {
   font-size: 18px;
-  font-style: italic;
+  font-family: Cormorant SC;
   max-width: 420px;
   margin: 12px auto 22px;
   line-height: 1.6;
@@ -114,20 +116,21 @@ body::before {
   padding: 14px 18px;
   border-radius: 18px;
 
-  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 
   opacity: 0;
   transform: translateY(10px);
-  animation: fadeUp 0.9s ease forwards;
+  animation: fadeUp 1s ease forwards;
 
    border-bottom: 2px solid #4db7ff;
+   border-top: 1px solid #4db7ff;
 
 }
 
 
 @keyframes fadeUp {
   to {
-    opacity: 1;
+    opacity: 2;
     transform: translateY(0);
   }
 }
@@ -173,6 +176,8 @@ body::before {
   margin: 15px auto;
   box-shadow: 0 4px 18px rgba(0,0,0,0.06);
   transition: 0.3s ease;
+  border-bottom: 2px solid #4db7ff;
+   border-top: 1px solid #4db7ff;
 }
 
 .box:hover {
@@ -227,19 +232,22 @@ button:hover {
 button.nfc-btn {
    display: flex;
    align-items: center;
-    gap: 10px;
-    padding: 14px 18px;
+    gap: 8px;
+    padding: 10px 8px;
     font-size: 16px;
-    border-radius: 30px;
+    border-radius: 10px;
     justify-content: center;
-
+    border-bottom: 2px solid #00e5ff;
+   border-top: 1px solid #00e5ff;
 }
 
 .icon_nfc {
-   width: 25px;
-   height: 25px;
+   width: 28px;
+   height: 28px;
    stroke: #3aa0ff;
 }
+
+
 
 /* =========================
    SOCIAL BUTTONS
@@ -264,15 +272,17 @@ button.nfc-btn {
   margin: 0 auto;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: center;   
+  transform: translateX(-8px);
+
 }
 
 /* Contenitore del ventaglio */
 .fan {
   width: 100%;
   position: absolute;
-  bottom: 20px;
-  left: 50%;
+  bottom: 40px;
+  left: 45%;
   transform: translateX(-50%);
 }
 
@@ -285,7 +295,7 @@ button.nfc-btn {
   left: 50%;
   bottom: 0;
   transform-origin: bottom center;
-  transform: rotate(var(--angle)) translateY(-70px);
+  transform: rotate(var(--angle)) translateY(-40px);
   opacity: 0.9;
   cursor: pointer;
   transition: transform 0.8s ease-in-out;
@@ -327,18 +337,96 @@ button.nfc-btn {
 /* =========================
    QUANTITÀ
 ========================= */
+
+
 .qty-box {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
+
+  padding: 6px 10px;
+  border-radius: 30px;
+
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(8px);
+
+  border: 3px solid rgba(77,183,255,0.2);
 }
 
+
 .qty-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: rgba(255,255,255,0.85);
+  border: 2px solid #4db7ff;
+
+  font-size: 20px;
+  font-family: Montserrat;
+  font-weight: bold;
+  color: #00c8ff;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 10px rgba(77,183,255,0.15);
+  backdrop-filter: blur(6px);
+
+  transition: 0.2s ease;
 }
+
+.qty-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(77,183,255,0.12);
+}
+
+
+#qty {
+ min-width: 55px;
+ height: 50px;
+
+ display: flex;
+ align-items: center;
+ justify-content: center;
+
+ background: rgba(255,255,255,0.85);
+ border: 3px solid #FF4D4D;
+ border-radius: 10px;
+
+ font-size: 15px;
+ font-family: Montserrat;
+ font-weight: bold;
+ color: #FF4D4D;
+
+ box-shadow: 0 4px 10px rgba(77,183,255,0.18);
+ backdrop-filter: blur(6px);
+
+ transition: 0.5s ease;
+}
+
+#qty {
+  min-width: 55px;
+  height: 42px;
+}
+
+.qty-label {
+  font-size: 20px;
+  font-family: Montserrat;
+  color: #FF4D4D;
+  font-weight: bold;
+  
+
+  margin-right: 10px;
+  opacity: 0.8;
+}
+
+
 
 /* =========================
    CHATBOT
@@ -348,6 +436,8 @@ button.nfc-btn {
   padding: 20px;
   border-radius: 20px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  border-bottom: 2px solid #FF4D4D;
+   border-top: 1px solid #FF4D4D;
 }
 
 .chat-window {
@@ -357,6 +447,8 @@ button.nfc-btn {
   border-radius: 12px;
   text-align: left;
   background: white;
+  border-bottom: 2px solid #4db7ff;
+   border-top: 1px solid #4db7ff;
 }
 
 .chat-msg {
@@ -498,7 +590,7 @@ button.nfc-btn {
 
 
 <div class="subtitle">
-   Questo semplice creator ti aiuterà ad avere una stima del valore finale. Essendo creazioni uniche e personalizzate, per una stima più precisa, chiedi a Francesco "K3D" tramite i pulsanti social in fondo al creator.
+   Questo semplice creator ti aiuterà ad avere una stima del valore finale. Qui hai tutto ciò che ti occorre per un preventivo affidabile.Per qualsiasi altra richiesta o se hai bisogno di info, chiedi al K3D-bot o Francesco "K3D" tramite i pulsanti social in fondo al creator.
 </div>
 
 
@@ -518,7 +610,7 @@ button.nfc-btn {
 
         <!-- PRODOTTO -->
         <div class="box">
-            <div class="box-title">🧩 Tipologia o modello</div>
+            <div class="box-title">🧩 Tipologia</div>
             <button class="toggle" data-product="Statuine" data-price="5">🧍‍♀️ Oggetti 3D (statuine, accessori, quadretti 3D).</button>
             <button class="toggle" data-product="Portachiavi" data-price="1">🔑 Portachiavi</button>
             <button class="toggle" data-product="Calamite" data-price="2">🧲 Calamite</button>
@@ -532,7 +624,7 @@ button.nfc-btn {
        
 </div>
 
-<p class="subtitle">La dimensione della creazione potrà essere selezionabile dopo aver scelto la tipologia.</p>
+<p class="subtitle">La dimensione della creazione sarà selezionabile dopo aver scelto la tipologia.</p>
 
        <!-- DIMENSIONE -->
 <div class="box">
@@ -566,10 +658,15 @@ button.nfc-btn {
 
     <!-- QUANTITÀ -->
     <div class="qty-box">
-        <button class="qty-btn" onclick="changeQty(-1)">−</button>
-        <span class="qty-number" id="qty">1</span>
-        <button class="qty-btn" onclick="changeQty(1)">+</button>
-    </div>
+
+    <div class="qty-label">Quantità</div>
+
+    <button class="qty-btn" onclick="changeQty(-1)">−</button>
+    <span class="qty-number" id="qty">1</span>
+    <button class="qty-btn" onclick="changeQty(1)">+</button>
+
+</div>
+
 </div>
 
 <!-- COLORI -->
@@ -641,7 +738,8 @@ button.nfc-btn {
     <div id="popupBox">
         <h3>Riepilogo ordine</h3>
         <p id="popupContent"></p>
-        <button onclick="closePopup()">Chiudi</button>
+        <button class="btn-summary" onclick="window.open('https://wa.me/+393275377269')">Inviami tutto su WhatsApp</button>
+        <button onclick="closePopup()">Chudi</button>
     </div>
 </div>
 <button onclick="resetAll()" class="reset-btn">🔄 Ricomincia da zero </button>
@@ -747,7 +845,7 @@ function toggleColor(color, el) {
     el.classList.remove("selected");
   } else {
     if (selectedColors.length >= 4) {
-      alert("Puoi selezionare 4 colori contemporaneamente per ogni singola creazione!");
+      alert("Puoi selezionare max 4 colori per ogni singola creazione!");
       return;
     }
     selectedColors.push(color);
@@ -1063,6 +1161,14 @@ function closePopup() {
     document.getElementById("popupOverlay").style.display = "none";
 }
 
+function sendToWhatsApp() {
+    const text = document.getElementById("result").innerText;
+
+    const url = "https://wa.me/393275377269?text=" + encodeURIComponent(text);
+
+    window.open(url, "_blank");
+}
+
 /* ------------------------------
    CHATBOT — MESSAGGI COLORATI
 --------------------------------*/
@@ -1151,7 +1257,7 @@ if (text.includes("come viene calcolato il prezzo?")) {
    return;
 }
 
-if (text.includes("cos'è")) {
+if (text.includes("cos'è?")) {
    addChatMessage("Se vuoi maggiori info su questo argomento, scrivi pure a Francesco K3D in persona tramite i pulsanti social.", "reply");
    return;
 }
@@ -1161,7 +1267,7 @@ if (text.includes("come ordinare")) {
    return;
 }
 
-if (text.includes("prezzo")) {
+if (text.includes("prezzo?")) {
    addChatMessage("Il prezzo dipende da prodotto, dimensione e colori. Il totale viene calcolato automaticamente nel riepilogo.", "reply");
    return;
 }
@@ -1197,7 +1303,7 @@ if (text.includes("materiale")) {
 }
 
 if (text.includes("nfc")) {
-   addChatMessage("Alcuni prodotti come portachiavi, calamite e cornici possono includere un chip NFC personalizzato. Puoi richiedere la personalizzazione del tuo chip gratuitamente. NFC (da programmare)+2€.", "reply");
+   addChatMessage("Alcuni prodotti come portachiavi, calamite e cornici possono includere un chip NFC personalizzato. Puoi richiedere la programmazione del tuo chip gratuitamente. NFC (da programmare)+2€.", "reply");
    return;
 }
 
@@ -1254,6 +1360,8 @@ const modelConfigs = {
 };
 
 let selectedDimensions = { l: 0, w: 0, h: 0 };
+
+
 
 
 /* ------------------------------
