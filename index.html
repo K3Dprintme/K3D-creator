@@ -738,7 +738,7 @@ button.nfc-btn {
     <div id="popupBox">
         <h3>Riepilogo ordine</h3>
         <p id="popupContent"></p>
-        <button class="btn-summary" onclick="window.open('https://wa.me/+393275377269')">Inviami tutto su WhatsApp</button>
+        <button class="btn-summary" onclick="sendToWhatsAppFromPopup()">Inviami tutto su WhatsApp!</button>
         <button onclick="closePopup()">Chudi</button>
     </div>
 </div>
@@ -1165,6 +1165,44 @@ function sendToWhatsApp() {
     const text = document.getElementById("result").innerText;
 
     const url = "https://wa.me/393275377269?text=" + encodeURIComponent(text);
+
+    window.open(url, "_blank");
+}
+
+function sendToWhatsAppFromPopup() {
+
+    if (!product) {
+        alert("Seleziona prima un prodotto!");
+        return;
+    }
+
+    // DIMENSIONI
+    let l, w, h;
+
+    if (modelConfigs[product]?.type === "sliders") {
+        l = document.getElementById("length").value;
+        w = document.getElementById("width").value;
+        h = document.getElementById("height").value;
+    } else {
+        l = selectedDimensions.l || "non selezionato";
+        w = selectedDimensions.w || "non selezionato";
+        h = selectedDimensions.h || "non selezionato";
+    }
+
+    // RIEPILOGO TESTO
+    let msg = "🧾 *RIEPILOGO ORDINE K3D*\n";
+    msg += "-------------------------\n";
+    msg += "🧩 Prodotto: " + product + "\n";
+    msg += "📏 Dimensioni: " + l + " x " + w + " x " + h + " mm\n";
+    msg += "🎨 Colori: " + (selectedColors.join(", ") || "nessuno") + "\n";
+    msg += "🔢 Quantità: " + quantity + "\n";
+    msg += "💾 NFC: " + (nfcActive ? "Sì" : "No") + "\n";
+    msg += "\n📦 " + document.getElementById("result").innerText;
+
+    // numero WhatsApp
+    const numero = "393275377269";
+
+    const url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(msg);
 
     window.open(url, "_blank");
 }
