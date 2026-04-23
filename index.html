@@ -65,9 +65,9 @@ body::before {
 
 
 .k3d-title {
-  font-size: 45px;
+  font-size: 50px;
   color: #00c8ff;
-  text-shadow: 2px 2px 5px blue;
+  text-shadow: 2px 2px 4px blue;
 
 
 }
@@ -100,17 +100,30 @@ body::before {
    SUBTITLE
 ========================= */
 .subtitle {
-  font-size: 20px;
+  font-size: 18px;
   font-style: italic;
-  max-width: 320px;
-  margin: 10px auto 20px;
-  line-height: 1.5;
+  max-width: 420px;
+  margin: 12px auto 22px;
+  line-height: 1.6;
   font-weight: 500;
+  color: #1a2a44;
+
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(6px);
+
+  padding: 14px 18px;
+  border-radius: 18px;
+
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+
   opacity: 0;
-  text-shadow: 1px 1px 1px red;
   transform: translateY(10px);
   animation: fadeUp 0.9s ease forwards;
+
+   border-bottom: 2px solid #4db7ff;
+
 }
+
 
 @keyframes fadeUp {
   to {
@@ -973,6 +986,7 @@ let total = basePrice + (volume * multipliers[product]);
 ============================== */
 function resetAll() {
 
+  // reset stato
   selectedDimensions = { l: 0, w: 0, h: 0 };
   basePrice = 0;
   product = "";
@@ -980,14 +994,52 @@ function resetAll() {
   selectedColors = [];
   quantity = 1;
   nfcActive = false;
+  size = 5;
 
+  // reset pulsanti prodotto
+  document.querySelectorAll(".toggle")
+    .forEach(btn => btn.classList.remove("selected-btn"));
+
+  // reset NFC
+  const nfcBtn = document.querySelector(".toggle-extra");
+  if (nfcBtn) {
+    nfcBtn.classList.remove("selected-btn");
+  }
+
+  // reset colori
   document.querySelectorAll(".fan-color")
     .forEach(c => c.classList.remove("selected"));
 
+  // reset quantità
   document.getElementById("qty").innerText = "1";
-  document.getElementById("result").innerText = "Seleziona le opzioni";
 
-  update();
+  // reset sliders
+  ["length", "width", "height"].forEach(key => {
+    const el = document.getElementById(key);
+    const value = document.getElementById("value-" + key);
+
+    el.value = 1;
+    value.innerText = "0 mm";
+  });
+
+  // reset labels slider
+  document.getElementById("label-length").innerText = "";
+  document.getElementById("label-width").innerText = "";
+  document.getElementById("label-height").innerText = "";
+
+  // nasconde box dimensioni
+  document.getElementById("slider-container").style.display = "none";
+  document.getElementById("preset-container").style.display = "none";
+
+  // reset preset selezionati
+  document.querySelectorAll("#preset-container button")
+    .forEach(btn => btn.classList.remove("selected-btn"));
+
+  // chiude popup se aperto
+  document.getElementById("popupOverlay").style.display = "none";
+
+  // reset riepilogo
+  document.getElementById("result").innerText = "Seleziona le opzioni";
 }
 
 /* ------------------------------
