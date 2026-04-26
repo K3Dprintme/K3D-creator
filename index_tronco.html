@@ -104,7 +104,7 @@ body::before {
  
 .title-box h1 {
   margin: 0;
-  font-size: 40px;
+  font-size: 25px;
   font-family: Montserrat;
   color: #00c8ff;
   text-shadow: 2px 2px 2px blue;
@@ -201,7 +201,12 @@ body::before {
   box-shadow: 0 4px 18px rgba(0,0,0,0.06);
   transition: 0.3s ease;
   border-bottom: 2px solid #4db7ff;
-   border-top: 1px solid #4db7ff;
+  border-top: 1px solid #4db7ff;
+}
+
+.social-box {
+  max-width: 650px;
+  margin: 20px auto;
 }
 
 .box:hover {
@@ -212,17 +217,42 @@ body::before {
    TITOLI BOX
 ========================= */
 .box-title {
-  background: rgba(173, 198, 219, 0.75);
-  padding: 12px 20px;
-  border-radius: 12px;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 1px grey;
+    background: linear-gradient(
+    135deg,
+    rgba(0,200,255,0.18),
+    rgba(77,183,255,0.30)
+  );
+  background: rgba(77,183,255,0.15);
+  border: 1px solid rgba(77,183,255,0.4);
+
+  padding: 14px 22px;
+  border-radius: 18px;
+
+  font-family: Montserrat;
   font-size: 22px;
-  margin-bottom: 20px;
-  font-weight: bold;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
+
+  color: #009dff;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 4px 14px rgba(77,183,255,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.35);
+
+  transition: 0.25s ease;
 }
+
+
+
 
 /* =========================
    BOTTONI
@@ -340,10 +370,23 @@ button.nfc-btn {
 ========================= */
 .color-dropdown {
   margin-top: 10px;
-  padding: 10px;
-  border-radius: 12px;
-  background: #ffffffcc;
+  padding: 12px;
+  border-radius: 14px;
+
+  border: 1px solid rgba(77,183,255,0.45);
+  border-bottom: 2px solid rgba(0,200,255,0.55);
+  color: #1a2a44;
+  font-weight: bold;
+
   cursor: pointer;
+  transition: 0.25s ease;
+
+  box-shadow: 0 4px 10px rgba(77,183,255,0.12);
+}
+
+.color-dropdown:hover {
+  background: rgba(77,183,255,0.25);
+  transform: translateY(-2px);
 }
 
 .color-dropdown-content {
@@ -843,7 +886,7 @@ button.nfc-btn {
 </div>
 
 <!-- BOTTONI SOCIAL -->
-<div class="box">
+<div class="box social-box">
     <div class="box-title">📲 Contattami tramite i pulsanti social e diamo vita alla tua idea!</div>
     <button class="btn-instagram" onclick="window.open('https://www.instagram.com/printmek3d?igsh=ZDJ3bDBxNjZ4aG93&utm_source=qr')">📷 Instagram</button>
     <button class="btn-whatsapp" onclick="window.open('https://wa.me/+393275377269')">📱 WhatsApp</button>
