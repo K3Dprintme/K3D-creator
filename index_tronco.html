@@ -28,7 +28,7 @@ html, body {
    SFONDO
 ========================= */
 body {
-  background: url("AppK3D/background/sfondo/image.png") no-repeat center center fixed;
+  background: url("AppK3D/background/sfondo/image.png") no-repeat center center;
   background-size: cover;
 }
 
@@ -272,7 +272,7 @@ button.nfc-btn {
   margin: 0 auto;
   position: relative;
   display: flex;
-  justify-content: center;   
+  justify-content: center;  
   transform: translateX(-8px);
 
 }
@@ -420,7 +420,7 @@ button.nfc-btn {
   font-family: Montserrat;
   color: #FF4D4D;
   font-weight: bold;
-  
+ 
 
   margin-right: 10px;
   opacity: 0.8;
@@ -913,8 +913,8 @@ function setupSliders(sliders) {
     el.max = sliders[key].max;
     el.value = sliders[key].min;
 
-    document.getElementById("value-" + key).innerText = 
-       sliders[key].min + "mm";   
+    document.getElementById("value-" + key).innerText =
+       sliders[key].min + "mm";  
 
     label.innerText = sliders[key].label;
 
@@ -1037,10 +1037,10 @@ if (modelConfigs[product]?.type === "sliders") {
 }
 
 if (!l || !w || !h) {
-  document.getElementById("result").innerText = 
+  document.getElementById("result").innerText =
    "Completa la selezione delle dimensioni";
   return;
-} 
+}
 // base footprint (più realistico per stampa 3D)
 let baseArea = l * w;
 
