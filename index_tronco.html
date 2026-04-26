@@ -525,7 +525,33 @@ button.nfc-btn {
   #chatToggleBtn {
     display: block !important;
   }
+@media (max-width: 768px) {
+  .right-panel {
+    display: none;
+  }
+
+  .right-panel.open-chat {
+    display: block;
+    position: fixed;
+    top: 80px;
+    right: 10px;
+    width: 90%;
+    z-index: 9998;
+  }
+
+#chatToggleBtn {
+  display: none;
 }
+
+@media (max-width: 768px) {
+  #chatToggleBtn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+}
+
 
 
 
@@ -1436,26 +1462,17 @@ const modelConfigs = {
 
 let selectedDimensions = { l: 0, w: 0, h: 0 };
 
-document.getElementById("chatToggleBtn").addEventListener("click", () => {
-  const panel = document.querySelector(".right-panel");
-
-  const isHidden = getComputedStyle(panel).display === "none";
-
-  if (isHidden) {
-    panel.style.display = "block";
-  } else {
-    panel.style.display = "none";
-  }
-});
 
 
 document.getElementById("chatToggleBtn").addEventListener("click", () => {
   const panel = document.querySelector(".right-panel");
 
-  if (panel.style.display === "block") {
-    panel.style.display = "none";
+  const isVisible = panel.classList.contains("open-chat");
+
+  if (isVisible) {
+    panel.classList.remove("open-chat");
   } else {
-    panel.style.display = "block";
+    panel.classList.add("open-chat");
   }
 });
 
