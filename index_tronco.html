@@ -513,17 +513,23 @@ button.nfc-btn {
     justify-content: center;
   }
 
+  @media (max-width: 768px) {
   .right-panel {
     display: none;
     position: fixed;
     top: 80px;
-    right: 10px;
-    width: 90%;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px) scale(0.98);
+    width: 92%;
+    max-width: 420px;
     z-index: 9998;
   }
 
   .right-panel.open-chat {
     display: block;
+    transform: translateX(-50%) translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: all;
   }
 }
 
@@ -533,12 +539,19 @@ button.nfc-btn {
 #chatOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(4px);
   opacity: 0;
   pointer-events: none;
   transition: 0.3s ease;
   z-index: 9997;
 }
+
+#chatOverlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
 
 /* quando attivo */
 #chatOverlay.active {
