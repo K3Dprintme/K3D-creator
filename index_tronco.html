@@ -112,6 +112,15 @@ body::before {
   -webkit-font-smoothing: antialiased;
 }
 
+.title-box h2 { 
+  animation: titleBreath 3s ease-in-out infinite;
+  font-size: 40px;
+  animation-delay: 0.2s;
+  font-family: Montserrat;
+  color: #00c8ff;
+  text-shadow: 2px 2px 2px blue;
+}
+
 
 /* =========================
    SUBTITLE
@@ -175,9 +184,9 @@ body::before {
 /* COLONNA DESTRA (CHATBOT) */
 .right-panel {
   position: fixed;
-  right: 20px;
-  width: 360px;
   top: 100px;
+  width: 360px;
+  right: 20px;
 }
 
 /* =========================
@@ -516,7 +525,7 @@ button.nfc-btn {
   @media (max-width: 768px) {
 
   .right-panel {
-    left: 50%;
+    position: fixed;
     right: auto;
     top: 80px;
     width: 92%;
@@ -529,7 +538,7 @@ button.nfc-btn {
   }
 
   .right-panel.open-chat {
-    transform: translateX(-20%) translateY(0) scale(1);
+    transform: translateX(-50%) translateY(0) scale(1);
     opacity: 1;
     pointer-events: all;
   }
