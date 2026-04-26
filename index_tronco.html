@@ -499,39 +499,14 @@ button.nfc-btn {
 ========================= */
 @media (max-width: 768px) {
 
-  .layout-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .left-panel,
-  .right-panel {
-    width: 100%;
-    max-width: 420px;
-  }
-
-  /* chatbot nascosto su mobile di default */
-  .right-panel {
-    display: none;
-    position: static !important;
-    top: auto !important;
-  }
-
-  .assistant-box {
-    position: static !important;
-  }
-
-  /* bottone chatbot VISIBILE su mobile */
   #chatToggleBtn {
-    display: block !important;
-  }
-@media (max-width: 768px) {
-  .right-panel {
-    display: none;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
   }
 
-  .right-panel.open-chat {
-    display: block;
+  .right-panel {
+    display: none;
     position: fixed;
     top: 80px;
     right: 10px;
@@ -539,17 +514,9 @@ button.nfc-btn {
     z-index: 9998;
   }
 
-#chatToggleBtn {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  #chatToggleBtn {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
+  .right-panel.open-chat {
+    display: block;
   }
-
 }
 
 
@@ -803,7 +770,7 @@ button.nfc-btn {
 </div>
 <button onclick="resetAll()" class="reset-btn">🔄 Ricomincia da zero </button>
 
-<button id="chatToggleBtn">Chat-Bot</button>
+<button id="chatToggleBtn">💬</button>
 
 </body>
 
@@ -1467,13 +1434,7 @@ let selectedDimensions = { l: 0, w: 0, h: 0 };
 document.getElementById("chatToggleBtn").addEventListener("click", () => {
   const panel = document.querySelector(".right-panel");
 
-  const isVisible = panel.classList.contains("open-chat");
-
-  if (isVisible) {
-    panel.classList.remove("open-chat");
-  } else {
-    panel.classList.add("open-chat");
-  }
+  panel.classList.toggle("open-chat");
 });
 
 
