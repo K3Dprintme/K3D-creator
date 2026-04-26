@@ -514,24 +514,27 @@ button.nfc-btn {
   }
 
   @media (max-width: 768px) {
+
   .right-panel {
-    display: none;
-    position: fixed;
-    top: 80px;
     left: 50%;
-    transform: translateX(-50%) translateY(20px) scale(0.98);
+    right: auto;
+    top: 80px;
     width: 92%;
     max-width: 420px;
+
+    transform: translateX(-50%) translateY(20px) scale(0.98);
+    opacity: 0;
+    pointer-events: none;
     z-index: 9998;
   }
 
   .right-panel.open-chat {
-    display: block;
     transform: translateX(-50%) translateY(0) scale(1);
     opacity: 1;
     pointer-events: all;
   }
 }
+
 
 /* =========================
    CHAT OVERLAY
@@ -676,6 +679,12 @@ button.nfc-btn {
 }
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+@media (min-width: 769px) {
+  #chatToggleBtn {
+    display: none !important;
+     }
+}
 
 </style>
 
