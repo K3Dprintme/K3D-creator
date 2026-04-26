@@ -28,7 +28,7 @@ html, body {
    SFONDO
 ========================= */
 body {
-  background: url("AppK3D/background/sfondo/image.PNG") no-repeat center center fixed;
+  background: url("AppK3D/background/sfondo/image.png") no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -503,11 +503,11 @@ button.nfc-btn {
     flex-direction: column;
     align-items: center;
   }
+@media (max-width: 768px) {
+  #chatToggleBtn {
+    display: block !important;
+     }
 
-@media (max-width: 768px) { 
-  .right-panel {
-    display: none;
-   }
 }
 
   .left-panel,
@@ -525,10 +525,6 @@ button.nfc-btn {
     position: static !important;
   }
 
-@media (max-width: 768px) {
-  #chatToggleBtn {
-    display: block;
-  }
 }
 
 
@@ -1440,19 +1436,14 @@ const modelConfigs = {
 let selectedDimensions = { l: 0, w: 0, h: 0 };
 
 document.getElementById("chatToggleBtn").addEventListener("click", () => {
-
   const panel = document.querySelector(".right-panel");
 
-  if (panel.style.display === "block") {
-    panel.style.display = "none";
-  } else {
+  const isHidden = getComputedStyle(panel).display === "none";
+
+  if (isHidden) {
     panel.style.display = "block";
-    panel.style.position = "fixed";
-    panel.style.bottom = "100px";
-    panel.style.right = "20px";
-    panel.style.width = "90%";
-    panel.style.maxWidth = "360px";
-    panel.style.zIndex = "9999";
+  } else {
+    panel.style.display = "none";
   }
 });
 
