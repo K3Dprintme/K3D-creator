@@ -78,14 +78,19 @@ body::before {
 
 
 .k3d-title {
-  font-size: 42px;
+  font-size: 35px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   color: #00c8ff;
-  text-shadow: 2px 2px 2px blue;
+  text-shadow: 2px 2px 2px grey;
   animation: titleBreath 3s ease-in-out infinite;
   position: relative;
   z-index: 10;
+ background: rgba(255,255,255,0.72);
+  padding: 14px 18px;
+   border-radius: 18px;
+  border-bottom: 2px solid #4db7ff;
+  border-top: 1px solid #4db7ff;
 
 }
 
@@ -107,9 +112,10 @@ body::before {
   font-size: 25px;
   font-family: Montserrat;
   color: #00c8ff;
-  text-shadow: 2px 2px 2px blue;
+  text-shadow: 2px 2px 2px black;
   transform: translateZ(0);
   -webkit-font-smoothing: antialiased;
+    
 }
 
 .title-box h2 { 
@@ -118,7 +124,15 @@ body::before {
   animation-delay: 0.2s;
   font-family: Montserrat;
   color: #00c8ff;
-  text-shadow: 2px 2px 2px blue;
+  text-shadow: 2px 2px 2px grey;
+  
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+    border-bottom: 2px solid #4db7ff;
+  border-top: 1px solid #4db7ff;
+  
+  padding: 14px 18px;
 }
 
 
@@ -500,7 +514,7 @@ button.nfc-btn {
 ========================= */
 .assistant-box {
   background: rgba(255,255,255,0.88);
-  padding: 20px;
+  padding: 12px;
   border-radius: 20px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.06);
   border-bottom: 2px solid #FF4D4D;
@@ -511,27 +525,55 @@ button.nfc-btn {
   height: 220px;
   overflow-y: auto;
   padding: 10px;
-  border-radius: 12px;
+  border-radius: 20px;
   text-align: left;
   background: white;
-  border-bottom: 2px solid #4db7ff;
-   border-top: 1px solid #4db7ff;
+  border-bottom: 3px solid #4db7ff;
+   border-top: 2px solid #4db7ff;
 }
 
 .chat-msg {
   color: #007bff;
-  background: rgba(0,123,255,0.1);
-  padding: 8px;
+
+  padding: 10px;
   border-radius: 12px;
   margin: 4px 0;
 }
 
 .chat-reply {
   color: #dc3545;
-  background: rgba(220,53,69,0.1);
   padding: 8px;
   border-radius: 12px;
   margin: 4px 0;
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  align-item: center;
+  justify-content: center;
+}
+
+.chat-input input {
+  flex: 1;
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 20px;
+  border: 2px solid #4db7ff;
+  outline: none;
+  font-size: 14px;
+}
+
+.chat-input button {
+  width: 78px;
+  height: 45px;
+  border-radius: 20px;
+  border: none;
+  background: #4db7ff;
+  color: white;
+  cursor: pointer;
+  
 }
 
 /* =========================
@@ -749,7 +791,7 @@ button.nfc-btn {
 
 
 <div class="subtitle">
-   Seleziona la tipologia, le dimensioni ed i colori. Dai forma alla tua idea! Ad ogni tipologia puoi associare un chip(NFC) personalizzabile!
+   Seleziona la tipologia, le dimensioni ed i colori. Ad ogni tipologia puoi associare un chip(NFC) personalizzabile!
 </div>
 
 
@@ -759,7 +801,7 @@ button.nfc-btn {
 <img src="AppK3D/logoindex/logo.png" class="logo">
 
 <div class="title-box">
-    <h2>Benvenuto nel creator K3D</h2>
+    <h2>Benvenuto nel CREATOR!</h2>
 </div>
 
 <div class="layout-grid">
