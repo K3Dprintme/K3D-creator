@@ -1479,19 +1479,34 @@ const btn = document.getElementById("chatToggleBtn");
 const panel = document.querySelector(".right-panel");
 const overlay = document.getElementById("chatOverlay");
 
+let chatOpen = false;
+
 function toggleChat() {
-  panel.classList.toggle("open-chat");
-  overlay.classList.toggle("active");
+  chatOpen = !chatOpen;
+
+  panel.classList.toggle("open-chat", chatOpen);
+  overlay.classList.toggle("active", chatOpen);
+
+  // opzionale: cambia icona bottone
+  btn.innerText = chatOpen ? "✖" : "💬";
 }
 
+// apertura/chiusura
 btn.addEventListener("click", toggleChat);
 
-// chiudi cliccando fuori
+// click fuori → chiude
 overlay.addEventListener("click", () => {
+  chatOpen = false;
   panel.classList.remove("open-chat");
   overlay.classList.remove("active");
+  btn.innerText = "💬";
 });
 
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && chatOpen) {
+    toggleChat();
+  }
+});
 
 
 /* ------------------------------
