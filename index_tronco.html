@@ -78,11 +78,14 @@ body::before {
 
 
 .k3d-title {
-  font-size: 30px;
-  font-family: Montserrat;
+  font-size: 42px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
   color: #00c8ff;
-  text-shadow: 2px 2px 1px blue;
-
+  text-shadow: 2px 2px 2px blue;
+  animation: titleBreath 3s ease-in-out infinite;
+  position: relative;
+  z-index: 10;
 
 }
 
@@ -99,15 +102,14 @@ body::before {
       }
 }
  
-.title-box h2 {
+.title-box h1 {
   margin: 0;
   font-size: 40px;
   font-family: Montserrat;
   color: #00c8ff;
   text-shadow: 2px 2px 2px blue;
-  animation: titleBreath 1s infinite ease-in-out;
-
-
+  transform: translateZ(0);
+  -webkit-font-smoothing: antialiased;
 }
 
 
@@ -564,6 +566,7 @@ button.nfc-btn {
     opacity: 1;
     pointer-events: all;
   }
+}
 
 @media (max-width: 768px) {
   .logo,
@@ -658,6 +661,8 @@ button.nfc-btn {
   z-index: 9999;
   display: none; /* desktop OFF */
 }
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
 </style>
 
