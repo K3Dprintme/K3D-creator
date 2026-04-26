@@ -504,6 +504,12 @@ button.nfc-btn {
     align-items: center;
   }
 
+@media (max-width: 768px) { 
+  .right-panel {
+    display: none;
+   }
+}
+
   .left-panel,
   .right-panel {
     width: 100%;
@@ -518,7 +524,14 @@ button.nfc-btn {
   .assistant-box {
     position: static !important;
   }
+
+@media (max-width: 768px) {
+  #chatToggleBtn {
+    display: block;
+  }
 }
+
+
 
 .reset-btn {
   background: #ffdddd;
@@ -584,6 +597,22 @@ button.nfc-btn {
    margin-top: -8px;
    margin-bottom: 12px;
    text-align: center;
+}
+
+#chatToggleBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #4db7ff;
+  color: white;
+  font-size: 26px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 9999;
+  display: none; /* desktop OFF */
 }
 
 </style>
@@ -750,6 +779,10 @@ button.nfc-btn {
     </div>
 </div>
 <button onclick="resetAll()" class="reset-btn">🔄 Ricomincia da zero </button>
+
+<button id="chatToggleBtn">Chat-Bot</button>
+
+</body>
 
 <script>
 
@@ -1406,6 +1439,22 @@ const modelConfigs = {
 
 let selectedDimensions = { l: 0, w: 0, h: 0 };
 
+document.getElementById("chatToggleBtn").addEventListener("click", () => {
+
+  const panel = document.querySelector(".right-panel");
+
+  if (panel.style.display === "block") {
+    panel.style.display = "none";
+  } else {
+    panel.style.display = "block";
+    panel.style.position = "fixed";
+    panel.style.bottom = "100px";
+    panel.style.right = "20px";
+    panel.style.width = "90%";
+    panel.style.maxWidth = "360px";
+    panel.style.zIndex = "9999";
+  }
+});
 
 
 
@@ -1413,7 +1462,6 @@ let selectedDimensions = { l: 0, w: 0, h: 0 };
    AVVIO
 --------------------------------*/
 renderColors();
-
 
 
 </script>
