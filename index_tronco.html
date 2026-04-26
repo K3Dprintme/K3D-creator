@@ -495,7 +495,7 @@ button.nfc-btn {
 }
 
 /* =========================
-   MOBILE
+   MOBILE FIX
 ========================= */
 @media (max-width: 768px) {
 
@@ -503,12 +503,6 @@ button.nfc-btn {
     flex-direction: column;
     align-items: center;
   }
-@media (max-width: 768px) {
-  #chatToggleBtn {
-    display: block !important;
-     }
-
-}
 
   .left-panel,
   .right-panel {
@@ -516,7 +510,9 @@ button.nfc-btn {
     max-width: 420px;
   }
 
+  /* chatbot nascosto su mobile di default */
   .right-panel {
+    display: none;
     position: static !important;
     top: auto !important;
   }
@@ -525,7 +521,12 @@ button.nfc-btn {
     position: static !important;
   }
 
+  /* bottone chatbot VISIBILE su mobile */
+  #chatToggleBtn {
+    display: block !important;
+  }
 }
+
 
 
 
@@ -1444,6 +1445,17 @@ document.getElementById("chatToggleBtn").addEventListener("click", () => {
     panel.style.display = "block";
   } else {
     panel.style.display = "none";
+  }
+});
+
+
+document.getElementById("chatToggleBtn").addEventListener("click", () => {
+  const panel = document.querySelector(".right-panel");
+
+  if (panel.style.display === "block") {
+    panel.style.display = "none";
+  } else {
+    panel.style.display = "block";
   }
 });
 
