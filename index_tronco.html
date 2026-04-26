@@ -519,6 +519,48 @@ button.nfc-btn {
   }
 }
 
+/* =========================
+   CHAT OVERLAY
+========================= */
+#chatOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+  z-index: 9997;
+}
+
+/* quando attivo */
+#chatOverlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* =========================
+   ANIMAZIONE CHAT PANEL
+========================= */
+.right-panel {
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+@media (max-width: 768px) {
+
+  .right-panel {
+    transform: translateY(20px) scale(0.98);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .right-panel.open-chat {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+
 
 
 
@@ -771,6 +813,8 @@ button.nfc-btn {
 <button onclick="resetAll()" class="reset-btn">🔄 Ricomincia da zero </button>
 
 <button id="chatToggleBtn">💬</button>
+<div id="chatOverlay"></div>
+
 
 </body>
 
@@ -1431,10 +1475,21 @@ let selectedDimensions = { l: 0, w: 0, h: 0 };
 
 
 
-document.getElementById("chatToggleBtn").addEventListener("click", () => {
-  const panel = document.querySelector(".right-panel");
+const btn = document.getElementById("chatToggleBtn");
+const panel = document.querySelector(".right-panel");
+const overlay = document.getElementById("chatOverlay");
 
+function toggleChat() {
   panel.classList.toggle("open-chat");
+  overlay.classList.toggle("active");
+}
+
+btn.addEventListener("click", toggleChat);
+
+// chiudi cliccando fuori
+overlay.addEventListener("click", () => {
+  panel.classList.remove("open-chat");
+  overlay.classList.remove("active");
 });
 
 
