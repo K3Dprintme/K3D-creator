@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dimensioni K3D</title>
+
+<style>
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg,#edf7ff,#dff2ff);
+  font-family: Arial, sans-serif;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+}
+
+.dimension-box {
+  width: 90%;
+  max-width: 500px;
+
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(18px);
+
+  border-radius: 20px;
+  padding: 30px;
+
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #00b7ff;
+  margin-bottom: 25px;
+}
+
+.preview-area {
+  width: 100%;
+  height: 260px;
+
+  background: rgba(173,220,255,0.25);
+
+  border-radius: 25px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 30px;
+
+  overflow: hidden;
+}
+
+.preview-shape {
+  width: 120px;
+  height: 120px;
+
+  background: linear-gradient(135deg,#4db7ff,#ff8c42);
+
+  border-radius: 18px;
+
+  transition: 0.35s ease;
+}
+
+.slider-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #1a2a44;
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
+.confirm-btn {
+  margin-top: 20px;
+
+  width: 100%;
+  padding: 16px;
+
+  border: none;
+  border-radius: 20px;
+
+  background: #4db7ff;
+  color: white;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.slider-value {
+  margin-top: 8px;
+  text-align: center;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  color: #4db7ff;
+
+  background: rgba(77,183,255,0.08);
+
+  border-radius: 12px;
+  padding: 6px;
+
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.confirm-btn {
+  margin-top: 20px;
+
+  width: 100%;
+  padding: 16px;
+
+  border: none;
+  border-radius: 20px;
+
+  background: linear-gradient(135deg,#4db7ff,#00c8ff);
+  color: white;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+  box-shadow: 0 8px 25px rgba(77,183,255,0.35);
+}
+
+.confirm-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(77,183,255,0.5);
+}
+
+/* stato loading */
+.confirm-btn.loading {
+  background: linear-gradient(135deg,#7ad7ff,#4db7ff);
+  cursor: not-allowed;
+  transform: scale(0.98);
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div class="dimension-box">
+
+  <div class="title">📏 Anteprima proporzioni</div>
+
+  <div class="preview-area">
+    <div class="preview-shape" id="shape"></div>
+  </div>
+
+  <div class="slider-group">
+  <label>Larghezza</label>
+  <input type="range" id="width" min="1" max="180" value="90">
+  <div class="slider-value" id="widthValue">120 mm</div>
+</div>
+
+<div class="slider-group">
+  <label>Altezza</label>
+  <input type="range" id="height" min="1" max="180" value="90">
+  <div class="slider-value" id="heightValue">120 mm</div>
+</div>
+
+<button class="confirm-btn" id="confirmBtn" onclick="confirmDimensions()">
+  Conferma dimensioni
+</button>
+
+
+<script>
+
+const widthSlider = document.getElementById("width");
+const heightSlider = document.getElementById("height");
+const shape = document.getElementById("shape");
+
+function updateShape() {
+
+  shape.style.width = widthSlider.value + "px";
+  shape.style.height = heightSlider.value + "px";
+
+  document.getElementById("widthValue").innerText =
+    widthSlider.value + " mm";
+
+  document.getElementById("heightValue").innerText =
+    heightSlider.value + " mm";
+}
+widthSlider.oninput = updateShape;
+heightSlider.oninput = updateShape;
+
+updateShape();
+
+function confirmDimensions() {
+
+  const btn = document.getElementById("confirmBtn");
+
+  // stato loading
+  btn.classList.add("loading");
+  btn.innerText = "Salvataggio...";
+
+  const data = {
+    width: document.getElementById("width").value,
+    height: document.getElementById("height").value
+  };
+
+  localStorage.setItem("k3d_dimensions", JSON.stringify(data));
+
+  // piccola attesa per effetto premium
+  setTimeout(() => {
+
+    btn.innerText = "✔ Salvato!";
+
+    setTimeout(() => {
+      window.location.href = "index_tronco.html";
+    }, 400);
+
+  }, 600);
+}
+
+</script>
+
+</body>
+</html>
