@@ -607,7 +607,6 @@ button.nfc-btn {
     justify-content: center;
   }
 
-  @media (max-width: 768px) {
 
   .right-panel {
     position: fixed;
@@ -780,6 +779,31 @@ button.nfc-btn {
      }
 }
 
+.shipping-btn {
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid #4db7ff;
+  color: #1a2a44;
+  border-radius: 30px;
+  padding: 14px;
+  width: 90%;
+  max-width: 320px;
+  margin: 10px auto;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.shipping-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.88);
+}
+
+.shipping-btn.active {
+  background: #4db7ff !important;
+  color: white !important;
+  border: none;
+}
+
 </style>
 
 </head>
@@ -898,8 +922,13 @@ button.nfc-btn {
         <!-- RIEPILOGO -->
         <div class="box">
             <div class="box-title">📦 Riepilogo</div>
+
             <p id="result">Seleziona le opzioni</p>
             <button onclick="openPopup()">Mostra riepilogo</button>
+            
+            <button id="shippingBtn" onclick="toggleShipping()" class="shipping-btn">
+    🚚 Spedizione al locker (+5€)
+           </button> 
         </div>
 
     </div>
@@ -963,6 +992,7 @@ let selectedColors = [];
 let quantity = 1;
 let nfcActive = false;
 let size = 5;
+let shippingSelected = false;
 
 /* ==============================
    COLORI
@@ -1058,6 +1088,15 @@ function toggleColor(color, el) {
     selectedColors.push(color);
     el.classList.add("selected");
   }
+
+  update();
+}
+
+function toggleShipping() {
+  shippingSelected = !shippingSelected;
+
+  const btn = document.getElementById("shippingBtn");
+  btn.classList.toggle("active", shippingSelected);
 
   update();
 }
@@ -1280,7 +1319,7 @@ let total = basePrice + (volume * multipliers[product]);
   total = total * quantity;
 
   // spedizione (UNA SOLA VOLTA)
-  total += 5;
+ if (shippingSelected) total += 5;
 
   document.getElementById("result").innerText =
     `Prodotto: ${product} | Colori: ${selectedColors.join(", ") || "nessuno"} | Qtà: ${quantity} | Totale: €${total.toFixed(2)}`;
@@ -1635,11 +1674,26 @@ overlay.addEventListener("click", () => {
   btn.innerText = "💬";
 });
 
+
+document.getElementById("shippingBtn")
+  .classList.toggle("active", shippingSelected);
+
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && chatOpen) {
     toggleChat();
   }
+
+function toggleShipping() {
+  shippingSelected = !shippingSelected;
+
+  const btn = document.getElementById("shippingBtn");
+  btn.classList.toggle("selected-btn", shippingSelected);
+
+  update();
+}
+
 });
+
 
 
 /* ------------------------------
