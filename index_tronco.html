@@ -1890,40 +1890,7 @@ function toggleShipping() {
 
 });
 
-function loadDimensionsFromModule() {
 
-  const data = localStorage.getItem("k3d_dimensions");
-
-  if (!data) return;
-
-  const dims = JSON.parse(data);
-
-  selectedDimensions = {
-    length: parseInt(dims.length),
-    width: parseInt(dims.width),
-    height: parseInt(dims.height)
-  };
-
-// aggiorna UI slider se esistono
-const lengthEl = document.getElementById("length");
-const widthEl = document.getElementById("width");
-const heightEl = document.getElementById("height");
-
-if (lengthEl && widthEl && heightEl) {
-
-  lengthEl.value = selectedDimensions.length;
-  widthEl.value = selectedDimensions.width;
-  heightEl.value = selectedDimensions.height;
-
-  document.getElementById("value-length").innerText = selectedDimensions.length + " mm";
-  document.getElementById("value-width").innerText = selectedDimensions.width + " mm";
-  document.getElementById("value-height").innerText = selectedDimensions.height + " mm";
-}
-
-  console.log("DIMENSIONI CARICATE:", selectedDimensions);
-
-  update();
-}
 function openDimensioni() {
   window.location.href = "index_dimensioni.html";
 }
@@ -1931,13 +1898,6 @@ function openDimensioni() {
    AVVIO
 --------------------------------*/
 renderColors();
-window.addEventListener("DOMContentLoaded", () => {
-  
-  setTimeout(() => {
-    loadDimensionsFromModule();
-  }, 50);
-const sliderBox = document.getElementById("slider-container");
-if (sliderBox) sliderBox.style.display = "block";
-});
+
 
 </script>
