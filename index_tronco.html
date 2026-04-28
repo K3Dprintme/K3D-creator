@@ -214,8 +214,8 @@ body::before {
   margin: 15px auto;
   box-shadow: 0 4px 18px rgba(0,0,0,0.06);
   transition: 0.3s ease;
-  border-bottom: 2px solid #4db7ff;
-  border-top: 1px solid #4db7ff;
+  border-bottom: 3px solid #4db7ff;
+  border-top: 2px solid #4db7ff;
 }
 
 .social-box {
@@ -771,7 +771,7 @@ button.nfc-btn {
   display: none; /* desktop OFF */
 }
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
 
 @media (min-width: 769px) {
   #chatToggleBtn {
@@ -810,12 +810,13 @@ button.nfc-btn {
 
 <body>
 
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
 <h1 class="k3d-title">K3D-creator</h1>
 
 
 <div class="subtitle">
-   Seleziona la tipologia, le dimensioni ed i colori. Ad ogni tipologia puoi associare un chip(NFC) personalizzabile!
+Ad ogni tipologia puoi associare un chip(NFC) personalizzabile!
 </div>
 
 
@@ -825,7 +826,7 @@ button.nfc-btn {
 <img src="AppK3D/logoindex/logo.png" class="logo">
 
 <div class="title-box">
-    <h2>Benvenuto nel CREATOR!</h2>
+    <h2>⚙️Benvenuto nel CREATOR!⚙️</h2>
 </div>
 
 <div class="layout-grid">
@@ -847,9 +848,7 @@ button.nfc-btn {
                      d="M9.348 14.652a3.75 3.75 0 0 1 0-5.304m5.304 0a3.75 3.75 0 0 1 0 5.304m-7.425 2.121a6.75 6.75 0 0 1 0-9.546m9.546 0a6.75 6.75 0 0 1 0 9.546M5.106 18.894c-3.808-3.807-3.808-9.98 0-13.788m13.788 0c3.808 3.807 3.808 9.98 0 13.788M12 12h.008v.008H12V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
 </svg>NFC</button>
        
-</div>
-
-<p class="subtitle">La dimensione della creazione sarà selezionabile dopo aver scelto la tipologia.</p>
+</div>Scegli la dimensione della creazione.</p>
 
        <!-- DIMENSIONE -->
 <div class="box">
@@ -936,7 +935,7 @@ button.nfc-btn {
     <!-- DESTRA: CHATBOT -->
     <div class="right-panel">
         <div class="assistant-box">
-            <div class="box-title">🤖 K3D-bot </div>
+            <div class="box-title">🤖 K3D-bot ✉️</div>
 
             <div class="chat-window" id="chatWindow">
                 <div class="chat-reply">Ciao! Sono K3D-bot! Cosa vuoi creare?</div>
@@ -968,7 +967,7 @@ button.nfc-btn {
     <div id="popupBox">
         <h3>Riepilogo ordine</h3>
         <p id="popupContent"></p>
-        <button class="btn-summary" onclick="sendToWhatsAppFromPopup()">Inviami tutto su WhatsApp!</button>
+        <button class="btn-summary" onclick="sendToWhatsAppFromPopup()">invia il riepilogo su WhatsApp!</button>
         <button onclick="closePopup()">Chiudi</button>
     </div>
 </div>
