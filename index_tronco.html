@@ -924,6 +924,44 @@ button.nfc-btn {
   }
 }
 
+
+.k3d-btn-dimensioni {
+  width: 90%;
+  max-width: 320px;
+  padding: 14px;
+
+  margin: 10px auto;
+  border-radius: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  background: linear-gradient(135deg, #e6f3ff, #cfe8ff);
+  border: 2px solid #4db7ff;
+
+  color: #1a2a44;
+  font-size: 17px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  transition: 0.25s ease;
+}
+
+.k3d-btn-dimensioni:hover {
+  transform: translateY(-3px);
+  background: #bfe1ff;
+}
+
+.k3d-btn-dimensioni:active {
+  transform: scale(0.98);
+}
+
+
+
 </style>
 
 </head>
@@ -997,7 +1035,10 @@ Ad ogni tipologia puoi associare un chip(NFC) personalizzabile!
 
           <div class="slider-value" id="value-height">0 mm</div>
 
-
+<!-- PULSANTE DIMENSIONI (NUOVO RAMO) -->
+<button class="k3d-btn-dimensioni" onclick="openDimensioni()">
+  📏 Dimensioni
+</button>
     </div>
 
  <!-- PRESET PORTACHIAVI -->
@@ -1311,6 +1352,15 @@ function setupSliders(sliders) {
          };
 
 
+    el.oninput = () => {
+  document.getElementById("value-" + key).innerText = el.value + "mm";
+
+  selectedDimensions[key] = parseInt(el.value); // 🔥 QUESTO COLLEGA IL TRONCO
+
+  update();
+};
+
+
   });
 }
 
@@ -1564,15 +1614,18 @@ function sendToWhatsAppFromPopup() {
     // DIMENSIONI
     let l, w, h;
 
-    if (modelConfigs[product]?.type === "sliders") {
-        l = document.getElementById("length").value;
-        w = document.getElementById("width").value;
-        h = document.getElementById("height").value;
-    } else {
-        l = selectedDimensions.l || "non selezionato";
-        w = selectedDimensions.w || "non selezionato";
-        h = selectedDimensions.h || "non selezionato";
-    }
+if (modelConfigs[product]?.type === "sliders") {
+
+  l = parseInt(document.getElementById("length").value);
+  w = parseInt(document.getElementById("width").value);
+  h = parseInt(document.getElementById("height").value);
+
+} else {
+
+  l = selectedDimensions.length;
+  w = selectedDimensions.width;
+  h = selectedDimensions.height;
+}
 
     // RIEPILOGO TESTO
     let msg = "🧾 *RIEPILOGO ORDINE K3D*\n";
@@ -1782,7 +1835,11 @@ const modelConfigs = {
   }
 };
 
-let selectedDimensions = { l: 0, w: 0, h: 0 };
+let selectedDimensions = {
+  length: 0,
+  width: 0,
+  height: 0
+};
 
 
 
@@ -1833,12 +1890,54 @@ function toggleShipping() {
 
 });
 
+function loadDimensionsFromModule() {
 
+  const data = localStorage.getItem("k3d_dimensions");
 
+  if (!data) return;
+
+  const dims = JSON.parse(data);
+
+  selectedDimensions = {
+    length: parseInt(dims.length),
+    width: parseInt(dims.width),
+    height: parseInt(dims.height)
+  };
+
+// aggiorna UI slider se esistono
+const lengthEl = document.getElementById("length");
+const widthEl = document.getElementById("width");
+const heightEl = document.getElementById("height");
+
+if (lengthEl && widthEl && heightEl) {
+
+  lengthEl.value = selectedDimensions.length;
+  widthEl.value = selectedDimensions.width;
+  heightEl.value = selectedDimensions.height;
+
+  document.getElementById("value-length").innerText = selectedDimensions.length + " mm";
+  document.getElementById("value-width").innerText = selectedDimensions.width + " mm";
+  document.getElementById("value-height").innerText = selectedDimensions.height + " mm";
+}
+
+  console.log("DIMENSIONI CARICATE:", selectedDimensions);
+
+  update();
+}
+function openDimensioni() {
+  window.location.href = "index_dimensioni.html";
+}
 /* ------------------------------
    AVVIO
 --------------------------------*/
 renderColors();
-
+window.addEventListener("DOMContentLoaded", () => {
+  
+  setTimeout(() => {
+    loadDimensionsFromModule();
+  }, 50);
+const sliderBox = document.getElementById("slider-container");
+if (sliderBox) sliderBox.style.display = "block";
+});
 
 </script>
