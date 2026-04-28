@@ -62,10 +62,12 @@ body {
   height: 120px;
 
   background: linear-gradient(135deg,#4db7ff,#ff8c42);
-
   border-radius: 18px;
 
-  transition: 0.35s ease;
+  transition: all 0.35s ease;
+
+  /* base shadow */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
 .slider-group {
@@ -179,13 +181,13 @@ input[type="range"] {
 </div>
 
 <div class="slider-group">
-  <label>Altezza</label>
+  <label>Lunghezza</label>
   <input type="range" id="height" min="1" max="180" value="90">
   <div class="slider-value" id="heightValue">120 mm</div>
 </div>
 
 <div class="slider-group">
-  <label>Lunghezza</label>
+  <label>Altezza</label>
   <input type="range" id="length" min="1" max="180" value="90">
   <div class="slider-value" id="lengthValue">120 mm</div>
 </div>
@@ -210,12 +212,17 @@ function updateShape() {
   const h = heightSlider.value;
   const l = lengthSlider.value;
 
-  // preview pseudo-3D (effetto prospettico)
   shape.style.width = w + "px";
   shape.style.height = h + "px";
 
-  // profondità simulata con shadow e scale
-  shape.style.transform = `perspective(600px) rotateX(${h/8}deg) rotateY(${l/20}deg)`;
+  const depth = l / 10;
+
+  shape.style.transform = `
+    perspective(600px)
+    rotateX(${h / 10}deg)
+    rotateY(${l / 25}deg)
+    translateZ(${depth}px)
+  `;
 
   document.getElementById("widthValue").innerText = w + " mm";
   document.getElementById("heightValue").innerText = h + " mm";
@@ -226,6 +233,46 @@ widthSlider.oninput = updateShape;
 heightSlider.oninput = updateShape;
 lengthSlider.oninput = updateShape;
 
+function updateShape() {
+
+  const w = widthSlider.value;
+  const h = heightSlider.value;
+  const l = lengthSlider.value;
+
+  // dimensioni box
+  shape.style.width = w + "px";
+  shape.style.height = h + "px";
+
+  // profondità percepita
+  const depth = l;
+
+  // rotazione + effetto 3D leggero
+  shape.style.transform = `
+    perspective(600px)
+    rotateX(${h / 10}deg)
+    rotateY(${l / 25}deg)
+    translateZ(${depth / 10}px)
+  `;
+
+  // 🎯 OMBRA DINAMICA (parte importante)
+  const shadowX = depth / 25;
+  const shadowY = depth / 12;
+  const blur = 20 + depth / 4;
+  const opacity = 0.15 + depth / 400;
+
+  shape.style.boxShadow = `
+    ${shadowX}px 
+    ${shadowY}px 
+    ${blur}px 
+    rgba(0,0,0,${opacity})
+  `;
+
+  // valori UI
+  document.getElementById("widthValue").innerText = w + " mm";
+  document.getElementById("heightValue").innerText = h + " mm";
+  document.getElementById("lengthValue").innerText = l + " mm";
+}
+
 updateShape();
 
 function confirmDimensions() {
@@ -233,25 +280,26 @@ function confirmDimensions() {
   const btn = document.getElementById("confirmBtn");
 
   btn.classList.add("loading");
-  btn.innerText = "Salvataggio...";
+  btn.innerText = "Confermato...";
 
   const data = {
-    length: parseInt(document.getElementById("length").value),
-    width: parseInt(document.getElementById("width").value),
-    height: parseInt(document.getElementById("height").value)
+    length: parseInt(lengthSlider.value),
+    width: parseInt(widthSlider.value),
+    height: parseInt(heightSlider.value)
   };
 
-  localStorage.setItem("k3d_dimensions", JSON.stringify(data));
+  // 👉 solo memoria temporanea (NON condivisa col tronco)
+  sessionStorage.setItem("k3d_dimensions_temp", JSON.stringify(data));
 
   setTimeout(() => {
 
-    btn.innerText = "✔ Salvato!";
+    btn.innerText = "✔ OK";
 
     setTimeout(() => {
       window.location.href = "index_tronco.html";
-    }, 400);
+    }, 300);
 
-  }, 600);
+  }, 500);
 }
 </script>
 
