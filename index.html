@@ -16,14 +16,14 @@
 }
 
 body{
-  font-family: Arial, sans-serif;
+  font-family: Montserrat, sans-serif;
   min-height:100vh;
 
   display:flex;
   justify-content:center;
   align-items:center;
 
-  background:url("AppK3D/background/sfondo/image.PNG") center center fixed;
+  background:url("AppK3D/background/sfondo/image.png") center center fixed;
   background-size:cover;
 
   overflow:hidden;
@@ -44,9 +44,9 @@ body::before{
   position:relative;
   z-index:2;
 
-  width:90%;
+  width:70%;
   max-width:700px;
-
+ 
   background:rgba(255,255,255,0.78);
   backdrop-filter:blur(10px);
 
@@ -56,15 +56,15 @@ body::before{
 
   text-align:center;
 
-  box-shadow:0 10px 40px rgba(0,0,0,0.08);
+  box-shadow:0 10px 10px rgba(0,0,0,0.08);
 
-  border-top:1px solid #4db7ff;
-  border-bottom:2px solid #4db7ff;
+  border-top:3px solid #4db7ff;
+  border-bottom:4px solid #4db7ff;
 }
 
 /* logo */
 .logo{
-  width:140px;
+  width:200px;
   margin-bottom:20px;
 }
 
@@ -73,17 +73,17 @@ h1{
   font-size:65px;
   font-family: Montserrat;
   color:#00c8ff;
-  text-shadow:2px 2px 2px blue;
+  text-shadow:1px 1px 1px blue;
   margin-bottom:10px;
 }
 
 /* subtitle */
 .subtitle{
-  font-size:18px;
+  font-size:20px;
   font-family: Montserrat;
   color:#1a2a44;
   line-height:1.8;
-  text-shadow:1px 1px 2px grey;
+  text-shadow:1px 1px 1px grey;
   max-width:500px;
   margin:0 auto 35px auto;
 }
@@ -98,7 +98,7 @@ h1{
   background:#4db7ff;
   color:white;
 
-  font-size:18px;
+  font-size:20px;
   cursor:pointer;
 
   transition:0.25s ease;
@@ -133,7 +133,7 @@ h1{
 }
 
 /* mobile */
-@media(max-width:768px){
+@media(max-width:758px){
 
   h1{
     font-size:48px;
@@ -161,7 +161,7 @@ h1{
 
   <img src="AppK3D/logoindex/logo.png" class="logo">
 
-  <h1>K3D Creator</h1>
+  <h1>K3D-Creator</h1>
 
   <p class="subtitle">
     Dai forma alla tua idea. 
@@ -169,7 +169,7 @@ h1{
   </p>
 
   <button class="start-btn" onclick="window.location.href='index_tronco.html'">
-    🚀 Inizia configurazione
+    🚀 Entra nel creator!
   </button>
 
 </div>
