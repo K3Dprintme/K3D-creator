@@ -69,7 +69,7 @@ body::before {
    LOGO + TITLE
 ========================= */
 .logo {
-  width: 130px;
+  width: 100px;
   margin: 10px auto;
   display: block;
 
@@ -109,7 +109,7 @@ body::before {
  
 .title-box h1 {
   margin: 0;
-  font-size: 25px;
+  font-size: 35px;
   font-family: Montserrat;
   color: #00c8ff;
   text-shadow: 2px 2px 2px black;
@@ -168,7 +168,7 @@ body::before {
 
 @keyframes fadeUp {
   to {
-    opacity: 2;
+    opacity: 1;
     transform: translateY(0);
   }
 }
@@ -231,8 +231,8 @@ body::before {
    TITOLI BOX
 ========================= */
 .box-title {
-    margin-bottom: 25px;
-    text-shadow: 1px 1px 1px grey;
+    margin-bottom: 50px;
+    text-shadow: 1px 1px 2px grey;
     background: linear-gradient(
     135deg,
     rgba(0,200,255,0.18),
@@ -371,7 +371,7 @@ button.nfc-btn {
 
 /* Effetto di estensione al passaggio del mouse */
 .fan:hover .fan-color {
-  transform: rotate(var(--angle)) translateY(-80px);
+  transform: rotate(var(--angle)) translateY(-90px);
 }
 
 /* Stato selezionato */
@@ -1034,10 +1034,12 @@ Ad ogni tipologia puoi associare un chip(NFC) personalizzabile!
         <input type="range" id="height" min="0" max="100" value="1">
 
           <div class="slider-value" id="value-height">0 mm</div>
-
+<div class="subtitle">
+Clicca sul Simulator, per vedere le proporzioni delle tue misure!🔎
+</div>
 <!-- PULSANTE DIMENSIONI (NUOVO RAMO) -->
 <button class="k3d-btn-dimensioni" onclick="openDimensioni()">
-  📏 Dimensioni
+  ⚙️ K3D-Simulator
 </button>
     </div>
 
