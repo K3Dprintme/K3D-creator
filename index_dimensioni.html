@@ -70,6 +70,7 @@ body::before {
   gap:18px;
 
   padding: 10px;
+  padding-top: 200px;
 }
 
 #three-container canvas {
@@ -242,6 +243,70 @@ button:hover{
   backdrop-filter: blur(4px);
 }
 
+/* =========================
+   LOGO + TITLE
+========================= */
+.logo {
+  width: 100px;
+  margin: 10px auto;
+  display: block;
+
+}
+
+
+
+.k3d-title {
+  font-size: 35px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #00c8ff;
+  text-shadow: 2px 2px 2px grey;
+  animation: titleBreath 3s ease-in-out infinite;
+  position: relative;
+  z-index: 10;
+ background: rgba(255,255,255,0.72);
+  padding: 14px 18px;
+   border-radius: 18px;
+  border-bottom: 2px solid #4db7ff;
+  border-top: 1px solid #4db7ff;
+}
+
+.subtitle {
+  font-size: 18px;
+  font-family: "Cormorant SC";
+  max-width: 420px;
+  margin: 12px auto 22px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: #1a2a44;
+
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(2px);
+
+  padding: 14px 18px;
+  border-radius: 18px;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+
+  opacity: 0.5;
+  transform: translateY(10px);
+  animation: fadeUp 1s ease forwards;
+
+  border-bottom: 3px solid #4db7ff;
+  border-top: 3px solid #4db7ff;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logo {
+  margin-top: 80px;
+}
+
 </style>
 
 
@@ -251,9 +316,19 @@ button:hover{
 
 <body>
 
-<div class="scene-label">Anteprima prodotto K3D</div>
+
+<div class="container">
 
 <div class="wrapper">
+
+<img src="AppK3D/logoindex/logo.png" class="logo">
+<h1 class="k3d-title">K3D🔧simulator</h1>
+
+
+<div class="subtitle">
+  💡Muovi gli sliders per vedere le proporzioni!💡
+</div>
+
 
 
 <div class="scene">
