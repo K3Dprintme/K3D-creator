@@ -19,7 +19,7 @@
 
 body{
   min-height:100vh;
-  background:url("AppK3D/background/sfondo/image.PNG"") center center / cover no-repeat;
+  background:url("AppK3D/background/sfondo/image.PNG") center center / cover no-repeat;
 
   display:flex;
   justify-content:center;
@@ -365,7 +365,7 @@ button:hover{
 
   <!-- BACK -->
   <div class="back">
-    <button onclick="window.location.href='index_tronco.html'">
+   <button onclick="goBackToTronco()">
       ⬅ Torna al configuratore
     </button>
   </div>
@@ -374,3 +374,12 @@ button:hover{
 
 </body>
 </html>
+
+<script>
+function goBackToTronco() {
+  // flag semplice: sto tornando dai colori
+  localStorage.setItem("k3d_return_from_colors", "true");
+
+  window.location.href = "index_tronco.html";
+}
+</script>
