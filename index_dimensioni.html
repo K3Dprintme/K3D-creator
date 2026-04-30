@@ -543,11 +543,14 @@ zS.addEventListener("input", update);
 // SAVE
 // =====================
 function saveAndReturn() {
+
   localStorage.setItem("k3d_dimensions", JSON.stringify({
     x: xS.value,
     y: yS.value,
     z: zS.value
   }));
+
+  localStorage.setItem("returnFromDimensions", "true");
 
   window.location.href = "index_tronco.html";
 }
