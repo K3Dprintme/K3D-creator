@@ -1298,6 +1298,7 @@ document.querySelectorAll(".toggle").forEach(btn => {
       basePrice = 0;
     } else {
       product = btn.dataset.product;
+      localStorage.setItem("k3d_selected_product", product);
       basePrice = parseFloat(btn.dataset.price);
       btn.classList.add("selected-btn");
       updateUIByModel(product);
@@ -1339,8 +1340,9 @@ function setupSliders(sliders) {
 
     el.min = sliders[key].min;
     el.max = sliders[key].max;
-    el.value = sliders[key].min;
-
+    if (!localStorage.getItem("returnFromDimensions")) {
+  el.value = sliders[key].min;
+}
     document.getElementById("value-" + key).innerText =
        sliders[key].min + "mm";  
 
@@ -1899,7 +1901,58 @@ function openDimensioni() {
 /* ------------------------------
    AVVIO
 --------------------------------*/
-renderColors();
+function restoreDimensionsFromSimulator() {
 
+  const saved = localStorage.getItem("k3d_dimensions");
+  const cameBack = localStorage.getItem("returnFromDimensions");
+
+  if (!saved || cameBack !== "true") return;
+
+  const dims = JSON.parse(saved);
+  const savedProduct = localStorage.getItem("k3d_selected_product");
+
+if (savedProduct) {
+
+  document.querySelectorAll(".toggle").forEach(btn => {
+
+    if (btn.dataset.product === savedProduct) {
+
+      btn.classList.add("selected-btn");
+
+      product = savedProduct;
+      basePrice = parseFloat(btn.dataset.price);
+
+      updateUIByModel(savedProduct);
+    }
+
+  });
+}
+
+  const sliderBox = document.getElementById("slider-container");
+
+  sliderBox.style.display = "block";
+
+  const length = document.getElementById("length");
+  const width = document.getElementById("width");
+  const height = document.getElementById("height");
+
+  length.value = dims.x;
+  width.value = dims.y;
+  height.value = dims.z;
+
+  document.getElementById("value-length").innerText = dims.x + "mm";
+  document.getElementById("value-width").innerText = dims.y + "mm";
+  document.getElementById("value-height").innerText = dims.z + "mm";
+
+  selectedDimensions.length = parseInt(dims.x);
+  selectedDimensions.width = parseInt(dims.y);
+  selectedDimensions.height = parseInt(dims.z);
+
+  update();
+
+  localStorage.removeItem("returnFromDimensions");
+}
+renderColors();
+restoreDimensionsFromSimulator();
 
 </script>
