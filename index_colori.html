@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K3D - Colori</title>
+
+<style>
+
+/* =========================
+   RESET + BACKGROUND K3D
+========================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Montserrat, sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:url("AppK3D/background/sfondo/image.png") center center fixed;
+  background-size:cover;
+
+  display:flex;
+  justify-content:center;
+  padding:40px 20px;
+
+  position:relative;
+}
+
+/* overlay K3D */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,0.55);
+  backdrop-filter:blur(3px);
+  z-index:0;
+}
+
+/* container */
+.wrapper{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:1100px;
+
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+}
+
+/* =========================
+   HEADER
+========================= */
+.logo{
+  width:120px;
+  margin:0 auto;
+}
+
+.title{
+  text-align:center;
+  font-size:38px;
+  color:#00c8ff;
+  text-shadow:1px 1px 0.5px #777;
+  font-weight:700;
+
+  background:rgba(255,255,255,0.7);
+  padding:12px 18px;
+  border-radius:16px;
+
+  border-top:2px solid #4db7ff;
+  border-bottom:3px solid #4db7ff;
+}
+
+.subtitle{
+  text-align:center;
+  font-size:16px;
+  text-shadow:1px 1px 2px #777;
+  max-width:700px;
+  margin:0 auto;
+
+  color:#1a2a44;
+  background:rgba(255,255,255,0.6);
+  padding:12px 18px;
+  border-radius:14px;
+
+  border-bottom: 3px solid #FF4D4D;
+   border-top: 3px solid #FF4D4D;
+}
+
+/* =========================
+   SEZIONI
+========================= */
+.section{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.section-title{
+  font-size:24px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight:800;
+  letter-spacing:2px;
+
+  color:#1a2a44;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:14px 16px;
+
+  background:rgba(255,255,255,0.65);
+  border-radius:14px;
+  border-bottom: 4px solid #4db7ff;
+   border-top: 3px solid #4db7ff;
+
+  box-shadow:0 6px 14px rgba(0,0,0,0.08);
+
+  position:relative;
+  overflow:hidden;
+
+  text-align:center;
+}
+
+/* linea glow laterale */
+.section-title::before{
+  content:"";
+  height:100%;
+
+  background:linear-gradient(180deg,#4db7ff,#00c8ff);
+
+  position:absolute;
+  left:0;
+  top:0;
+
+  border-radius:14px 0 0 14px;
+}
+
+/* piccolo glow animato */
+.section-title::after{
+  content:"";
+  position:absolute;
+  inset:-40px;
+
+  background:radial-gradient(circle, rgba(77,183,255,0.25), transparent 60%);
+  opacity:0.6;
+
+  animation:pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow{
+  0%,100%{transform:scale(1); opacity:0.4;}
+  50%{transform:scale(1.05); opacity:0.7;}
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:18px;
+}
+
+/* CARD */
+.card span{
+  font-size:14px;
+  font-weight:600;
+  color:#1a2a44;
+  text-align:center;
+  padding:30px 80px;
+  border-radius:50px;
+  
+
+  background:rgba(255,255,255,0.7);
+
+  border:1px solid rgba(77,183,255,0.35);
+
+  box-shadow:0 3px 8px rgba(0,0,0,0.06);
+
+  letter-spacing:0.5px;
+
+  transition:0.2s ease;
+}
+
+/* IMMAGINE */
+.card img{
+  width:200px;
+  height:200px;
+  object-fit:cover;
+  border-radius:12px;
+
+  border:2px solid rgba(77,183,255,0.5);
+  background:#fff;
+
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.card{
+  overflow:hidden;
+  border-radius:16px;
+}
+
+.card:hover img{
+  transform: scale(3);
+  filter: brightness(1.08) saturate(1.2);
+}
+
+/* TESTO  */
+.card span{
+  font-size:30px;
+  color:#1a2a44;
+  opacity:0.8;
+}
+
+/* bottone ritorno */
+.back{
+  text-align:center;
+  margin-top:10px;
+}
+
+button{
+  padding:14px 28px;
+  border:none;
+  border-radius:30px;
+
+  background:#4db7ff;
+  color:white;
+  font-weight:700;
+
+  cursor:pointer;
+  box-shadow:0 6px 15px rgba(77,183,255,0.35);
+}
+
+button:hover{
+  transform:translateY(-2px);
+}
+
+.card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+
+  padding:10px;
+}
+
+/* immagine base */
+.card img{
+  transition: transform 0.35s ease, filter 0.35s ease;
+  transform-origin:center;
+}
+
+/* hover effetto zoom */
+.card:hover img{
+  transform: scale(1.08);
+  filter: brightness(1.05) saturate(1.1);
+}
+
+@media (max-width: 768px){
+
+  .wrapper{
+    padding:20px 12px;
+    gap:20px;
+  }
+
+  .title{
+    font-size:26px;
+    padding:10px 14px;
+  }
+
+  .subtitle{
+    font-size:14px;
+    padding:10px 14px;
+  }
+
+  .grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap:12px;
+  }
+
+  .card img{
+    width:55px;
+    height:55px;
+  }
+
+  .card span{
+    font-size:12px;
+  }
+
+  /* effetto più leggero su mobile (importante) */
+  .card:hover img{
+    transform: scale(1.12);
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <!-- LOGO -->
+  <img src="AppK3D/logoindex/logo.png" class="logo">
+
+  <!-- TITLE -->
+  <div class="title">Scegli i tuoi colori</div>
+
+  <!-- SUBTITLE -->
+  <div class="subtitle">
+    I filamenti MATTE hanno una finitura opaca e professionale, mentre i SILK offrono un effetto lucido e brillante più premium.
+  </div>
+
+  <!-- =========================
+       MATTE
+  ========================= -->
+  <div class="section">
+
+    <div class="section-title">Colori opachi</div>
+
+    <div class="grid">
+
+      <!-- 13 SLOT MATTE -->
+      <div class="card"><img src="Colori/image0.jpeg"><span>Bianco puro</span></div>
+      <div class="card"><img src="Colori/image1.jpeg"><span>Bianco osso</span></div>
+
+      <div class="card"><img src="Colori/image2.jpeg"><span>Giallo limone</span></div>
+      <div class="card"><img src="Colori/image3.jpeg"><span>Mandarino</span></div>
+
+      <div class="card"><img src="Colori/image4.jpeg"><span>Rosa dolce</span></div>
+      <div class="card"><img src="Colori/image5.jpeg"><span>Violetto</span></div>
+
+      <div class="card"><img src="Colori/image6.jpeg"><span>Rosso scarlatto</span></div>
+      <div class="card"><img src="Colori/image7.jpeg"><span>Mattone</span></div>
+
+      <div class="card"><img src="Colori/image8.jpeg"><span>Verde lime</span></div>
+      <div class="card"><img src="Colori/image9.jpeg"><span>Verde prato</span></div>
+
+      <div class="card"><img src="Colori/image10.jpeg"><span>Azzurro sky</span></div>
+      <div class="card"><img src="Colori/image11.jpeg"><span>Blu marino</span></div>
+
+      <div class="card"><img src="Colori/image12.jpeg"><span>Sabbia</span></div>
+      <div class="card"><img src="Colori/image13.jpeg"><span>Caramello</span></div>
+
+      <div class="card"><img src="Colori/image14.jpeg"><span>Terracotta</span></div>
+      <div class="card"><img src="Colori/image15.jpeg"><span>Grigio opaco</span></div>
+
+      <div class="card"><img src="Colori/image16.jpeg"><span>Nero carbone</span></div>
+     
+
+
+    </div>
+  </div>
+
+  <!-- =========================
+       SILK
+  ========================= -->
+  <div class="section">
+
+    <div class="section-title">Colori SILK</div>
+
+    <div class="grid">
+
+      <div class="card"><img src="Colori/image17.jpeg"><span>Rosso rubino</span></div>
+      <div class="card"><img src="Colori/image18.jpeg"><span>Gold</span></div>
+
+      <div class="card"><img src="Colori/image19.jpeg"><span>Silver</span></div>
+      <div class="card"><img src="Colori/image20.jpeg"><span>Azzurro polvere</span></div>
+
+      <div class="card"><img src="Colori/image21.jpeg"><span>Blu Ocean</span></div>
+
+    </div>
+  </div>
+
+  <!-- BACK -->
+  <div class="back">
+    <button onclick="window.location.href='index_tronco.html'">
+      ⬅ Torna al configuratore
+    </button>
+  </div>
+
+</div>
+
+</body>
+</html>
