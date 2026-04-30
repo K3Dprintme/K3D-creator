@@ -78,7 +78,7 @@ body::before {
 
 
 .k3d-title {
-  font-size: 45px;
+  font-size: 35px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   color: #00c8ff;
@@ -109,7 +109,7 @@ body::before {
  
 .title-box h1 {
   margin: 0;
-  font-size: 40px;
+  font-size: 35px;
   font-family: Montserrat;
   color: #00c8ff;
   text-shadow: 2px 2px 2px black;
@@ -938,7 +938,7 @@ button.nfc-btn {
   justify-content: center;
   gap: 8px;
 
-  background: linear-gradient(135deg, #e6f3ff, #cfe8ff);
+  background: linear-gradient(135deg, #e6f3ff, #808080);
   border: 2px solid #4db7ff;
 
   color: #1a2a44;
@@ -960,7 +960,50 @@ button.nfc-btn {
   transform: scale(0.98);
 }
 
+.silk-action{
+  display:flex;
+  justify-content:center;
+  margin-top:15px;
+}
 
+.silk-btn{
+  padding:14px 26px;
+  border:none;
+
+  border-radius:30px;
+
+  background: linear-gradient(80deg, #87CEEB, #FFFF00);
+ background-size: 200% 200%;
+ animation: silkGlow 4s ease infinite;
+      border-bottom: 3px solid #FF0000;
+      border-top: 3px solid #FF0000;
+
+@keyframes silkGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+  font-weight:700;
+  font-size:21px;
+  color: white;
+  text-shadow: 1px 1px 1px blue;
+  font-family: Montserrat;
+   webkit-background-clip: text;
+   webkit-text-fill-color: transparent;
+ 
+
+  cursor:pointer;
+
+  box-shadow:0 6px 16px rgba(77,183,255,0.35);
+
+  transition: all 0.25s ease;
+}
+
+.silk-btn:hover{
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:0 10px 22px rgba(77,183,255,0.45);
+}
 
 </style>
 
@@ -1092,6 +1135,15 @@ Clicca sul Simulator, per vedere le proporzioni delle tue misure!🔎
                 ✨ Mostra nomi colori
                 <div id="silkDD" class="color-dropdown-content"></div>
             </div>
+
+
+<div class="silk-action">
+  <button class="silk-btn" onclick="goToTroncoColors()">
+ 👁️‍🗨️ Dai un occhio ai colori!
+  </button>
+</div>
+
+
         </div>
 
 
@@ -1180,26 +1232,31 @@ let shippingSelected = false;
    COLORI
 ============================== */
 const matte = [
-  {name:"grigio", color:"#808080"},
-  {name:"beige", color:"#F5F5DC"},
-  {name:"sabbia", color:"#D2B48C"},
-  {name:"osso", color:"#F9F6EE"},
-  {name:"bianco", color:"#FFFFFF"},
-  {name:"nero", color:"#000000"},
-  {name:"rosso", color:"#FF0000"},
-  {name:"giallo", color:"#FFFF00"},
-  {name:"rosa", color:"#FFC0CB"},
-  {name:"verde", color:"#008000"},
-  {name:"viola", color:"#800080"},
-  {name:"azzurro", color:"#87CEEB"},
-  {name:"blu", color:"#0000FF"}
+  {name:"Grigio opaco", color:"#808080"},
+  {name:"Terracotta", color:"#C68B59"},
+  {name:"Sabbia", color:"#D2B48C"},
+  {name:"Bianco osso", color:"#F9F6EE"},
+  {name:"Bianco puro", color:"#FFFFFF"},
+  {name:"Nero carbone", color:"#000000"},
+  {name:"Rosso scarlatto", color:"#FF0000"},
+  {name:"Giallo limone", color:"#FFFF00"},
+  {name:"Rosa dolce", color:"#FFC0CB"},
+  {name:"Verde prato", color:"#008000"},
+  {name:"Violetto", color:"#800080"},
+  {name:"Azzurro sky", color:"#87CEEB"},
+  {name:"Blu marino", color:"#0000FF"},
+  {name:"Caramello", color:"#C68B59"},
+  {name:"Verde lime", color:"#B7FF3C"},
+  {name:"Mandarino", color:"#FF8A3D"},
+  {name:"Mattone", color:"#B55239"}
 ];
 
 const silk = [
-  {name:"rosso silk", color:"#FF0000"},
-  {name:"oro", color:"#FFD700"},
-  {name:"blu silk", color:"#0000FF"},
-  {name:"argento", color:"#C0C0C0"}
+  {name:"Rosso rubino", color:"#FF0000"},
+  {name:"Gold", color:"#FFD700"},
+  {name:"Blu ocean", color:"#0000FF"},
+  {name:"Azzurro polvere", color:"#A7C7E7"},
+  {name:"Silver", color:"#C0C0C0"}
 ];
 
 /* ==============================
@@ -1282,6 +1339,13 @@ function toggleShipping() {
 
   update();
 }
+
+
+function goToTroncoColors(){
+  localStorage.setItem("k3d_selected_palette", "silk");
+  window.location.href = "index_colori.html";
+}
+
 
 /* ==============================
    PRODOTTI
