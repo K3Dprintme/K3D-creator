@@ -19,8 +19,7 @@
 
 body{
   min-height:100vh;
-  background:url("AppK3D/background/sfondo/image.png") center center fixed;
-  background-size:cover;
+  background:url("AppK3D/background/sfondo/image.png") center center / cover no-repeat;
 
   display:flex;
   justify-content:center;
@@ -264,35 +263,25 @@ button:hover{
 @media (max-width: 768px){
 
   .grid{
-    grid-template-columns: repeat(2, 1fr);
-    gap:16px;
+    grid-template-columns: 1fr; /* UNA COLONNA = PRO */
+    gap:18px;
   }
 
   .card{
-    padding:14px;
-    background:rgba(255,255,255,0.75);
-    border-radius:16px;
-    box-shadow:0 6px 14px rgba(0,0,0,0.08);
+    padding:18px;
   }
 
   .card img{
-    width:100px;
-    height:100px;
-    border-radius:16px;
+    width:160px;
+    height:160px;
   }
 
   .card span{
-    font-size:14px;
-    font-weight:600;
+    font-size:16px;
+    padding:14px 20px;
   }
 }
 
-body::before{
-  position:fixed;
-  inset:0;
-  background:rgba(255,255,255,0.45);
-  z-index:0;
-}
 
 
 </style>
