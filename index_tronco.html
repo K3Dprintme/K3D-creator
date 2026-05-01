@@ -972,8 +972,7 @@ button.nfc-btn {
 
   border-radius:30px;
 
-  background: linear-gradient(80deg, #87CEEB, #FFFF00);
- background-size: 200% 200%;
+  background: #cfe9ff;
  animation: silkGlow 4s ease infinite;
       border-bottom: 3px solid #FF0000;
       border-top: 3px solid #FF0000;
@@ -986,8 +985,8 @@ button.nfc-btn {
 
   font-weight:700;
   font-size:21px;
-  color: white;
-  text-shadow: 1px 1px 1px blue;
+  color: grey;
+  text-shadow: 0.5px 0.5px 0.5px blue;
   font-family: Montserrat;
    webkit-background-clip: text;
    webkit-text-fill-color: transparent;
@@ -1215,6 +1214,8 @@ Nel riepilogo troverai tutte le selezioni che hai effettuato ed il calcolo total
 </body>
 
 <script>
+
+
 
 /* ==============================
    STATO
@@ -1965,6 +1966,9 @@ function openDimensioni() {
 /* ------------------------------
    AVVIO
 --------------------------------*/
+
+
+
 function restoreDimensionsFromSimulator() {
 
   const saved = localStorage.getItem("k3d_dimensions");
@@ -2016,7 +2020,10 @@ if (savedProduct) {
 
   localStorage.removeItem("returnFromDimensions");
 }
+
+
 renderColors();
 restoreDimensionsFromSimulator();
+
 
 </script>
