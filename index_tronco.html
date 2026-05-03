@@ -1088,16 +1088,18 @@ button:hover{
 /* hover effetto zoom */
 .card:hover img{
   transform: scale(1.1);
-  filter: brightness(1.05) saturate(1.1);
+  filter: brightness(1.05) saturate(1.3);
 }
 
 .card.selected {
-  border: 2px solid #B30000;
-  transform: scale(1.05);
+  border: 1.3px solid #4DB7FF;
+  border-shadows: 2px 2px 2px #4DB7FF;
+  border-radius:35px;
+  transform: scale(1.04);
 }
 
 .card.selected img {
-  filter: brightness(1.1) saturate(1.3);
+  filter: brightness(1.12) saturate(1.3);
 }
 
 @media (max-width: 768px){
@@ -1112,13 +1114,13 @@ button:hover{
   }
 
   .card img{
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
   }
 
   .card span{
     font-size: 16px;
-    padding: 6px 8px;
+    padding: 6px 10px;
   }
 }
 
