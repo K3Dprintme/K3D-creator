@@ -9,11 +9,11 @@
 
 .subtitle {
   font-size: 12px;
-  font-family: Cormorant SC;
+  font-family: Montserrat;
   max-width: 420px;
   margin: 12px auto 22px;
   line-height: 1.6;
-  font-weight: 500;
+  font-weight: 550;
   color: #1a2a44;
 
   background: rgba(255,255,255,0.72);
@@ -28,7 +28,7 @@
   transform: translateY(10px);
   animation: fadeUp 1s ease forwards;
 
-   border-bottom: 3px solid #4db7ff;
+   border-bottom: 1px solid #4db7ff;
    border-top: 3px solid #4db7ff;
 
 }
@@ -189,12 +189,14 @@ input[type=range]{
 button{
   padding:12px;
   border:none;
-
+  margin-top: 10px;
   background: linear-gradient(135deg,#4db7ff,#6bbcff);
   color:white;
-
-  border-radius: 20px;
-  cursor:pointer;
+  background: #cfe9ff;
+  color: #1a2a44;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  transition: 0.25s ease;
+  border-radius: 50px;
 
   font-weight:700;
 
@@ -203,7 +205,8 @@ button{
 }
 
 button:hover{
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  background: #bfe1ff;
   box-shadow: 0 6px 18px rgba(77,183,255,0.35);
 }
 
@@ -214,8 +217,8 @@ button:hover{
 }
 
 .scene{
-  width:340px;
-  height:340px;
+  width:380px;
+  height:380px;
   perspective:none;
   position:relative;
   background: linear-gradient(145deg, rgba(255,255,255,0.85), rgba(205,235,255,0.55));
@@ -239,7 +242,7 @@ button:hover{
   padding:6px 10px;
   border-radius:12px;
 
-  border:1px solid rgba(77,183,255,0.3);
+  border:5px solid rgba(77,183,255,0.3);
   backdrop-filter: blur(4px);
 }
 
@@ -248,7 +251,7 @@ button:hover{
 ========================= */
 .logo {
   width: 100px;
-  margin: 10px auto;
+  margin-top: 20px;
   display: block;
 
 }
@@ -264,9 +267,9 @@ button:hover{
   animation: titleBreath 3s ease-in-out infinite;
   position: relative;
   z-index: 10;
- background: rgba(255,255,255,0.72);
+  background: rgba(255,255,255,0.72);
   padding: 14px 18px;
-   border-radius: 18px;
+  border-radius: 18px;
   border-bottom: 2px solid #4db7ff;
   border-top: 1px solid #4db7ff;
 }
@@ -274,6 +277,7 @@ button:hover{
 .subtitle {
   font-size: 18px;
   font-family: "Cormorant SC";
+  margin-top: 10px;
   max-width: 420px;
   margin: 12px auto 22px;
   line-height: 1.6;
@@ -292,8 +296,8 @@ button:hover{
   transform: translateY(10px);
   animation: fadeUp 1s ease forwards;
 
-  border-bottom: 3px solid #4db7ff;
-  border-top: 3px solid #4db7ff;
+  border-bottom: 2px solid #4db7ff;
+  border-top: 1px solid #4db7ff;
 }
 
 @keyframes fadeUp {
@@ -304,7 +308,7 @@ button:hover{
 }
 
 .logo {
-  margin-top: 80px;
+  margin-top: 120px;
 }
 
 </style>
@@ -326,7 +330,7 @@ button:hover{
 
 
 <div class="subtitle">
-  💡 Muovi gli sliders per vedere le proporzioni!
+  💡 Muovi gli sliders per vedere le proporzioni!<span>📏</span>
 </div>
 
 
@@ -420,7 +424,15 @@ scene3D.add(fillLight);
 dirLight.castShadow = true;
 scene3D.add(dirLight);
 dirLight.shadow.bias = -0.0005;
+const grid = new THREE.GridHelper(
+  6,     // dimensione totale griglia
+  20,    // numero divisioni
+  0x9ecfff, // colore linee principali
+  0xd8ecff  // colore linee secondarie
+);
 
+grid.position.y = -1;
+scene3D.add(grid);
 // =====================
 // CUBO
 // =====================
