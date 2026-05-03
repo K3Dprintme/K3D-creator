@@ -209,7 +209,7 @@ body::before {
 .box {
   width: 100%;
   background: rgba(255,255,255,0.88);
-  padding: 20px;
+  padding: 35px;
   border-radius: 45px;
   margin: 15px auto;
   box-shadow: 0 4px 18px rgba(0,0,0,0.06);
@@ -274,11 +274,11 @@ body::before {
 button {
   width: 90%;
   max-width: 320px;
-  padding: 14px;
+  padding: 20px;
   margin: 6px auto;
   border: none;
   border-radius: 30px;
-  font-size: 17px;
+  font-size: 20px;
   cursor: pointer;
   background: #cfe9ff;
   color: #1a2a44;
@@ -345,75 +345,8 @@ button.nfc-btn {
 
 }
 
-/* Contenitore del ventaglio */
-.fan {
-  width: 100%;
-  position: absolute;
-  bottom: 40px;
-  left: 45%;
-  transform: translateX(-45%);
-}
 
-/* Singolo colore del ventaglio */
-.fan-color {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform-origin: bottom center;
-  transform: rotate(var(--angle)) translateY(-40px);
-  opacity: 0.9;
-  cursor: pointer;
-  transition: transform 0.8s ease-in-out;
-}
 
-/* Effetto di estensione al passaggio del mouse */
-.fan:hover .fan-color {
-  transform: rotate(var(--angle)) translateY(-90px);
-}
-
-/* Stato selezionato */
-.fan-color.selected {
-  border: 3px solid #4db7ff;
-}
-
-/* =========================
-   DROPDOWN
-========================= */
-.color-dropdown {
-  margin-top: 10px;
-  padding: 12px;
-  border-radius: 14px;
-
-  border: 1px solid rgba(77,183,255,0.45);
-  border-bottom: 2px solid rgba(0,200,255,0.55);
-  color: #1a2a44;
-  font-weight: bold;
-
-  cursor: pointer;
-  transition: 0.3s ease;
-
-  box-shadow: 0 4px 10px rgba(77,183,255,0.12);
-}
-
-.color-dropdown:hover {
-  background: rgba(77,183,255,0.25);
-  transform: translateY(-2px);
-}
-
-.color-dropdown-content {
-  display: none;
-  margin-top: 8px;
-  background: white;
-  border-radius: 12px;
-  padding: 10px;
-}
-
-.color-dropdown.open .color-dropdown-content {
-  display: block;
-}
 
 /* =========================
    QUANTITÀ
@@ -1004,6 +937,192 @@ button.nfc-btn {
   box-shadow:0 10px 22px rgba(77,183,255,0.45);
 }
 
+/* =========================
+   SEZIONI
+========================= */
+.section{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.section-title{
+  font-size:25px;
+  color:#00c8ff;
+  text-shadow:1px 1px 1px #777;
+  font-family: 'Montserrat', sans-serif;
+  font-weight:800;
+  letter-spacing:2px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:14px 16px;
+
+  background: white;
+  border-radius:30px;
+  border-bottom: 4px solid #4db7ff;
+   border-top: 3px solid #4db7ff;
+
+  box-shadow:0 6px 14px rgba(0,0,0,0.08);
+
+  position:relative;
+  overflow:hidden;
+
+  text-align:center;
+}
+
+/* linea glow laterale */
+
+.section-title::before{
+  content:"";
+  height:100%;
+
+  background:linear-gradient(180deg,#4db7ff,#00c8ff);
+
+  position:absolute;
+  left:0;
+  top:0;
+
+  border-radius:14px 0 0 14px;
+}
+
+/* piccolo glow animato */
+.section-title::after{
+  content:"";
+  position:absolute;
+  inset:-40px;
+
+  background:radial-gradient(circle, rgba(77,183,255,0.25), transparent 60%);
+  opacity:0.6;
+
+  animation:pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow{
+  0%,100%{transform:scale(1); opacity:0.4;}
+  50%{transform:scale(1.05); opacity:0.7;}
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:18px;
+}
+
+/* CARD */
+.card span{
+  font-size:16px;
+  font-weight:500;
+  text-shadow:0.5px 0.5px 0.5px #777;
+  color:#00c8ff;
+  text-align:center;
+  padding:10px 40px;
+  border-radius:180px;
+  
+
+  background:rgba(255,255,255,0.7);
+
+  border:1px solid rgba(77,183,255,0.35);
+
+  box-shadow:0 3px 8px rgba(0,0,0,0.06);
+
+  letter-spacing:0.5px;
+
+  transition:0.2s ease;
+}
+
+/* IMMAGINE */
+.card img{
+  width:120px;
+  height:120px;
+  object-fit:cover;
+  border-radius:14px;
+
+  border:2px solid rgba(77,183,255,0.5);
+  background:#fff;
+
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.card{
+  overflow:hidden;
+  border-radius:16px;
+}
+
+.card:hover img{
+  transform: scale(5);
+  filter: brightness(1.1) saturate(1.2);
+}
+
+/* TESTO  */
+.card span{
+  color:#1a2a44;
+  background:rgba(255,255,255,0.6);
+  padding:20px 30px;
+  border-radius:30px;
+}
+
+
+button:hover{
+  transform:translateY(-2px);
+}
+
+.card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+
+  padding:10px;
+}
+
+/* immagine base */
+.card img{
+  transition: transform 0.35s ease, filter 0.35s ease;
+  transform-origin:center;
+}
+
+/* hover effetto zoom */
+.card:hover img{
+  transform: scale(1.1);
+  filter: brightness(1.05) saturate(1.1);
+}
+
+.card.selected {
+  border: 3px solid #4db7ff;
+  transform: scale(1.02);
+}
+
+.card.selected img {
+  filter: brightness(1.1) saturate(1.3);
+}
+
+@media (max-width: 768px){
+
+  .grid{
+    grid-template-columns: 1fr; /* UNA COLONNA = PRO */
+    gap:18px;
+  }
+
+  .card{
+    padding:10px;
+  }
+
+  .card img{
+    width:30px;
+    height:30px;
+  }
+
+  .card span{
+    font-size:10px;
+    padding:8px 10px;
+  }
+
+
+
 </style>
 
 </head>
@@ -1111,38 +1230,74 @@ Clicca sul Simulator, per vedere le proporzioni delle tue misure!🔎
 <div class="subtitle">
 🖌️ Puoi abbinare fino a 4 colori contemporaneamente per ogni singolo modello 3D!
 </div>
-
-
+ 
 <!-- COLORI -->
         <div class="box">
-            <div class="box-title">🎨 Colori opachi 🌈</div>
+            <div class="box-title">🎨 Scegli i tuoi colori 🌈</div>
 
-            <div class="fan-container">
-                <div id="fanMatte" class="fan"></div>
-            </div>
-
-            <div class="color-dropdown" onclick="toggleDropdown('matteDD')">
-                🎨 Mostra nomi colori
-                <div id="matteDD" class="color-dropdown-content"></div>
-            </div>
-
-            <div class="box-title" style="margin-top:20px;">✨ Colori Brillanti ✨</div>
-
-            <div class="fan-container">
-                <div id="fanSilk" class="fan"></div>
-            </div>
-
-            <div class="color-dropdown" onclick="toggleDropdown('silkDD')">
-                ✨ Mostra nomi colori
-                <div id="silkDD" class="color-dropdown-content"></div>
-            </div>
+           
 
 
-<div class="silk-action">
-  <button class="silk-btn" onclick="goToTroncoColors()">
- 👁️‍🗨️ Dai un occhio ai colori!
-  </button>
-         </div>
+      <!-- =========================
+       MATTE
+  ========================= -->
+  <div class="section">
+
+    <div class="section-title"> Colori Matte </div>
+
+    <div class="grid">
+
+      <!-- 13 SLOT MATTE -->
+      <div class="card"><img src="Colori/image0.jpeg"><span>Bianco puro</span></div>
+      <div class="card"><img src="Colori/image1.jpeg"><span>Bianco osso</span></div>
+
+      <div class="card"><img src="Colori/image2.jpeg"><span>Giallo limone</span></div>
+      <div class="card"><img src="Colori/image3.jpeg"><span>Mandarino</span></div>
+
+      <div class="card"><img src="Colori/image4.jpeg"><span>Rosa dolce</span></div>
+      <div class="card"><img src="Colori/image5.jpeg"><span>Violetto</span></div>
+
+      <div class="card"><img src="Colori/image6.jpeg"><span>Rosso scarlatto</span></div>
+      <div class="card"><img src="Colori/image7.jpeg"><span>Mattone</span></div>
+
+      <div class="card"><img src="Colori/image8.jpeg"><span>Verde lime</span></div>
+      <div class="card"><img src="Colori/image9.jpeg"><span>Verde prato</span></div>
+
+      <div class="card"><img src="Colori/image10.jpeg"><span>Azzurro sky</span></div>
+      <div class="card"><img src="Colori/image11.jpeg"><span>Blu marino</span></div>
+
+      <div class="card"><img src="Colori/image12.jpeg"><span>Sabbia</span></div>
+      <div class="card"><img src="Colori/image13.jpeg"><span>Caramello</span></div>
+
+      <div class="card"><img src="Colori/image14.jpeg"><span>Terracotta</span></div>
+      <div class="card"><img src="Colori/image15.jpeg"><span>Grigio opaco</span></div>
+
+      <div class="card"><img src="Colori/image16.jpeg"><span>Nero carbone</span></div>
+     
+
+
+    </div>
+  </div>
+
+  <!-- =========================
+       SILK
+  ========================= -->
+  <div class="section">
+
+    <div class="section-title">✨ Colori SILK ✨</div>
+
+    <div class="grid">
+
+      <div class="card"><img src="Colori/image17.jpeg"><span>Rosso rubino</span></div>
+      <div class="card"><img src="Colori/image18.jpeg"><span>Gold</span></div>
+
+      <div class="card"><img src="Colori/image19.jpeg"><span>Silver</span></div>
+      <div class="card"><img src="Colori/image20.jpeg"><span>Azzurro polvere</span></div>
+
+      <div class="card"><img src="Colori/image21.jpeg"><span>Blu Ocean</span></div>
+
+        </div>
+      </div>
 
 </div>
 
@@ -1265,12 +1420,7 @@ const silk = [
    INIT COLORI
 ============================== */
 function renderColors() {
-  const matteFan = document.getElementById("fanMatte");
-  const silkFan = document.getElementById("fanSilk");
-
-  const matteDD = document.getElementById("matteDD");
-  const silkDD = document.getElementById("silkDD");
-
+  
   matteFan.innerHTML = "";
   silkFan.innerHTML = "";
   matteDD.innerHTML = "";
@@ -1318,14 +1468,18 @@ function toggleDropdown(id) {
 ============================== */
 function toggleColor(color, el) {
 
+  // toggle rimozione
   if (selectedColors.includes(color)) {
     selectedColors = selectedColors.filter(c => c !== color);
     el.classList.remove("selected");
-  } else {
+  } 
+  else {
+
     if (selectedColors.length >= 4) {
-      alert("Puoi selezionare max 4 colori per ogni singola creazione!");
+      alert("Puoi selezionare max 4 colori!");
       return;
     }
+
     selectedColors.push(color);
     el.classList.add("selected");
   }
@@ -1342,11 +1496,6 @@ function toggleShipping() {
   update();
 }
 
-
-function goToTroncoColors(){
-  localStorage.setItem("k3d_selected_palette", "silk");
-  window.location.href = "index_colori.html";
-}
 
 
 /* ==============================
@@ -1610,7 +1759,7 @@ function resetAll() {
   }
 
   // reset colori
-  document.querySelectorAll(".fan-color")
+  document.querySelectorAll(".card")
     .forEach(c => c.classList.remove("selected"));
 
   // reset quantità
@@ -2025,8 +2174,30 @@ if (savedProduct) {
 }
 
 
-renderColors();
 restoreDimensionsFromSimulator();
 
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("click", () => {
+
+    const colorName = card.querySelector("span").innerText;
+
+    // toggle selezione
+    if (selectedColors.includes(colorName)) {
+      selectedColors = selectedColors.filter(c => c !== colorName);
+      card.classList.remove("selected");
+    } 
+    else {
+      if (selectedColors.length >= 4) {
+        alert("Puoi selezionare max 4 colori!");
+        return;
+      }
+
+      selectedColors.push(colorName);
+      card.classList.add("selected");
+    }
+
+    update();
+  });
+});
 
 </script>
