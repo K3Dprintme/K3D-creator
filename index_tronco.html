@@ -190,9 +190,12 @@ body::before {
 .left-panel {
   flex: 1;
   max-width: 650px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  gap: 20px; 
 }
 
 /* COLONNA DESTRA (CHATBOT) */
@@ -359,13 +362,18 @@ button.nfc-btn {
   align-items: center;
   gap: 12px;
 
-  padding: 6px 10px;
+  padding: 6px 150px;
   border-radius: 30px;
 
   background: rgba(255,255,255,0.4);
   backdrop-filter: blur(8px);
 
-  border: 3px solid rgba(77,183,255,0.2);
+  border: 1.5px solid rgba(77,183,255,0.5);
+
+box-shadow:
+  0 4px 20px rgba(0, 200, 255, 0.25),
+  inset 0 0 12px rgba(255,255,255,0.2),
+  inset 0 0 20px rgba(77,183,255,0.15);
 }
 
 
@@ -411,7 +419,7 @@ button.nfc-btn {
 
  background: rgba(255,255,255,0.85);
  border: 3px solid #FF4D4D;
- border-radius: 10px;
+ border-radius: 5px;
 
  font-size: 15px;
  font-family: Montserrat;
@@ -1130,6 +1138,23 @@ button:hover{
 }
 
 
+
+.step-icon {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #4db7ff;
+
+  font-weight: 800;
+  color: #4db7ff;
+  font-family: Montserrat;
+}
+
 </style>
 
 </head>
@@ -1156,7 +1181,7 @@ button:hover{
 
 
 <div class="subtitle">
-Seleziona la tipologia! ⬇️
+<span class="step-icon">1</span> Seleziona la tipologia! ⬇️
 </div>
 
         <!-- PRODOTTO -->
@@ -1179,8 +1204,10 @@ Ad ogni tipologia puoi associare un chip(NFC) personalizzabile!
 
 
 
-<div class="subtitle">
-↕️Scegli la dimensione della creazione↔️
+
+
+<div class="subtitle"><span class="step-icon">2</span>
+ ↕️Scegli la dimensione della creazione↔️
 </div>
 
        <!-- DIMENSIONE -->
@@ -1219,22 +1246,13 @@ Clicca sul Simulator, per vedere le proporzioni delle tue misure!🔎
         <button onclick="selectPreset('medio')">|Medio|📏📏 rettangolare(es.:3x8x0.5)</button>
         <button onclick="selectPreset('grande')">|Grande|📏📏📏 (misure da personalizzare)</button>
     </div>
-
-    <!-- QUANTITÀ -->
-    <div class="qty-box">
-
-    <div class="qty-label">Quantità</div>
-
-    <button class="qty-btn" onclick="changeQty(-1)">−</button>
-    <span class="qty-number" id="qty">1</span>
-    <button class="qty-btn" onclick="changeQty(1)">+</button>
-
-</div>
-
 </div>
 
 
-<div class="subtitle">
+
+
+
+<div class="subtitle"> <span class="step-icon">3</span>
 ℹ️ Puoi abbinare fino a 4 colori contemporaneamente per ogni singolo modello 3D!
 </div>
  
@@ -1308,6 +1326,17 @@ Clicca sul Simulator, per vedere le proporzioni delle tue misure!🔎
 
 </div>
 
+
+    <!-- QUANTITÀ -->
+    <div class="qty-box">
+
+    <div class="qty-label"> <span class="step-icon">4</span>Quantità</div>
+
+    <button class="qty-btn" onclick="changeQty(-1)">−</button>
+    <span class="qty-number" id="qty">1</span>
+    <button class="qty-btn" onclick="changeQty(1)">+</button>
+
+    </div>
 
 <div class="subtitle">
 Nel riepilogo troverai tutte le selezioni che hai effettuato ed il calcolo totale. Cliccando su "inviami tutto su whatsApp!", si creerà un messaggio di riepilogo automaticamente! 🧾
