@@ -1,14 +1,20 @@
 {
   "name": "K3D Creator",
   "short_name": "K3D",
-  "start_url": "index.html",
+  "start_url": "./index_tronco.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4db7ff",
   "icons": [
     {
-      "src": "AppK3D/logoindex/logo.jpeg",
+      "src": "AppK3D/logoindex/icon-192.png",
       "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "AppK3D/logoindex/icon-512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ]
