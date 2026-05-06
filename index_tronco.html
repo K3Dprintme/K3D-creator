@@ -90,11 +90,10 @@ body::before {
   position: relative;
   z-index: 10;
   background: rgba(255,255,255,0.72);
-  padding: 14px 18px;
+  padding: 20px 150px;
   border-radius: 18px;
   border-bottom: 2px solid #4db7ff;
   border-top: 1px solid #4db7ff;
-
 }
 
 /*ANIMAZIONE*/
@@ -113,9 +112,10 @@ body::before {
 .title-box h1 {
   margin: 0;
   font-size: 35px;
+  
   font-family: Montserrat;
   color: #00c8ff;
-  text-shadow: 2px 2px 2px black;
+  text-shadow: 1px 1px 1px black;
   transform: translateZ(0);
   -webkit-font-smoothing: antialiased;
     
@@ -123,7 +123,8 @@ body::before {
 
 .title-box h2 { 
   animation: titleBreath 3s ease-in-out infinite;
-  font-size: 40px;
+  font-size: 35px;
+    
   animation-delay: 0.2s;
   font-family: Montserrat;
   color: #00c8ff;
@@ -145,8 +146,9 @@ body::before {
 .subtitle {
   font-size: 16px;
   font-family: Montserrat;
-  max-width: 420px;
+  max-width: 430px;
   margin: 12px auto 22px;
+    
   line-height: 1.6;
   font-weight: 600;
   color: #1a2a44;
@@ -154,7 +156,7 @@ body::before {
   background: rgba(255,255,255,0.72);
   backdrop-filter: blur(2px);
 
-  padding: 16px 28px;
+  padding: 16px 40px;
   border-radius: 18px;
 
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -253,6 +255,7 @@ body::before {
 
   font-family: Montserrat;
   font-size: 25px;
+    
   font-weight: 600;
   letter-spacing: 0.4px;
 
@@ -281,7 +284,7 @@ body::before {
 button {
   width: 90%;
   max-width: 320px;
-  padding: 20px;
+  padding: 15px;
   margin: 6px auto;
   border: none;
   border-radius: 30px;
@@ -321,6 +324,7 @@ button.nfc-btn {
    height: 28px;
    stroke: #3aa0ff;
 }
+
 
 
 
@@ -739,7 +743,7 @@ box-shadow:
   font-size: 17px;
   cursor: pointer;
 
-  background: #cfe9ff;
+  background: #bfe1ff;
   color: #1a2a44;
 
   box-shadow: 0 3px 8px rgba(0,0,0,0.12);
@@ -1156,8 +1160,8 @@ button:hover{
 }
 
 .step {
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
 
   border-radius: 50%;
 
@@ -1167,30 +1171,47 @@ button:hover{
 
   font-family: Montserrat;
   font-weight: 800;
-  font-size: 14px;
+  font-size: 18px;
+ 
 
   background: rgba(255,255,255,0.7);
-  color: #4db7ff;
+  color: red;
 
-  border: 2px solid rgba(77,183,255,0.4);
+  border: 3px solid red;
 
   box-shadow: 0 3px 10px rgba(77,183,255,0.15);
 
   transition: 0.25s ease;
 }
 
-.step.active {
-  background: #4db7ff;
-  color: white;
-  transform: scale(1.15);
-  box-shadow: 0 0 18px rgba(77,183,255,0.4);
+.step-icon {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: white;
+  border: 4px solid red;
+
+  font-weight: 800;
+  color: red;
+  font-family: Montserrat;
 }
 
-.line {
-  width: 18px;
-  height: 2px;
-  background: rgba(77,183,255,0.25);
+.subtitle-nfc {
+  color: #0077b6;
+  background: #EAF6FF;
+  border: 2px solid #4DB7FF;
+  border-shadows: 5px 5px 5px #4DB7FF;
+   border-bottom: 2px solid #4DB7FF;
+   border-top: 1px solid #4DB7FF;
 }
+
+
+
+
 
 </style>
 
@@ -1202,20 +1223,15 @@ button:hover{
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-<h1 class="k3d-title">K3D🔧creator</h1>
+<h1 class="k3d-title">⚙️ K3D🔧creator ⚙️</h1>
 
 
 <div class="container">
 
 <img src="AppK3D/logoindex/logo.png" class="logo">
 
-<div class="title-box">
-    <h2>⚙️ CREATOR ⚙️</h2>
-</div>
+<h1 class="k3d-title">🐾 Segui i 4 step ❗</h1>
 
-
-<div class="step active" data-step="1">1</div>
-  <div class="line"></div>
 
 <div class="layout-grid">
 
@@ -1223,8 +1239,7 @@ button:hover{
     <div class="left-panel">
 
 
-<div class="subtitle">
-Seleziona la tipologia! ⬇️
+<div class="subtitle"><div class="step active" data-step="1">1</div><div class="line"></div>Seleziona la tipologia! ⬇️
 </div>
 
         <!-- PRODOTTO -->
@@ -1241,15 +1256,18 @@ Seleziona la tipologia! ⬇️
                      d="M9.348 14.652a3.75 3.75 0 0 1 0-5.304m5.304 0a3.75 3.75 0 0 1 0 5.304m-7.425 2.121a6.75 6.75 0 0 1 0-9.546m9.546 0a6.75 6.75 0 0 1 0 9.546M5.106 18.894c-3.808-3.807-3.808-9.98 0-13.788m13.788 0c3.808 3.807 3.808 9.98 0 13.788M12 12h.008v.008H12V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
 
 </svg>NFC</button>
-<div class="subtitle">
-Ad ogni tipologia puoi associare un chip(NFC) personalizzabile!
-</div>      
+
+
+<div class="subtitle subtitle-nfc">
+  Ad ogni tipologia puoi associare un chip(NFC) personalizzabile!
+</div>     
  </div>
 
-<div class="step" data-step="2">2</div>
-  <div class="line"></div>
+
 
 <div class="subtitle">
+<div class="step active" data-step="1">2</div>
+  <div class="line"></div>
 ↕️Scegli la dimensione della creazione↔️
 </div>
 
@@ -1292,11 +1310,12 @@ Clicca sul Simulator, per vedere le proporzioni delle tue misure!🔎
 </div>
 
 
-  <div class="step" data-step="3">3</div>
-  <div class="line"></div>
+
 
 <div class="subtitle">
-ℹ️ Puoi abbinare fino a 4 colori contemporaneamente per ogni singolo modello 3D!
+<div class="step active" data-step="1">3</div>
+  <div class="line"></div>
+ℹ️ Puoi abbinare fino a 4 colori contemporaneamente per ogni modello 3D!
 </div>
  
 <!-- COLORI -->
@@ -1369,14 +1388,13 @@ Clicca sul Simulator, per vedere le proporzioni delle tue misure!🔎
 
 </div>
 
-  <div class="step" data-step="4">4</div>
-  <div class="line"></div>
 
 
     <!-- QUANTITÀ -->
     <div class="qty-box">
 
-    <div class="qty-label">Quanti modelli vuoi?</div>
+    <div class="qty-label"><div class="step" data-step="4">4</div>
+  <div class="line"></div>Quantità</div>
 
     <button class="qty-btn" onclick="changeQty(-1)">−</button>
     <span class="qty-number" id="qty">1</span>
@@ -1887,7 +1905,7 @@ function openPopup() {
 
     document.getElementById("popupContent").innerText =
         document.getElementById("result").innerText +
-        "\n\n*Nota: Il costo del riepilogo ha già calcolato nel totale 5€ di costi di spedizione presso locker.*" +
+        "\n\n*Nota: Il costo del riepilogo è orientativo e non definitivo.*" +
         "\n*Per Portachiavi, Calamite e Cornici è possibile aggiungere un tag NFC interno ed invisibile(+2€).*";
 
     document.getElementById("popupOverlay").style.display = "flex";
@@ -2093,7 +2111,7 @@ if (text.includes("ciao")) {
    addChatMessage("Ciao! 👋 Dimmi pure cosa vuoi creare e ti aiuto passo passo.", "reply");
    return;
 }
-    addChatMessage("non posso aiutarti in questo ma puoi contattare Francesco K3D in persona tramite i pulsanti social, Instagram o WhatsApp, in fondo alla pagina, per un aiuto in carne ed ossa ;) .", "reply");
+    addChatMessage("Per questo puoi contattare Francesco K3D in persona tramite i pulsanti social, Instagram o WhatsApp, in fondo alla pagina, per un aiuto in carne ed ossa ;) .", "reply");
 
 
 }
