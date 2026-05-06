@@ -564,6 +564,10 @@ box-shadow:
 /* =========================
    MOBILE FIX
 ========================= */
+/* =========================
+   CHAT TOGGLE BUTTON (FIX)
+========================= */
+
 #chatToggleBtn {
   position: fixed;
   bottom: calc(20px + env(safe-area-inset-bottom));
@@ -576,47 +580,29 @@ box-shadow:
   background: #4db7ff;
   color: white;
   font-size: 26px;
-
   border: none;
+
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 
-  z-index: 99999;
+  z-index: 999999;
 
-  display: flex;          /* 👈 SEMPRE visibile su mobile */
-  align-items: center;
-  justify-content: center;
-
-  transform: none;
+  display: none; /* parte nascosto di default */
 }
-  position: fixed !important;
-  bottom: calc(20px + env(safe-area-inset-bottom));
-  right: 20px;
 
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-
-  background: #4db7ff;
-  color: white;
-  font-size: 26px;
-  border: none;
-
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-
-  z-index: 99999; /* SUPER IMPORTANTE */
-
-  transform: none !important; /* blocca eventuali eredità */
-  will-change: transform;
+/* MOBILE */
+@media (max-width: 768px) {
+  #chatToggleBtn {
+    display: flex;              /* 🔥 QUESTO LO RIATTIVA */
+    align-items: center;
+    justify-content: center;
   }
 }
-.right-panel,
-.container {
-  transform: none !important;
-}
 
-#chatToggleBtn {
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
+/* DESKTOP */
+@media (min-width: 769px) {
+  #chatToggleBtn {
+    display: none !important;
+  }
 }
 /* =========================
    CHAT OVERLAY
