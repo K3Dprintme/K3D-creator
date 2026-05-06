@@ -1174,16 +1174,15 @@ button:hover{
 
 <link rel="manifest" href="./manifest.json">
 
-<h1 class="k3d-title">Segui i 4 step del K3D🔧creator ❗</h1>
+<h1 class="k3d-title">⚙️ K3D🔧creator❗ ⚙️</h1>
 
 
 <div class="container">
 
 <img src="AppK3D/logoindex/logo.png" class="logo">
 
-<div class="title-box">
-    <h2>⚙️ CREATOR ⚙️</h2>
-</div>
+<h1 class="k3d-title">Segui i <span class="step-icon">4</span> step del K3D🔧creator❗</h1>
+
 
 <div class="layout-grid">
 
@@ -1219,7 +1218,7 @@ button:hover{
 
 
 <div class="subtitle"><span class="step-icon">2</span>
- ↕️Scegli la dimensione della creazione↔️
+ ↕Scegli la dimensione della creazione↔️
 </div>
 
        <!-- DIMENSIONE -->
@@ -1360,7 +1359,7 @@ Nel riepilogo troverai tutte le selezioni che hai effettuato ed il calcolo total
         <div class="box">
             <div class="box-title">📦 Riepilogo 🎯</div>
 
-            <p id="result">Qui vedrai il riepilogo delle tue scelte!</p>
+            <p id="result">Qui vedrai il riepilogo delle tue scelte ed il costo orientativo❗</p>
             <button onclick="openPopup()">📋 Mostra riepilogo</button>
             
             <button id="shippingBtn" onclick="toggleShipping()" class="shipping-btn">
@@ -1963,7 +1962,7 @@ function autoReply(text) {
     text = text.toLowerCase();
 
     if (text.includes("colori")) {
-   addChatMessage("Puoi scegliere fino ad un massimo di 4 colori opachi e Silk contemporaneamente per UNA composizione", "reply");
+   addChatMessage("Puoi scegliere fino ad un massimo di 4 colori opachi e lucidi contemporaneamente per ogni singolo modello 3D!", "reply");
    return;
 }
 if (text.includes("pla?")) {
@@ -2059,7 +2058,7 @@ if (text.includes("ciao")) {
    addChatMessage("Ciao! 👋 Dimmi pure cosa vuoi creare e ti aiuto passo passo.", "reply");
    return;
 }
-    addChatMessage("non posso aiutarti in questo ma puoi contattare Francesco K3D in persona tramite i pulsanti social, Instagram o WhatsApp, in fondo alla pagina, per un aiuto in carne ed ossa ;) .", "reply");
+    addChatMessage("Preferisco che per questo contatti Francesco K3D in persona tramite i pulsanti social, Instagram o WhatsApp, in fondo alla pagina, per un aiuto in carne ed ossa ;) .", "reply");
 
 
 }
