@@ -1,15 +1,36 @@
-const CACHE_NAME = "k3d-cache-v1";
+const CACHE_NAME = "k3d-cache-v2";
 
 const urlsToCache = [
-  "index.html",
-  "AppK3D/logoindex/logo.jpeg",
-  "AppK3D/background/sfondo/image.png"
+  "./",
+  "./index.html",
+  "./index_tronco.html",
+  "./manifest.json",
+
+  "./AppK3D/logoindex/icon-192.png",
+  "./AppK3D/logoindex/icon-512.png",
+  "./AppK3D/logoindex/logo.png",
+
+  "./AppK3D/background/sfondo/image.PNG"
 ];
 
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(urlsToCache))
+  );
+});
+
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.map(key => {
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
+          }
+        })
+      )
+    )
   );
 });
 
