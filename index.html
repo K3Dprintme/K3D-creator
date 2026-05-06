@@ -7,6 +7,9 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#4db7ff">
+<link rel="apple-touch-icon" href="AppK3D/logoindex/icon-192.PNG">
 <style>
 
 /* =========================
@@ -210,5 +213,15 @@ body::before{
 
 </div>
 
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(reg => console.log("Service Worker registrato:", reg))
+      .catch(err => console.log("Errore SW:", err));
+  });
+}
+</script>
 </body>
+
 </html>
