@@ -1,7 +1,7 @@
 {
   "name": "K3D Creator",
   "short_name": "K3D",
-  "start_url": "./index_tronco.html",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
