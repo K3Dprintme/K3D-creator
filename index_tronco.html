@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#4db7ff">
+
 
 <style>
 
@@ -230,6 +233,7 @@ body::before {
   box-shadow: 0 0 18px rgba(77,183,255,0.45);
 }
 
+
 /* =========================
    TITOLI BOX
 ========================= */
@@ -360,20 +364,19 @@ button.nfc-btn {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
 
-  padding: 6px 150px;
-  border-radius: 30px;
+  padding: 20px 40px;
+  border-radius: 20px;
 
   background: rgba(255,255,255,0.4);
   backdrop-filter: blur(8px);
 
-  border: 1.5px solid rgba(77,183,255,0.5);
-
-box-shadow:
-  0 4px 20px rgba(0, 200, 255, 0.25),
-  inset 0 0 12px rgba(255,255,255,0.2),
-  inset 0 0 20px rgba(77,183,255,0.15);
+  border: 2px solid rgba(77,183,255,0.4);
+box-shadow: 
+  0 0 10px rgba(77,183,255,0.25),
+  0 0 20px rgba(77,183,255,0.15),
+  inset 0 0 10px rgba(77,183,255,0.1);
 }
 
 
@@ -419,7 +422,7 @@ box-shadow:
 
  background: rgba(255,255,255,0.85);
  border: 3px solid #FF4D4D;
- border-radius: 5px;
+ border-radius: 10px;
 
  font-size: 15px;
  font-family: Montserrat;
@@ -444,8 +447,13 @@ box-shadow:
   font-weight: bold;
  
 
-  margin-right: 10px;
-  opacity: 0.8;
+  margin-right: 30px;
+  opacity: 1;
+   display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
@@ -518,7 +526,6 @@ box-shadow:
   
 }
 
-
 /* =========================
    POPUP
 ========================= */
@@ -539,6 +546,37 @@ box-shadow:
   border-radius: 20px;
 }
 
+/* =========================
+   MOBILE FIX
+========================= */
+@media (max-width: 768px) {
+
+  #chatToggleBtn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  .right-panel {
+    position: fixed;
+    right: auto;
+    top: 80px;
+    width: 92%;
+    max-width: 420px;
+
+    transform: translateX(-50%) translateY(20px) scale(0.98);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  .right-panel.open-chat {
+    transform: translateX(-50%) translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: all;
+  }
+}
 
 
 /* =========================
@@ -574,7 +612,30 @@ box-shadow:
   transition: transform 0.35s ease, opacity 0.35s ease;
 }
 
+@media (max-width: 768px) {
 
+  .right-panel {
+    transform: translateY(20px) scale(0.98);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .right-panel.open-chat {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo,
+  .container,
+  .title-box,
+  .k3d-title {
+    position: relative;
+    z-index: 5;
+  }
+}
 
 
 
@@ -662,6 +723,12 @@ box-shadow:
 
 
 
+@media (min-width: 769px) {
+  #chatToggleBtn {
+    display: none !important;
+     }
+}
+
 .shipping-btn {
   width: 90%;
   max-width: 320px;
@@ -701,6 +768,11 @@ box-shadow:
   border: none;
 }
 
+@media (max-width: 768px) {
+
+  .container {
+    padding: 6px;
+  }
 
   .k3d-title {
     font-size: 22px;
@@ -849,20 +921,33 @@ box-shadow:
 .silk-btn{
   padding:14px 26px;
   border:none;
+
   border-radius:30px;
+
   background: #cfe9ff;
-  animation: silkGlow 4s ease infinite;
-  border-bottom: 3px solid #FF0000;
-  border-top: 3px solid #FF0000;
+ animation: silkGlow 4s ease infinite;
+      border-bottom: 3px solid #FF0000;
+      border-top: 3px solid #FF0000;
+
+@keyframes silkGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
   font-weight:700;
   font-size:21px;
   color: grey;
   text-shadow: 0.5px 0.5px 0.5px blue;
   font-family: Montserrat;
+   webkit-background-clip: text;
+   webkit-text-fill-color: transparent;
+ 
 
   cursor:pointer;
+
   box-shadow:0 6px 16px rgba(77,183,255,0.35);
+
   transition: all 0.25s ease;
 }
 
@@ -1027,7 +1112,7 @@ button:hover{
 
 .card.selected {
   border: 1.3px solid #4DB7FF;
-  box-shadows: 2px 2px 2px #4DB7FF;
+  border-shadows: 2px 2px 2px #4DB7FF;
   border-radius:35px;
   transform: scale(1.04);
 }
@@ -1060,220 +1145,77 @@ button:hover{
   }
 }
 
-
-
-.step-icon {
-  width: 30px;
-  height: 30px;
-  display: inline-flex;
+.k3d-steps {
+  display: flex;
   align-items: center;
   justify-content: center;
 
+  gap: 8px;
+  margin: 20px auto;
+  flex-wrap: wrap;
+}
+
+.step {
+  width: 34px;
+  height: 34px;
+
   border-radius: 50%;
-  background: white;
-  border: 4px solid red;
 
-  font-weight: 800;
-  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   font-family: Montserrat;
+  font-weight: 800;
+  font-size: 14px;
+
+  background: rgba(255,255,255,0.7);
+  color: #4db7ff;
+
+  border: 2px solid rgba(77,183,255,0.4);
+
+  box-shadow: 0 3px 10px rgba(77,183,255,0.15);
+
+  transition: 0.25s ease;
 }
 
-.subtitle-nfc {
-  color: #0077b6;
-  background: #EAF6FF;
-  border: 2px solid #4DB7FF;
-  border-shadows: 5px 5px 5px #4DB7FF;
-  border-bottom: 2px solid #4DB7FF;
-  border-top: 1px solid #4DB7FF;
+.step.active {
+  background: #4db7ff;
+  color: white;
+  transform: scale(1.15);
+  box-shadow: 0 0 18px rgba(77,183,255,0.4);
 }
 
-@media (max-width: 768px) {
-
-  /* =========================
-     LAYOUT GENERALE
-  ========================= */
-  body {
-    text-align: center;
-    overflow-x: hidden;
-  }
-
-  .container {
-    padding: 10px;
-  }
-
-  .layout-grid {
-    flex-direction: column;
-    gap: 18px;
-    align-items: center;
-  }
-
-  .left-panel,
-  .right-panel {
-    position: relative !important;
-    width: 100% !important;
-    max-width: 100%;
-  }
-
-  .right-panel {
-    top: auto;
-    right: auto;
-  }
-
-  /* =========================
-     TITOLI
-  ========================= */
-  .k3d-title {
-    font-size: 22px;
-    padding: 10px 14px;
-  }
-
-  .title-box h1 {
-    font-size: 24px;
-  }
-
-  .title-box h2 {
-    font-size: 20px;
-    padding: 10px;
-  }
-
-  /* =========================
-     SUBTITLE
-  ========================= */
-  .subtitle {
-    font-size: 12px;
-    padding: 10px 14px;
-    margin: 10px auto;
-    max-width: 95%;
-  }
-
-  /* =========================
-     BOX
-  ========================= */
-  .box {
-    padding: 14px;
-    border-radius: 22px;
-    margin: 10px auto;
-  }
-
-  .box-title {
-    font-size: 18px;
-    padding: 10px 14px;
-  }
-
-  /* =========================
-     BOTTONI
-  ========================= */
-  button,
-  .shipping-btn,
-  .reset-btn,
-  .k3d-btn-dimensioni {
-    width: 95%;
-    max-width: 100%;
-    font-size: 14px;
-    padding: 10px;
-    border-radius: 20px;
-  }
-
-  /* =========================
-     GRID COLORI
-  ========================= */
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-  }
-
-  .card img {
-    width: 55px;
-    height: 55px;
-  }
-
-  .card span {
-    font-size: 11px;
-    padding: 4px 6px;
-  }
-
-  /* =========================
-     QUANTITÀ
-  ========================= */
-  .qty-box {
-    flex-direction: row;
-    padding: 8px;
-    gap: 8px;
-  }
-
-  .qty-btn {
-    width: 32px;
-    height: 32px;
-    font-size: 14px;
-  }
-
-  #qty {
-    height: 32px;
-    min-width: 40px;
-    font-size: 13px;
-  }
-
-  .qty-label {
-    font-size: 13px;
-  }
-
-  /* =========================
-     SLIDER
-  ========================= */
-  #slider-container {
-    max-width: 95%;
-  }
-
-  /* =========================
-     CHAT (SE LO TIENI ATTIVO)
-  ========================= */
-  .assistant-box {
-    margin-top: 10px;
-  }
-
-  .chat-window {
-    height: 160px;
-    font-size: 12px;
-  }
-
-  .chat-input input {
-    font-size: 12px;
-    height: 34px;
-  }
-
-  .chat-input button {
-    height: 34px;
-    width: 60px;
-    font-size: 12px;
-  }
-
-  /* =========================
-     LOGO
-  ========================= */
-  .logo {
-    width: 70px;
-  }
-
+.line {
+  width: 18px;
+  height: 2px;
+  background: rgba(77,183,255,0.25);
 }
+
 </style>
 
 </head>
 
 <body>
 
+<div class="k3d-steps">
+
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-<link rel="manifest" href="./manifest.json">
-
-<h1 class="k3d-title">⚙️ K3D🔧creator ⚙️</h1>
+<h1 class="k3d-title">K3D🔧creator</h1>
 
 
 <div class="container">
 
 <img src="AppK3D/logoindex/logo.png" class="logo">
 
-<h1 class="k3d-title">Segui i <span class="step-icon">4</span> step ❗</h1>
+<div class="title-box">
+    <h2>⚙️ CREATOR ⚙️</h2>
+</div>
 
+
+<div class="step active" data-step="1">1</div>
+  <div class="line"></div>
 
 <div class="layout-grid">
 
@@ -1282,7 +1224,7 @@ button:hover{
 
 
 <div class="subtitle">
-<span class="step-icon">1</span> Seleziona la tipologia! ⬇️
+Seleziona la tipologia! ⬇️
 </div>
 
         <!-- PRODOTTO -->
@@ -1297,19 +1239,18 @@ button:hover{
                       viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
                      d="M9.348 14.652a3.75 3.75 0 0 1 0-5.304m5.304 0a3.75 3.75 0 0 1 0 5.304m-7.425 2.121a6.75 6.75 0 0 1 0-9.546m9.546 0a6.75 6.75 0 0 1 0 9.546M5.106 18.894c-3.808-3.807-3.808-9.98 0-13.788m13.788 0c3.808 3.807 3.808 9.98 0 13.788M12 12h.008v.008H12V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-</svg>NFC</button>
 
-<div class="subtitle subtitle-nfc">
-  Ad ogni tipologia puoi associare un chip(NFC) personalizzabile!
-</div>     
+</svg>NFC</button>
+<div class="subtitle">
+Ad ogni tipologia puoi associare un chip(NFC) personalizzabile!
+</div>      
  </div>
 
+<div class="step" data-step="2">2</div>
+  <div class="line"></div>
 
-
-
-
-<div class="subtitle"><span class="step-icon">2</span> 
- Scegli la dimensione della creazione↔️
+<div class="subtitle">
+↕️Scegli la dimensione della creazione↔️
 </div>
 
        <!-- DIMENSIONE -->
@@ -1351,10 +1292,10 @@ Clicca sul Simulator, per vedere le proporzioni delle tue misure!🔎
 </div>
 
 
+  <div class="step" data-step="3">3</div>
+  <div class="line"></div>
 
-
-
-<div class="subtitle"> <span class="step-icon">3</span>
+<div class="subtitle">
 ℹ️ Puoi abbinare fino a 4 colori contemporaneamente per ogni singolo modello 3D!
 </div>
  
@@ -1428,17 +1369,20 @@ Clicca sul Simulator, per vedere le proporzioni delle tue misure!🔎
 
 </div>
 
+  <div class="step" data-step="4">4</div>
+  <div class="line"></div>
+
 
     <!-- QUANTITÀ -->
     <div class="qty-box">
 
-    <div class="qty-label"> <span class="step-icon">4</span>Quantità</div>
+    <div class="qty-label">Quanti modelli vuoi?</div>
 
     <button class="qty-btn" onclick="changeQty(-1)">−</button>
     <span class="qty-number" id="qty">1</span>
     <button class="qty-btn" onclick="changeQty(1)">+</button>
 
-    </div>
+</div>
 
 <div class="subtitle">
 Nel riepilogo troverai tutte le selezioni che hai effettuato ed il calcolo totale. Cliccando su "inviami tutto su whatsApp!", si creerà un messaggio di riepilogo automaticamente! 🧾
@@ -1450,7 +1394,7 @@ Nel riepilogo troverai tutte le selezioni che hai effettuato ed il calcolo total
         <div class="box">
             <div class="box-title">📦 Riepilogo 🎯</div>
 
-            <p id="result">Qui vedrai il riepilogo delle tue scelte ed il costo orientativo❗</p>
+            <p id="result">Qui vedrai il riepilogo delle tue scelte!</p>
             <button onclick="openPopup()">📋 Mostra riepilogo</button>
             
             <button id="shippingBtn" onclick="toggleShipping()" class="shipping-btn">
@@ -1943,7 +1887,7 @@ function openPopup() {
 
     document.getElementById("popupContent").innerText =
         document.getElementById("result").innerText +
-        "\n\n*Nota: Il risultato del riepilogo ha un valore orientativo, per stime precise, contattami tramite i canali in fondo al creator.*" +
+        "\n\n*Nota: Il costo del riepilogo ha già calcolato nel totale 5€ di costi di spedizione presso locker.*" +
         "\n*Per Portachiavi, Calamite e Cornici è possibile aggiungere un tag NFC interno ed invisibile(+2€).*";
 
     document.getElementById("popupOverlay").style.display = "flex";
@@ -2053,7 +1997,7 @@ function autoReply(text) {
     text = text.toLowerCase();
 
     if (text.includes("colori")) {
-   addChatMessage("Puoi scegliere fino ad un massimo di 4 colori opachi e lucidi contemporaneamente per ogni singolo modello 3D!", "reply");
+   addChatMessage("Puoi scegliere fino ad un massimo di 4 colori opachi e Silk contemporaneamente per UNA composizione", "reply");
    return;
 }
 if (text.includes("pla?")) {
@@ -2149,7 +2093,7 @@ if (text.includes("ciao")) {
    addChatMessage("Ciao! 👋 Dimmi pure cosa vuoi creare e ti aiuto passo passo.", "reply");
    return;
 }
-    addChatMessage("Preferisco che per questo contatti Francesco K3D in persona tramite i pulsanti social, Instagram o WhatsApp, in fondo alla pagina, per un aiuto in carne ed ossa ;) .", "reply");
+    addChatMessage("non posso aiutarti in questo ma puoi contattare Francesco K3D in persona tramite i pulsanti social, Instagram o WhatsApp, in fondo alla pagina, per un aiuto in carne ed ossa ;) .", "reply");
 
 
 }
@@ -2311,6 +2255,24 @@ if (savedProduct) {
   localStorage.removeItem("returnFromDimensions");
 }
 
+function setStep(n) {
+
+  const steps = document.querySelectorAll(".step");
+
+  steps.forEach(s => {
+    const stepNum = parseInt(s.dataset.step);
+
+    if (stepNum <= n) {
+      s.classList.add("active");
+    } else {
+      s.classList.remove("active");
+    }
+  });
+}
+
+if (product) setStep(2);
+if (selectedDimensions.length > 0) setStep(3);
+if (selectedColors.length > 0) setStep(4);
 
 restoreDimensionsFromSimulator();
 
@@ -2335,6 +2297,44 @@ document.querySelectorAll(".card").forEach(card => {
     }
 
     update();
+  });
+});
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .then((reg) => {
+        console.log("SW registrato:", reg.scope);
+      })
+      .catch((err) => {
+        console.log("Errore SW:", err);
+      });
+  });
+}
+document.querySelectorAll(".step").forEach(step => {
+  step.addEventListener("click", () => {
+    
+    const n = parseInt(step.dataset.step);
+
+    // attiva step visivo
+    setStep(n);
+
+    // scroll alle sezioni
+    if (n === 1) {
+      document.querySelector(".box").scrollIntoView({ behavior: "smooth" });
+    }
+
+    if (n === 2) {
+      document.querySelector("#slider-container").scrollIntoView({ behavior: "smooth" });
+    }
+
+    if (n === 3) {
+      document.querySelectorAll(".section")[0].scrollIntoView({ behavior: "smooth" });
+    }
+
+    if (n === 4) {
+      document.querySelector(".qty-box").scrollIntoView({ behavior: "smooth" });
+    }
   });
 });
 
