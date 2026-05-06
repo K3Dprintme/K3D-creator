@@ -544,52 +544,30 @@ box-shadow:
 @media (max-width: 768px) {
 
 #chatToggleBtn {
-  position: fixed;
-  bottom: calc(20px + env(safe-area-inset-bottom));
-  right: 20px;
-
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-
-  background: #4db7ff;
-  color: white;
-  font-size: 26px;
-  border: none;
-
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-
-  z-index: 999999 !important;
-
-  display: none; /* desktop OFF */
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
 }
 
-html, body {
-  height: 100%;
-  -webkit-overflow-scrolling: touch;
+.right-panel {
+ position: fixed;
+ right: auto;
+ top: 80px;
+ width: 92%;
+ max-width: 420px;
+
+ transform: translateX(-50%) translateY(20px) scale(0.98);
+ opacity: 0;
+ pointer-events: none;
+ z-index: 9992;
 }
 
-
-  .right-panel {
-    position: fixed;
-    right: auto;
-    top: 80px;
-    width: 92%;
-    max-width: 420px;
-
-    transform: translateX(-50%) translateY(20px) scale(0.98);
-    opacity: 0;
-    pointer-events: none;
-    z-index: 9998;
-  }
-
-  .right-panel.open-chat {
-    transform: translateX(-50%) translateY(0) scale(1);
-    opacity: 1;
-    pointer-events: all;
+.right-pane.open-chat {
+ transform: translateX(-50%) translateY(0) scale(1);
+ opacity: 1;
+ pointer.events: all;
   }
 }
-
 
 /* =========================
    CHAT OVERLAY
