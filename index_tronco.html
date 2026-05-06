@@ -518,28 +518,6 @@ box-shadow:
   
 }
 
-@media (max-width: 768px) {
-
-  .right-panel {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%) translateY(20px) scale(0.98);
-
-    width: 92%;
-    max-width: 420px;
-
-    top: 80px;
-
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .right-panel.open-chat {
-    transform: translateX(-50%) translateY(0) scale(1);
-    opacity: 1;
-    pointer-events: all;
-  }
-}
 
 /* =========================
    POPUP
@@ -561,49 +539,8 @@ box-shadow:
   border-radius: 20px;
 }
 
-/* =========================
-   MOBILE FIX
-========================= */
-/* =========================
-   CHAT TOGGLE BUTTON (FIX)
-========================= */
 
-#chatToggleBtn {
-  position: fixed;
-  bottom: calc(20px + env(safe-area-inset-bottom));
-  right: 20px;
 
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-
-  background: #4db7ff;
-  color: white;
-  font-size: 26px;
-  border: none;
-
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-
-  z-index: 999999;
-
-  display: none; /* parte nascosto di default */
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  #chatToggleBtn {
-    display: flex;              /* 🔥 QUESTO LO RIATTIVA */
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-/* DESKTOP */
-@media (min-width: 769px) {
-  #chatToggleBtn {
-    display: none !important;
-  }
-}
 /* =========================
    CHAT OVERLAY
 ========================= */
@@ -637,30 +574,7 @@ box-shadow:
   transition: transform 0.35s ease, opacity 0.35s ease;
 }
 
-@media (max-width: 768px) {
 
-  .right-panel {
-    transform: translateY(20px) scale(1);
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .right-panel.open-chat {
-    transform: translateY(0) scale(0.98);
-    opacity: 1;
-    pointer-events: all;
-  }
-}
-
-@media (max-width: 768px) {
-  .logo,
-  .container,
-  .title-box,
-  .k3d-title {
-    position: relative;
-    z-index: 5;
-  }
-}
 
 
 
@@ -748,12 +662,6 @@ box-shadow:
 
 
 
-@media (min-width: 769px) {
-  #chatToggleBtn {
-    display: none !important;
-     }
-}
-
 .shipping-btn {
   width: 90%;
   max-width: 320px;
@@ -793,11 +701,6 @@ box-shadow:
   border: none;
 }
 
-@media (max-width: 768px) {
-
-  .container {
-    padding: 6px;
-  }
 
   .k3d-title {
     font-size: 22px;
@@ -946,33 +849,20 @@ box-shadow:
 .silk-btn{
   padding:14px 26px;
   border:none;
-
   border-radius:30px;
-
   background: #cfe9ff;
- animation: silkGlow 4s ease infinite;
-      border-bottom: 3px solid #FF0000;
-      border-top: 3px solid #FF0000;
-}
-@keyframes silkGlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+  animation: silkGlow 4s ease infinite;
+  border-bottom: 3px solid #FF0000;
+  border-top: 3px solid #FF0000;
 
   font-weight:700;
   font-size:21px;
   color: grey;
   text-shadow: 0.5px 0.5px 0.5px blue;
   font-family: Montserrat;
-   webkit-background-clip: text;
-   webkit-text-fill-color: transparent;
- 
 
   cursor:pointer;
-
   box-shadow:0 6px 16px rgba(77,183,255,0.35);
-
   transition: all 0.25s ease;
 }
 
@@ -1197,6 +1087,174 @@ button:hover{
   border-top: 1px solid #4DB7FF;
 }
 
+@media (max-width: 768px) {
+
+  /* =========================
+     LAYOUT GENERALE
+  ========================= */
+  body {
+    text-align: center;
+    overflow-x: hidden;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .layout-grid {
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+  }
+
+  .left-panel,
+  .right-panel {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100%;
+  }
+
+  .right-panel {
+    top: auto;
+    right: auto;
+  }
+
+  /* =========================
+     TITOLI
+  ========================= */
+  .k3d-title {
+    font-size: 22px;
+    padding: 10px 14px;
+  }
+
+  .title-box h1 {
+    font-size: 24px;
+  }
+
+  .title-box h2 {
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  /* =========================
+     SUBTITLE
+  ========================= */
+  .subtitle {
+    font-size: 12px;
+    padding: 10px 14px;
+    margin: 10px auto;
+    max-width: 95%;
+  }
+
+  /* =========================
+     BOX
+  ========================= */
+  .box {
+    padding: 14px;
+    border-radius: 22px;
+    margin: 10px auto;
+  }
+
+  .box-title {
+    font-size: 18px;
+    padding: 10px 14px;
+  }
+
+  /* =========================
+     BOTTONI
+  ========================= */
+  button,
+  .shipping-btn,
+  .reset-btn,
+  .k3d-btn-dimensioni {
+    width: 95%;
+    max-width: 100%;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  /* =========================
+     GRID COLORI
+  ========================= */
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .card img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .card span {
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+
+  /* =========================
+     QUANTITÀ
+  ========================= */
+  .qty-box {
+    flex-direction: row;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .qty-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  #qty {
+    height: 32px;
+    min-width: 40px;
+    font-size: 13px;
+  }
+
+  .qty-label {
+    font-size: 13px;
+  }
+
+  /* =========================
+     SLIDER
+  ========================= */
+  #slider-container {
+    max-width: 95%;
+  }
+
+  /* =========================
+     CHAT (SE LO TIENI ATTIVO)
+  ========================= */
+  .assistant-box {
+    margin-top: 10px;
+  }
+
+  .chat-window {
+    height: 160px;
+    font-size: 12px;
+  }
+
+  .chat-input input {
+    font-size: 12px;
+    height: 34px;
+  }
+
+  .chat-input button {
+    height: 34px;
+    width: 60px;
+    font-size: 12px;
+  }
+
+  /* =========================
+     LOGO
+  ========================= */
+  .logo {
+    width: 70px;
+  }
+
+}
 </style>
 
 </head>
