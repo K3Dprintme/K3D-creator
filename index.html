@@ -68,14 +68,15 @@ body::before{
   padding:50px 30px;
   text-align:center;
 
-  background:rgba(255,255,255,0.78);
+  background: white;
   backdrop-filter:blur(12px);
 
   border-radius:35px;
 
   border-top:3px solid #4db7ff;
   border-bottom:4px solid #4db7ff;
-
+ .glow.left{ background:#4db7ff; left:-120px; top:-120px; }
+.glow.right{ background:#00c8ff; right:-120px; bottom:-120px; }
   box-shadow:0 15px 40px rgba(0,0,0,0.12);
 
   animation:fadeIn 0.8s ease;
@@ -90,7 +91,7 @@ body::before{
 .logo{
   width:140px;
   margin-bottom:25px;
-  filter:drop-shadow(0px 10px 10px rgba(0,0,0,0.15));
+  background: white;
 }
 
 /* TITLO */
@@ -104,16 +105,23 @@ body::before{
 
 .subtitle{
   font-size:16px;
+  font-weight:600;
   color:#1a2a44;
   max-width:420px;
   margin:0 auto 25px;
   line-height:1.6;
-
-  background:rgba(255,255,255,0.7);
-  padding:12px 16px;
+    background: linear-gradient(
+    to right,
+    transparent 0%,
+    #F0FCFF 15%,
+    #F0FCFF 85%,
+    transparent 100%
+  );
+  
+  padding:12px 30px;
   border-radius:18px;
-  border-top:2px solid #4db7ff;
-  border-bottom:2px solid #4db7ff;
+  border-top:2px solid #800020;
+  border-bottom:2px solid #800020;
 }
 
 /* CTA BUTTON */
