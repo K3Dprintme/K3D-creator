@@ -141,6 +141,7 @@ body::before {
 
 .mini-title {
   font-size: 22px;
+  text-shadow: 0.5px 0.5px 0.5px black;
   font-family: Montserrat;
   color: #00c8ff;
 
@@ -346,7 +347,7 @@ button.nfc-btn {
 }
 
 .icon_nfc {
-   width: 28px;
+   width: 30px;
    height: 28px;
    stroke: #3aa0ff;
 }
@@ -805,14 +806,14 @@ button.nfc-btn {
   }
 
   .k3d-title {
-    font-size: 22px;
+    font-size: 25px;
     padding: 8px 12px;
     border-radius: 14px;
   }
 
   .title-box h2 {
     font-size: 24px;
-    padding: 10px 12px;
+    padding: 10px 30px;
   }
 
   .subtitle {
@@ -2109,7 +2110,7 @@ if (text.includes("contattare")) {
    return;
 }
 
-if (text.includes("aiuto")) {
+if (text.includes("come")) {
    addChatMessage("Scrivi una parola chiave dell'argomento che ti interessa sapere.", "reply");
    return;
 }

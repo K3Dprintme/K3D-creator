@@ -1,4 +1,4 @@
-const CACHE_NAME = "k3d-cache-v3";
+const CACHE_NAME = "k3d-cache-v4";
 
 const urlsToCache = [
   "./",
