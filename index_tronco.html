@@ -72,7 +72,7 @@ body::before {
    LOGO + TITLE
 ========================= */
 .logo {
-  width: 100px;
+  width: 150px;
   margin: 6px auto;
   display: block;
 
@@ -89,10 +89,10 @@ body::before {
   animation: titleBreath 3s ease-in-out infinite;
   position: relative;
   z-index: 10;
-  background: rgba(255,255,255,0.72);
-  padding: 20px 150px;
+  background: white;
+  padding: 15px 30px;
   border-radius: 18px;
-  border-bottom: 2px solid #4db7ff;
+  border-bottom: 3px solid #4db7ff;
   border-top: 1px solid #4db7ff;
 }
 
@@ -137,6 +137,32 @@ body::before {
   border-top: 1px solid #4db7ff;
   
   padding: 14px 18px;
+}
+
+.mini-title {
+  font-size: 22px;
+  font-family: Montserrat;
+  color: #00c8ff;
+
+  margin-top: 5px;
+
+  border-bottom: 2px solid #00c8ff;
+  border-top: 1px solid #4db7ff;
+
+  padding: 20px 250px;
+
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    #F0FCFF 15%,
+    #F0FCFF 85%,
+    transparent 100%
+  );
+
+  box-shadow: 
+    0 0 10px rgba(77,183,255,0.25),
+    0 0 20px rgba(77,183,255,0.15),
+    inset 0 0 10px rgba(77,183,255,0.1);
 }
 
 
@@ -250,8 +276,8 @@ body::before {
   background: rgba(77,183,255,0.15);
   border: 1px solid rgba(77,183,255,0.4);
 
-  padding: 14px 22px;
-  border-radius: 18px;
+  padding: 14px 20px;
+  border-radius: 20px;
 
   font-family: Montserrat;
   font-size: 25px;
@@ -377,7 +403,7 @@ button.nfc-btn {
   backdrop-filter: blur(8px);
 
   border: 2px solid rgba(77,183,255,0.4);
-box-shadow: 
+  box-shadow: 
   0 0 10px rgba(77,183,255,0.25),
   0 0 20px rgba(77,183,255,0.15),
   inset 0 0 10px rgba(77,183,255,0.1);
@@ -1031,7 +1057,7 @@ box-shadow:
 /* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(4, 1fr);
+  grid-template-columns:repeat(3, 1fr);
   gap:18px;
 }
 
@@ -1165,13 +1191,14 @@ button:hover{
 
   border-radius: 50%;
 
-  display: flex;
+  display: center;
   align-items: center;
   justify-content: center;
 
   font-family: Montserrat;
   font-weight: 800;
   font-size: 18px;
+  white-space: nowrap;
  
 
   background: rgba(255,255,255,0.7);
@@ -1184,27 +1211,40 @@ button:hover{
   transition: 0.25s ease;
 }
 
-.step-icon {
-  width: 30px;
-  height: 30px;
-  display: inline-flex;
+.step {
+  width: 70px;
+  height: 50px;
+
+  border-radius: 50%;
+
+  display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 50%;
-  background: white;
-  border: 4px solid red;
-
-  font-weight: 800;
-  color: red;
   font-family: Montserrat;
+  font-weight: 700;
+  font-size: 16px;
+
+  background: rgba(255,255,255,0.75);
+
+  color: #ff3b3b;
+
+  border: 2px solid rgba(255,59,59,0.5);
+
+  backdrop-filter: blur(6px);
+
+  box-shadow:
+    0 4px 10px rgba(0,0,0,0.08),
+    0 0 10px rgba(255,59,59,0.15);
+
+  transition: 0.25s ease;
 }
 
 .subtitle-nfc {
   color: #0077b6;
   background: #EAF6FF;
   border: 2px solid #4DB7FF;
-  border-shadows: 5px 5px 5px #4DB7FF;
+  box-shadows: 5px 5px 5px #4DB7FF;
    border-bottom: 2px solid #4DB7FF;
    border-top: 1px solid #4DB7FF;
 }
@@ -1223,14 +1263,13 @@ button:hover{
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-<h1 class="k3d-title">⚙️ K3D🔧creator ⚙️</h1>
+<h1 class="k3d-title">
+<img src="AppK3D/logoindex/logo.png" class="logo">⚙️ Creator ⚙️</h1>
 
 
 <div class="container">
 
-<img src="AppK3D/logoindex/logo.png" class="logo">
-
-<h1 class="k3d-title">🐾 Segui i 4 step ❗</h1>
+<h3 class="mini-title">🐾 Segui i 4 step ❗</h3>
 
 
 <div class="layout-grid">
@@ -1238,9 +1277,8 @@ button:hover{
     <!-- SINISTRA -->
     <div class="left-panel">
 
-
-<div class="subtitle"><div class="step active" data-step="1">1</div><div class="line"></div>Seleziona la tipologia! ⬇️
-</div>
+<div class="step active" data-step="1">STEP 1</div><div class="line"></div>
+<div class="subtitle">Seleziona la tipologia! ⬇️</div>
 
         <!-- PRODOTTO -->
         <div class="box">
@@ -1263,12 +1301,12 @@ button:hover{
 </div>     
  </div>
 
-
+<div class="step active" data-step="1">STEP 2</div>
+  <div class="line"></div>
 
 <div class="subtitle">
-<div class="step active" data-step="1">2</div>
-  <div class="line"></div>
 ↕️Scegli la dimensione della creazione↔️
+Sarà attiva quando selezioni la tipologia.
 </div>
 
        <!-- DIMENSIONE -->
@@ -1309,12 +1347,12 @@ Clicca sul Simulator, per vedere le proporzioni delle tue misure!🔎
     </div>
 </div>
 
-
+<div class="step active" data-step="1">STEP 3</div>
+  <div class="line"></div>
 
 
 <div class="subtitle">
-<div class="step active" data-step="1">3</div>
-  <div class="line"></div>
+
 ℹ️ Puoi abbinare fino a 4 colori contemporaneamente per ogni modello 3D!
 </div>
  
@@ -1387,14 +1425,13 @@ Clicca sul Simulator, per vedere le proporzioni delle tue misure!🔎
       </div>
 
 </div>
-
-
+<div class="step active" data-step="1">STEP 4</div>
+  <div class="line"></div>
 
     <!-- QUANTITÀ -->
     <div class="qty-box">
 
-    <div class="qty-label"><div class="step" data-step="4">4</div>
-  <div class="line"></div>Quantità</div>
+    <div class="qty-label">Quantità</div>
 
     <button class="qty-btn" onclick="changeQty(-1)">−</button>
     <span class="qty-number" id="qty">1</span>
@@ -1412,7 +1449,7 @@ Nel riepilogo troverai tutte le selezioni che hai effettuato ed il calcolo total
         <div class="box">
             <div class="box-title">📦 Riepilogo 🎯</div>
 
-            <p id="result">Qui vedrai il riepilogo delle tue scelte!</p>
+            <p id="result">Qui vedrai il riepilogo delle tue scelte❗</p>
             <button onclick="openPopup()">📋 Mostra riepilogo</button>
             
             <button id="shippingBtn" onclick="toggleShipping()" class="shipping-btn">
